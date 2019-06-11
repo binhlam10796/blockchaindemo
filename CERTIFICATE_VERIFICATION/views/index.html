@@ -1,0 +1,138 @@
+<html lang="en-US">
+
+<head>
+    <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
+    <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../assets/css/index/style_index.css">
+    <link rel="stylesheet" href="../assets/css/common/style_header.css">
+    <link rel="stylesheet" href="../assets/css/index/style_popup_login.css">
+
+    <script type="text/javascript" src="../api/js/index.js"></script>
+    <script type="text/javascript" src="../api/js/libs/parsley.min.js"></script>
+
+    <meta content="text/html; charset=UTF-8; initial-scale=1; maximum-scale=1" http-equiv="content-type"
+        name="viewport">
+
+
+</head>
+
+<body class="background">
+    <div class="ctn">
+        <div class="header">
+            <a href="#default" class="logo">
+                <img class="img-responsive" src="../assets/images/_shortcutIcon.png">
+            </a>
+            <div class="header-left">
+                <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
+                <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+            </div>
+            <div class="header-right">
+                <button type="button" data-toggle="modal" data-target="#loginModal" data-backdrop="static"
+                    data-keyboard="false" class="btn btn-primary btn-sm">
+                    Đăng nhập
+                </button>
+            </div>
+        </div>
+        <div class="search-content">
+            <table id="searchTable">
+                <tr class="padding-tr">
+                    <th class="padding-th">
+                        Tên văn bằng
+                        <i class="red">*</i>
+                    </th>
+                    <td class="padding-td">
+                        <select name="degreename" id="degreename">
+                            <option value="" disabled selected>Chọn tên văn bằng</option>
+                            <option value="">Bằng tốt nghiệp đại học</option>
+                            <option value="">Bằng tốt nghiệp cao đẳng</option>
+                            <option value="">Chứng chỉ tiếng anh trình độ A</option>
+                            <option value="">Chứng chỉ tiếng anh trình độ B</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="padding-th">
+                        Họ tên
+                    </th>
+                    <td class="padding-td">
+                        <input type="text" name="studentname" id="studentname"
+                            placeholder="Nhập họ tên người được cấp bằng" class="input-name">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="padding-th">
+                        Số hiệu
+                    </th>
+                    <td class="padding-td">
+                        <input type="text" name="number" id="number" placeholder="Nhập số hiệu">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="padding-th">
+                        Số vào sổ
+                    </th>
+                    <td class="padding-td">
+                        <input type="text" name="numberbook" id="numberbook" placeholder="Nhập số vào sổ">
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="padding-td">
+                        <h5><i class="red">*</i> Điều kiện tìm kiếm: Họ tên, số hiệu, số vào sổ không phân biệt ký tự
+                            HOA, thường</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="padding-td">
+                        <button class="btnSearch" type="submit" onclick="doSearch();">Tìm kiếm</button>
+                        <button class="btnClear" type="submit" onclick="doClear();">Làm lại</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- LOGIN POPUP -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title">Đăng nhập vào hệ thống</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label><b>Tên đăng nhập</b></label>
+                        <br>
+                        <input type="text" placeholder="Nhập tên đăng nhập" id="username" name="username">
+                        <br>
+                        <label><b>Mật khẩu</b></label>
+                        <br>
+                        <input type="password" placeholder="Nhập mật khẩu" id="password" name="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-xs" onclick="doLogin();">Đăng nhập</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

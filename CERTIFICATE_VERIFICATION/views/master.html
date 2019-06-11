@@ -1,0 +1,651 @@
+<html lang="en-US">
+
+    <head>
+        <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
+        <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
+    
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    
+        <!-- <link rel="stylesheet" href="../assets/css/admin/style_admin.css">
+        <link rel="stylesheet" href="../assets/css/user/style_user.css"> -->
+        <link rel="stylesheet" href="../assets/css/master/style_master.css">
+        <link rel="stylesheet" href="../assets/css/common/style_header.css">
+    
+        <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script> -->
+        <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.js"></script> -->
+        <script type="text/javascript" src="../api/js/abi/StorageABI.js"></script>
+        <script type="text/javascript" src="../api/js/master.js"></script>
+        <script type="text/javascript" src="../api/js/libs/parsley.min.js"></script>
+        <!-- Style Css -->
+        <link rel="stylesheet" href="../assets/css/common/style.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+        <!-- Spinner-CSS -->
+        <link rel="stylesheet" href="../assets/css/common/spinner.css" type="text/css" media="all" />
+        <!-- Google Font -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    
+        <meta content="text/html, charset=UTF-8; initial-scale=1, maximum-scale=1" http-equiv="content-type"
+            name="viewport">
+    </head>
+
+<body class="bkg">
+    <div class="spinner" id="spinner" style="display: none">
+        <div class="blob blob-0"></div>
+    </div>
+
+    <script type="text/javascript">
+        var div = document.getElementById('spinner');
+        div.style.display = "block";
+        setTimeout(function () {
+            div.style.display = "none";
+        }, 1000);
+    </script>
+
+    <div>
+        <div class="ctn">
+            <div class="header">
+                <a href="#default" class="logo">
+                    <img class="img-responsive" src="../assets/images/_shortcutIcon.png">
+                </a>
+                <div class="header-left">
+                    <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
+                    <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+                </div>
+            </div>
+            <div class="content-user">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#inputCertification" data-toggle="tab">Quản lý người dùng</a>
+                        </li>
+                        <li>
+                            <a href="#approveCertification" data-toggle="tab">Quản lý trường</a>
+                        </li>
+                        <li>
+                            <a href="#historyCertification" data-toggle="tab">Lịch sử</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- Tab input certification -->
+                        <div class="active tab-pane" id="inputCertification">
+                            <div class="row w-btn">
+                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
+                                    <button type="button" name="" class="form-control btn btn-primary"
+                                        data-toggle="modal" data-target="#addDegree">
+                                        <i class="glyphicon glyphicon-plus"></i> Thêm mới</button>
+                                </div>
+                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
+                                    <label for="file-upload" class="custom-file-upload form-control btn btn-primary">
+                                        <i class="glyphicon glyphicon-import"></i> Import
+                                    </label>
+                                    <input id="file-upload" type="file"
+                                        accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                </div>
+                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
+                                    <button type="button" name="" class="form-control btn btn-primary"
+                                        onclick="createTableWorkbook();">
+                                        <i class="glyphicon glyphicon-export"></i> Export</button>
+                                </div>
+                            </div>
+
+                            <!-- TODO LIST -->
+                            <div class="box box-primary">
+                                <div class="box-header ui-sortable-handle">
+                                    <i class="ion ion-clipboard"></i>
+
+                                    <h3 class="box-title">Danh sách quản lý người dùng</h3>
+                                </div>
+                                <div class="box-body"
+                                    style="overflow-x:auto;">
+                                    <div class="form-group">
+                                        <select name="state" id="maxRowsListUserManagement"
+                                            class="form-control" style="width:
+                                            150px;">
+                                            <option value="5000"> Tất cả </option>
+                                            <option value="5"> 5 </option>
+                                            <option value="10"> 10 </option>
+                                            <option value="15"> 15 </option>
+                                            <option value="20"> 20 </option>
+                                            <option value="50"> 50 </option>
+                                            <option value="100"> 100 </option>
+                                            
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="deleteUser">
+                                        <button type="button" class="btn btn-success btn-sm" 
+                                            onclick="deleteUserManagement();"> Xoá</button>
+                                    </div> -->
+                                    <table id="listUserManager"
+                                        class="table table-bordered
+                                        table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Address</th>
+                                                <th>ID</th>
+                                                <th>Họ tên</th>
+                                                <th>Email</th>
+                                                <th>Mật khẩu</th>
+                                                <th>Giới tính</th>
+                                                <th>Ngày sinh</th>
+                                                
+                                                <th>Khóa</th>
+                                                <th>Thời gian tạo</th>
+                                                <th>Thời gian thay đổi</th>
+                                                <th>Số CMND</th>
+                                                <th>Nơi cấp CMND</th>
+                                                
+                                                <th>Số điện thoại</th>
+                                                <th>Công việc</th>
+                                                <th>Địa chỉ </th>
+                                                <th>Thao tác </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination-container">
+                                        <nav>
+                                            <ul class="pagination"></ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End tab input certification -->
+
+                        <!-- Tab approve certification -->
+                        <div class="tab-pane" id="approveCertification">
+                            <!-- TODO LIST -->
+                            <div class="box box-primary">
+                                <div class="box-header ui-sortable-handle">
+                                    <i class="ion ion-clipboard"></i>
+                                    <h3 class="box-title">Danh sách quản lý trường</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                
+                            </div>
+                        </div>
+                        <!-- End tab approve certification -->
+
+                        <!-- Tab history -->
+                        <div class="tab-pane" id="historyCertification">
+                            <section class="content">
+
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- The time line -->
+                                        <ul class="timeline">
+                                            <!-- timeline time label -->
+                                            <li class="time-label">
+                                                <span class="bg-red">
+                                                    10 Feb. 2014
+                                                </span>
+                                            </li>
+                                            <!-- /.timeline-label -->
+                                            <!-- timeline item -->
+                                            <li>
+                                                <i class="fa fa-envelope bg-blue"></i>
+
+                                                <div class="timeline-item">
+                                                    <span class="time">
+                                                        <i class="fa fa-clock-o"></i> 12:05</span>
+
+                                                    <h3 class="timeline-header">
+                                                        <a href="#">Support Team</a> sent you an email</h3>
+
+                                                    <div class="timeline-body">
+                                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo
+                                                        kaboodle
+                                                        quora plaxo ideeli hulu weebly balihoo...
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- END timeline item -->
+                                            <!-- timeline item -->
+                                            <li>
+                                                <i class="fa fa-user bg-aqua"></i>
+
+                                                <div class="timeline-item">
+                                                    <span class="time">
+                                                        <i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                                                    <h3 class="timeline-header no-border">
+                                                        <a href="#">Sarah Young</a> accepted your friend request</h3>
+                                                </div>
+                                            </li>
+                                            <!-- END timeline item -->
+                                            <!-- timeline item -->
+                                            <li>
+                                                <i class="fa fa-comments bg-yellow"></i>
+
+                                                <div class="timeline-item">
+                                                    <span class="time">
+                                                        <i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                                                    <h3 class="timeline-header">
+                                                        <a href="#">Jay White</a> commented on your post</h3>
+
+                                                    <div class="timeline-body">
+                                                        Take me to your leader! Switzerland is small and neutral! We are
+                                                        more like Germany, ambitious and misunderstood!
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- END timeline item -->
+                                            <!-- timeline time label -->
+                                            <li class="time-label">
+                                                <span class="bg-green">
+                                                    3 Jan. 2014
+                                                </span>
+                                            </li>
+                                            <!-- /.timeline-label -->
+                                            <!-- timeline item -->
+                                            <li>
+                                                <i class="fa fa-camera bg-purple"></i>
+
+                                                <div class="timeline-item">
+                                                    <span class="time">
+                                                        <i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                                                    <h3 class="timeline-header">
+                                                        <a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                                                    <div class="timeline-body">
+                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- END timeline item -->
+                                            <li>
+                                                <i class="fa fa-clock-o bg-gray"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </section>
+                        </div>
+                        <!-- End tab history -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+
+            <div id="result"></div>
+            <table id="grid1"></table>
+        </div>
+    </div>
+
+    <!-- Add usermanagement-->
+    <div class="modal fade" id="addDegree">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="fa fa-fw fa-close btn-remove"></i>
+                    </button>
+                    <h4 class="modal-title">Thêm người dùng</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="idUserManagementForm">
+                        <!-- <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Address</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address" 
+                                    placeholder="Address"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">ID</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id" 
+                                    placeholder="ID"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Họ Tên</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="fullName"
+                                    placeholder="Họ Tên" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Email</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" 
+                                    placeholder="Email"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Mật khẩu</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="password" 
+                                    placeholder="Mật khẩu"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="council" class="col-sm-2 control-label">Giới tính</label>
+
+                            <div class="col-sm-10">
+                                <select class="form-control" id="gender"
+                                    placeholder="Giới tính"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                                    <option value=""></option>
+                                    <option value="man">Nam</option>
+                                    <option value="woman">Nữ</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="gender" 
+                                    placeholder="Giới tính"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng."> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthplace" class="col-sm-2 control-label">Ngày sinh</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="dateOfBirth" 
+                                    placeholder="Ngày sinh"
+                                    data-parsley-required="true" 
+                                    data-parsley-type="number"
+                                    data-parsley-error-message="Bắt buộc là số.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Trạng Thái</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="isLocked"
+                                    placeholder="Trạng Thái" 
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <!--  -->
+                        <!-- <div class="form-group">
+                            <label for="signingdate" class="col-sm-2 control-label">Thời gian tạo</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="createdTime"
+                                    placeholder="Thời gian tạo" 
+                                    data-parsley-required="true" 
+                                    data-parsley-type="number"
+                                    data-parsley-error-message="Bắt buộc là số.">
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="signingdate" class="col-sm-2 control-label">Thời gian chỉnh sửa</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="modifiedTime"
+                                    placeholder="Thời gian chỉnh sửa" 
+                                    data-parsley-required="true" 
+                                    data-parsley-type="number"
+                                    data-parsley-error-message="Bắt buộc là số.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="number" class="col-sm-2 control-label">Số CMND</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="idCardNo" placeholder="Số CMND"
+                                    data-parsley-required="true" data-parsley-type="number"
+                                    data-parsley-error-message="Bắt buộc là số.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Nơi cấp CMND</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="idCardIssuePlace"
+                                    placeholder="Nơi cấp CMND" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="form-group">
+                            <label for="number" class="col-sm-2 control-label">Số điện thoại</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="phoneNumber" 
+                                    placeholder="Số điện thoại"
+                                    data-parsley-required="true" data-parsley-type="number"
+                                    data-parsley-error-message="Bắt buộc là số.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Công việc</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="job"
+                                    placeholder="Công việc" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Địa chỉ</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="userAddr"
+                                    placeholder="Địa chỉ" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" onclick="addUserManagement();">
+                        <i class="fa fa-plus"></i> Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete Modal-->
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa người dùng</h4>
+                </div>
+
+
+                <div class="modal-body">
+                    
+                    <h5>Bạn chắc chắn muốn xóa user này?</h5>
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-md"
+                        onclick="deleteUserManagement();">
+                        Xóa</button>
+                        &nbsp;
+                    <button type="button" class="btn btn-danger btn-md"
+                        data-dismiss="modal">
+                        Hủy</button>
+                    <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- update user management-->
+    <div class="modal fade" id="updateFrontUserManagement">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="fa fa-fw fa-close btn-remove"></i>
+                    </button>
+                    <h4 class="modal-title">Cập nhật người dùng</h4>
+                </div>
+                <div class="modal-body" style="overflow-x:auto;">
+                    <table id="tableUpdateUser" class="table" cellspacing="0" style="width:100%">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" onclick="updateUserManagement();">
+                        <i class="glyphicon glyphicon-saved"></i> Cập nhật</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="insertValueUpdateFullNameModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật giá trị</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+                
+                </div><div class="modal-body1">
+                    <input type="text" class="form-control" id="valueUpdate"
+                                    placeholder="Gia tri cap nhat" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                    <p></p>
+                    
+                    <h5>Bạn chắc chắn muốn sửa?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-md"
+                        onclick="updateUserManagement();">
+                        Sua</button>
+                        &nbsp;
+                    <button type="button" class="btn btn-danger btn-md"
+                        data-dismiss="modal">
+                        Hủy</button>
+                    <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal update email -->
+    <div class="modal fade" id="insertValueUpdateEmailModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật giá trị</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+                
+                </div><div class="modal-body1">
+                    <input type="text" class="form-control" id="valueUpdateEmail"
+                                    placeholder="Gia tri cap nhat" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                    <p></p>
+                    
+                    <h5>Bạn chắc chắn muốn sửa?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-md"
+                        onclick="updateEmailUserManagement();">
+                        Sua</button>
+                        &nbsp;
+                    <button type="button" class="btn btn-danger btn-md"
+                        data-dismiss="modal">
+                        Hủy</button>
+                    <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal update password -->
+    <div class="modal fade" id="insertValueUpdatePasswordModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật giá trị</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+                
+                </div><div class="modal-body1">
+                    <input type="text" class="form-control" id="valueUpdatePassword"
+                                    placeholder="Gia tri cap nhat" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                    <p></p>
+                    
+                    <h5>Bạn chắc chắn muốn sửa?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-md"
+                        onclick="updateEmailUserManagement();">
+                        Sua</button>
+                        &nbsp;
+                    <button type="button" class="btn btn-danger btn-md"
+                        data-dismiss="modal">
+                        Hủy</button>
+                    <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+input#password {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+input#username {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (max-width: 912px) {
+    .modal-dialog {
+        width: 80%;
+    }
+    .modal-title {
+        font-size: 14px;
+    }
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}

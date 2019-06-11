@@ -1,0 +1,498 @@
+.bkg {
+    background: #fdffd0;
+}
+
+.bkg .ctn {
+    position: relative;
+    margin: 10px 70px;
+    padding: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #fff;
+    border: 0;
+    height: auto;
+}
+
+.navigation {
+    overflow: hidden;
+    float: left;
+    width: 100%;
+}
+
+.navigation button:hover {
+    background-color: #218bd4;
+    border: 1px solid #218bd4;
+}
+
+.navigation button {
+    float: left;
+    background-color: #0b619d;
+    border: 1px solid #0b619d;
+    padding: 5px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.navigation .icon {
+    display: none;
+}
+
+.degree-kind {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+.degree-name {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+.degree-management {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+.user-degree-management {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+.degree-history {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+@media screen and (max-width: 1096px) {
+    .bkg .ctn {
+        margin: 10px 30px;
+    }
+
+    .navigation button {
+        font-size: 12px;
+    }
+
+    .degree-kind {
+        width: 33%;
+        float: left;
+    }
+
+    .degree-name {
+        width: 33%;
+        float: left;
+    }
+
+    .degree-management {
+        width: 34%;
+        float: left;
+    }
+
+    .user-degree-management {
+        width: 50%;
+        float: left;
+    }
+
+    .degree-history {
+        width: 50%;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .degree-kind {
+        width: 50%;
+        float: left;
+    }
+
+    .degree-name {
+        width: 50%;
+        float: left;
+    }
+
+    .degree-management {
+        width: 50%;
+        float: left;
+    }
+
+    .user-degree-management {
+        width: 50%;
+        float: left;
+    }
+
+    .degree-history {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .bkg .ctn {
+        margin: 10px 15px;
+    }
+
+    .degree-kind {
+        width: 100%;
+        float: left;
+    }
+
+    .degree-name {
+        width: 100%;
+        float: left;
+    }
+
+    .degree-management {
+        width: 100%;
+        float: left;
+    }
+
+    .user-degree-management {
+        width: 100%;
+        float: left;
+    }
+
+    .degree-history {
+        width: 100%;
+        float: left;
+    }
+}
+
+.filter-content {
+    padding-top: 10px;
+}
+
+.filter {
+    padding: 0px 10px;
+}
+
+#nameInput {
+    width: 20%;
+    font-size: 13px;
+    padding: 7px 7px 7px 7px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+#typeInput {
+    width: 20%;
+    font-size: 13px;
+    padding: 7px 7px 7px 7px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.table {
+    border: 1px solid #ddd;
+}
+
+/* Main table */
+
+table#myTable {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#myTable th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#myTable tr, table#myTable td, table#myTable th {
+    border: 1px solid #ddd;
+}
+
+table#myTable tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+/* Degree kind table */
+table#degreeKindTable0 {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#degreeKindTable {
+    /* margin-top: 10px; */
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#degreeKindTable0 th {
+    background-color: #337ab7;
+    color: white;
+}
+
+
+table#degreeKindTable th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#degreeKindTable0 tr, table#degreeKindTable0 td, table#degreeKindTable0 th {
+    border: 1px solid #ddd;
+}
+
+table#degreeKindTable tr, table#degreeKindTable td, table#degreeKindTable th {
+    border: 1px solid #ddd;
+}
+
+table#degreeKindTable0 tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#degreeKindTable tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+/* Degree name table */
+
+table#degreeNameTable {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#degreeNameTable th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#degreeNameTable tr, table#degreeNameTable td, table#degreeNameTable th {
+    border: 1px solid #ddd;
+}
+
+table#degreeNameTable tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+/* Degree history table */
+
+table#historyTable {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#historyTable th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#historyTable tr, table#historyTable td, table#historyTable th {
+    border: 1px solid #ddd;
+}
+
+table#historyTable tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+@media screen and (max-width: 912px) {
+    #nameInput {
+        width: 30%;
+    }
+
+    #typeInput {
+        width: 30%;
+    }
+
+    #myTable th, td {
+        white-space: nowrap;
+    }
+
+    #degreeKindTable0 th, td {
+        white-space: nowrap;
+    }
+
+    #degreeKindTable th, td {
+        white-space: nowrap;
+    }
+
+    #degreeNameTable th, td {
+        white-space: nowrap;
+    }
+
+    .modal-dialog {
+        width: 80%;
+    }
+
+    .modal-title {
+        font-size: 14px;
+    }
+
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 567px) {
+    #nameInput {
+        width: 40%;
+    }
+
+    #typeInput {
+        width: 40%;
+    }
+
+    .box-title {
+        font-size: 14px;
+    }
+}
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+input#idKindDegree {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+input#nameKindDegree {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+input#idDegree {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+input#nameDegree {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+select#idKindDegreeSelect {
+    font-size: 16px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+/* Style the tab */
+
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 200px;
+}
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+    /* float: left; */
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 200px;
+}
+
+/*
+* degreeManagementTable
+*/
+
+#degreeManagementTable th, td {
+    white-space: nowrap;
+}
+
+.table-header {
+    background-color: #337ab7;
+    color: white;
+}
+
+#degreeManagementTable tr:hover {
+    background-color: #7fbdf3;
+    cursor: pointer;
+}
+
+.btn-remove {
+    font-size: 30px !important;
+    color: red !important;
+}
+
+.center {
+    text-align: center;
+    width: 20px;
+}
+
+.edit {
+    background-color: #7fbdf3;
+}

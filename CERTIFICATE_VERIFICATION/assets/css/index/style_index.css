@@ -1,0 +1,168 @@
+.background {
+    background: #fdffd0;
+}
+
+.background .ctn {
+    position: relative;
+    margin: 10px 70px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #fff;
+    height: auto;
+}
+
+.search-content {
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    margin: 20px auto auto auto;
+    width: 90%;
+    height: auto;
+    padding: 15px 4px 15px 4px;
+}
+
+table#searchTable {
+    margin: auto;
+}
+
+select#degreename {
+    width: 70%;
+    border-radius: 2px;
+    padding: 2px;
+    font-size: 12px;
+    border: 1px solid #cecece;
+}
+
+input#studentname {
+    width: 70%;
+    border-radius: 2px;
+    padding: 2px;
+    font-size: 12px;
+    border: 1px solid #cecece;
+}
+
+input#number {
+    width: 37%;
+    border-radius: 2px;
+    padding: 2px;
+    font-size: 12px;
+    border: 1px solid #cecece;
+}
+
+input#numberbook {
+    width: 37%;
+    border-radius: 2px;
+    padding: 2px;
+    font-size: 12px;
+    border: 1px solid #cecece;
+}
+
+td.padding-td {
+    padding-left: 20px;
+}
+
+th.padding-th {
+    padding: 7px 0px 7px 0px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+button.btnSearch {
+    background-color: rgb(52, 135, 212);
+    border: none;
+    width: 20%;
+    border-radius: 2px;
+    color: white;
+    padding: 4px 6px 4px 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+button.btnSearch:hover {
+    background-color: #0b619d;
+}
+
+button.btnClear {
+    border: none;
+    width: 20%;
+    padding: 4px 6px 4px 6px;
+    border-radius: 2px;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button.btnClear:hover {
+    background-color: #a5a7a4
+}
+
+h5 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+i.red {
+    color: red;
+}
+
+@media only screen and (max-width: 800px) {
+    .background .ctn {
+        margin: 10px 30px;
+    }
+    .button-login {
+        padding: 4px 4px;
+        font-size: 13px;
+    }
+    table#searchTable {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    select#degreename {
+        width: 85%;
+    }
+    input#studentname {
+        width: 85%;
+    }
+    input#number {
+        width: 47%;
+    }
+    input#numberbook {
+        width: 47%;
+    }
+    th.padding-th {
+        text-align: left;
+    }
+    td.padding-td {
+        padding-left: 10px;
+    }
+    button.btnSearch {
+        width: 30%;
+    }
+    button.btnClear {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .background .ctn {
+        margin: 10px 15px;
+    }
+    button.btnSearch {
+        width: 40%;
+    }
+    button.btnClear {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    button.btnSearch {
+        width: 45%;
+    }
+    button.btnClear {
+        width: 45%;
+    }
+}
