@@ -61,21 +61,13 @@ function addCertificate() {
             });
     }
 }
-
-
-$(window).on('load', function () {
-    listCertification();
-    $(document).ready(function () {
+function pag(){
+    $('.pagination').html('')
         var table = '#listCertificationTable';
-
-
-        $('.pagination').html('')
         var trnum = 0;
         var maxRows = 20;
-
-        //var totalRows = $(table+' tbody tr').length;
-        var totalRows = 41;
-        //console.log(totalRows);
+        var totalRows = $('#listCertificationTable tbody tr').length;
+        console.log(totalRows);
         $(table + ' tr:gt(0)').each(function () {
             trnum++
             if (trnum > maxRows) {
@@ -106,7 +98,15 @@ $(window).on('load', function () {
                 }
             })
         })
+}
 
+$(window).on('load', function () {
+    listCertification();
+    $(document).ready(function () {
+        var table = '#listCertificationTable';
+        setTimeout(pag,2000);
+
+        
 
         $('#maxRowsListDegree').on('change', function () {
             $('.pagination').html('')
@@ -192,10 +192,8 @@ function statusCodeByName(status) {
     switch (status) {
         case "WAITTING":
             return "Đợi duyệt";
-            break;
         case "DONE":
             return "Đã duyệt";
-            break;
         default:
             break;
     }
