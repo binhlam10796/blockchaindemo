@@ -387,104 +387,14 @@ function doApproveCertificate() {
     batch.execute();
 }
 
-function createTableWorkbook() {
-    var workbook = new $.ig.excel.Workbook($.ig.excel.WorkbookFormat.excel2007);
-    var sheet = workbook.worksheets().add('Report');
-    sheet.columns(0).setWidth(72, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(1).setWidth(275, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(2).setWidth(275, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(3).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(4).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(5).setWidth(275, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(6).setWidth(275, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(7).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(8).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(9).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(10).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(11).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(12).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-    sheet.columns(13).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-
-    // Create a to-do list table with columns for tasks and their priorities.
-    sheet.getCell('A1').value('STT');
-    sheet.getCell('B1').value('ID');
-    sheet.getCell('C1').value('Trường đại học');
-    sheet.getCell('D1').value('Loại bằng cấp');
-    sheet.getCell('E1').value('Chuyên ngành');
-    sheet.getCell('F1').value('Họ tên');
-    sheet.getCell('G1').value('Ngày sinh');
-    sheet.getCell('H1').value('Trạng thái');
-    sheet.getCell('I1').value('Năm tốt nghiệp');
-    sheet.getCell('J1').value('Xếp loại');
-    sheet.getCell('K1').value('Hình thức đào tạo');
-    sheet.getCell('L1').value('Ngày ký');
-    sheet.getCell('M1').value('Số hiệu');
-    sheet.getCell('N1').value('Số vào sổ');
-    var table = sheet.tables().add('A1:N100', true);
-
-    // Specify the style to use in the table (this can also be specified as an optional 3rd argument to the 'add' call above).
-    table.style(workbook.standardTableStyles('TableStyleMedium2'))
-
-    // Populate the table with data
-    var table = '#listCertificationTable';
-    var indexRow = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
-    var totalRows = $(table + ' tbody tr').length;
-    //console.log(totalRows);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-    //console.log(rRow);
-    //var texto = $('#listCertificationTable tr:nth-child(10) td:nth-child(2)').text();
-    //console.log(texto);
-    //var result = addQuotes(texto);
-    for (var currentRow = 0; currentRow < totalRows+1; currentRow++) {
-        for (var i = 0; i < indexRow.length+1; i++) {
-                //console.log(indexRow[i] + currentRow);
-                //var textto = $('#listCertificationTable tr:nth-child(' + currentRow + ') td:nth-child(' + i + ')').text();
-                //var result = addQuotes(textto);
-                var cell = indexRow[i] + currentRow;
-                var reCell = addQuotes(cell);
-                console.log(reCell);
-                //sheet.getCell(reCell).value(result);
-        }
-    }
 
 
-
-    // Sort the table by the Applicant column
-    //table.columns('Applicant').sortCondition(new $.ig.excel.OrderedSortCondition());
-
-    // Filter out the Approved applicants
-    //table.columns('Status').applyCustomFilter(new $.ig.excel.CustomFilterCondition($.ig.excel.ExcelComparisonOperator.notEqual, 'Approved'));
-
-    // Save the workbook
-    //saveWorkbook(workbook, "DanhSachVanBang.xlsx");
+function exportExcel(){
+    $("#listCertificationTable").table2excel({
+      exclude: ".noExl",
+      name: "Report",
+      filename: "danhSachVanBang", //do not include extension
+      fileext: ".xls",
+      preserveColors: true // file extension
+    }); 
 }
-
-function saveWorkbook(workbook, name) {
-    workbook.save({ type: 'blob' }, function (data) {
-        saveAs(data, name);
-    }, function (error) {
-        alert('Error exporting: : ' + error);
-    });
-}
-
-//Them value vao dau nhay don
-function addQuotes(value){
-    if(value=="")return;
-    var quotedVar = "\'" + value + "\'";
-    return quotedVar;
-}
-// function test() {
-//     var table = '#listCertificationTable';
-//     var indexRow = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
-//     var totalRows = $(table + ' tbody tr').length;
-//     //console.log(totalRows);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-//     //console.log(rRow);
-//     //var texto = $('#listCertificationTable tr:nth-child(10) td:nth-child(2)').text();
-//     for (var currentRow = 1; currentRow <= totalRows; currentRow++) {
-//         for (var i = 0; i <= indexRow.length; i++) {
-//                 //console.log(indexRow[i] + currentRow);
-//                 //console.log($('#listCertificationTable tr:nth-child(' + currentRow + ') td:nth-child(' + i + ')').text());
-//                 sheet.getCell(indexRow[i] + currentRow).value($('#listCertificationTable tr:nth-child(' + currentRow + ') td:nth-child(' + i + ')').text());
-            
-//         }
-//     }
-// }

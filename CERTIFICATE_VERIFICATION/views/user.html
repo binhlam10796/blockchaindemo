@@ -30,36 +30,9 @@
 
 
         <!--Begin export excel-->
-        <script src="http://igniteui.com/js/external/FileSaver.js"></script>
-        <script src="http://igniteui.com/js/external/Blob.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/infragistics.core.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_core.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_collections.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_text.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_io.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_ui.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.documents.core_core.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.excel_core.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_threading.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_web.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.xml.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.documents.core_openxml.js"></script>
-        <script
-            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+        <script type="text/javascript" src="../api/js/libs/jquery.table2excel.js"></script>
+        
+            
         <!--End export excel-->
 
 
@@ -137,9 +110,8 @@
 
                                     <div class="col-xs-6 col-lg-2 col-md-2
                                         col-sm-2 w">
-                                        <button type="button" name=""
-                                            class="form-control btn btn-primary"
-                                            onclick="createTableWorkbook();">
+                                        <button type="button" name="" onclick="exportExcel();"
+                                            class="form-control btn btn-primary">
                                             <i class="glyphicon
                                                 glyphicon-export"></i> Export</button>
                                     </div>
