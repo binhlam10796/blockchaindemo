@@ -3,172 +3,227 @@
     <head>
         <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
         <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
-    
-        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
-    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
-    
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    
+
+        <script
+            src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript"
+            src="http://code.jquery.com/jquery-latest.pack.js"></script>
+
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="../assets/css/admin/style_admin.css">
         <link rel="stylesheet" href="../assets/css/user/style_user.css">
         <link rel="stylesheet" href="../assets/css/common/style_header.css">
-    
         <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script> -->
         <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.js"></script> -->
         <script type="text/javascript" src="../api/js/abi/StorageABI.js"></script>
         <script type="text/javascript" src="../api/js/user.js"></script>
         <script type="text/javascript" src="../api/js/libs/parsley.min.js"></script>
+
+
+        <!--Begin export excel-->
+        <script src="http://igniteui.com/js/external/FileSaver.js"></script>
+        <script src="http://igniteui.com/js/external/Blob.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/infragistics.core.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_core.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_collections.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_text.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_io.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_ui.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.documents.core_core.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.excel_core.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_threading.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.ext_web.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.xml.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+        <script
+            src="http://cdn-na.infragistics.com/igniteui/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+        <!--End export excel-->
+
+
+
         <!-- Style Css -->
         <link rel="stylesheet" href="../assets/css/common/style.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+        <link rel="stylesheet"
+            href="../bower_components/Ionicons/css/ionicons.min.css">
         <!-- Spinner-CSS -->
-        <link rel="stylesheet" href="../assets/css/common/spinner.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../assets/css/common/spinner.css"
+            type="text/css" media="all" />
         <!-- Google Font -->
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    
-        <meta content="text/html, charset=UTF-8; initial-scale=1, maximum-scale=1" http-equiv="content-type"
+        <meta content="text/html, charset=UTF-8; initial-scale=1,
+            maximum-scale=1" http-equiv="content-type"
             name="viewport">
     </head>
 
-<body class="bkg">
-    <div class="spinner" id="spinner" style="display: none">
-        <div class="blob blob-0"></div>
-    </div>
+    <body class="bkg">
+        <div class="spinner" id="spinner" style="display: none">
+            <div class="blob blob-0"></div>
+        </div>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         var div = document.getElementById('spinner');
         div.style.display = "block";
         setTimeout(function () {
             div.style.display = "none";
         }, 1000);
     </script>
-
-    <div>
-        <div class="ctn">
-            <div class="header">
-                <a href="#default" class="logo">
-                    <img class="img-responsive" src="../assets/images/_shortcutIcon.png">
-                </a>
-                <div class="header-left">
-                    <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
-                    <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+        <div>
+            <div class="ctn">
+                <div class="header">
+                    <a href="#default" class="logo">
+                        <img class="img-responsive"
+                            src="../assets/images/_shortcutIcon.png">
+                    </a>
+                    <div class="header-left">
+                        <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
+                        <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="content-user">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#inputCertification" data-toggle="tab">Nhập văn bằng</a>
-                        </li>
-                        <li>
-                            <a href="#approveCertification" data-toggle="tab">Duyệt văn bằng</a>
-                        </li>
-                        <li>
-                            <a href="#historyCertification" data-toggle="tab">Lịch sử</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <!-- Tab input certification -->
-                        <div class="active tab-pane" id="inputCertification">
-                            <div class="row w-btn">
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <button type="button" name="" class="form-control btn btn-primary"
-                                        data-toggle="modal" data-target="#addDegree">
-                                        <i class="glyphicon glyphicon-plus"></i> Thêm mới</button>
-                                </div>
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <label for="file-upload" class="custom-file-upload form-control btn btn-primary">
-                                        <i class="glyphicon glyphicon-import"></i> Import
-                                    </label>
-                                    <input id="file-upload" type="file"
-                                        accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
-                                </div>
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <button type="button" name="" class="form-control btn btn-primary"
-                                        onclick="createTableWorkbook();">
-                                        <i class="glyphicon glyphicon-export"></i> Export</button>
-                                </div>
-                            </div>
+                <div class="content-user">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#inputCertification" data-toggle="tab">Nhập
+                                    văn bằng</a>
+                            </li>
+                            <li>
+                                <a href="#approveCertification"
+                                    data-toggle="tab">Duyệt văn bằng</a>
+                            </li>
+                            <li>
+                                <a href="#historyCertification"
+                                    data-toggle="tab">Lịch sử</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- Tab input certification -->
+                            <div class="active tab-pane"
+                                id="inputCertification">
+                                <div class="row w-btn">
+                                    <div class="col-xs-6 col-lg-2 col-md-2
+                                        col-sm-2 w">
+                                        <button type="button" name=""
+                                            class="form-control btn btn-primary"
+                                            data-toggle="modal"
+                                            data-target="#addDegree">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            Thêm mới</button>
+                                    </div>
 
-                            <!-- TODO LIST -->
-                            <div class="box box-primary">
-                                <div class="box-header ui-sortable-handle">
-                                    <i class="ion ion-clipboard"></i>
-
-                                    <h3 class="box-title">Danh sách văn bằng</h3>
+                                    <div class="col-xs-6 col-lg-2 col-md-2
+                                        col-sm-2 w">
+                                        <button type="button" name=""
+                                            class="form-control btn btn-primary"
+                                            onclick="createTableWorkbook();">
+                                            <i class="glyphicon
+                                                glyphicon-export"></i> Export</button>
+                                    </div>
                                 </div>
-                                <div class="box-body" style="overflow-x:auto;">
+
+                                <!-- TODO LIST -->
+                                <div class="box box-primary">
+                                    <div class="box-header ui-sortable-handle">
+                                        <i class="ion ion-clipboard"></i>
+
+                                        <h3 class="box-title">Danh sách văn bằng</h3>
+                                    </div>
+                                    <div class="box-body"
+                                        style="overflow-x:auto;">
                                         <div class="form-group">
-                                                <select name="state" id="maxRowsListDegree"
-                                                    class="form-control" style="width:
-                                                    150px;">
-                                                    <option value="5000"> Tất cả </option>
-                                                    <option value="5"> 5 </option>
-                                                    <option value="10"> 10 </option>
-                                                    <option value="15"> 15 </option>
-                                                    <option value="20"> 20 </option>
-                                                    <option value="50"> 50 </option>
-                                                    <option value="100"> 100 </option>
-                                                    
-                                                </select>
-                                            </div>
-                                    <table id="listCertificationTable" class="table table-bordered
-                                    table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>ID</th>
-                                                <th>Trường đại học</th>
-                                                <th>Loại bằng cấp</th>
-                                                <th>Chuyên ngành</th>
-                                                <th>Họ tên</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Trạng thái</th>
-                                                <th>Năm tốt nghiệp</th>
-                                                <th>Xếp loại</th>
-                                                <th>Hình thức đào tạo</th>
-                                                <th>Ngày ký</th>
-                                                <th>Số hiệu</th>
-                                                <th>Số vào sổ</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                            <select name="state"
+                                                id="maxRowsListDegree"
+                                                class="form-control"
+                                                style="width:
+                                                150px;">
+                                                <option value="20"
+                                                    selected="selected"> 20
+                                                </option>
+                                                <option value="10"> 10 </option>
+                                                <option value="50"> 50 </option>
+                                            </select>
+                                        </div>
+                                        <table id="listCertificationTable"
+                                            class="table table-bordered
+                                            table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>ID</th>
+                                                    <th>Trường đại học</th>
+                                                    <th>Loại bằng cấp</th>
+                                                    <th>Chuyên ngành</th>
+                                                    <th>Họ tên</th>
+                                                    <th>Ngày sinh</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Năm tốt nghiệp</th>
+                                                    <th>Xếp loại</th>
+                                                    <th>Hình thức đào tạo</th>
+                                                    <th>Ngày ký</th>
+                                                    <th>Số hiệu</th>
+                                                    <th>Số vào sổ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                        </tbody>
-                                    </table>
-                                    <div class="pagination-container">
+                                            </tbody>
+                                        </table>
+                                        <div class="pagination-container">
                                             <nav>
                                                 <ul class="pagination"></ul>
                                             </nav>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End tab input certification -->
+                            <!-- End tab input certification -->
 
-                        <!-- Tab approve certification -->
-                        <div class="tab-pane" id="approveCertification">
-                            <div class="row w-btn">
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <button type="button" name="" class="form-control btn btn-primary">
-                                        <i class="glyphicon glyphicon-saved"></i> Phê duyệt đồng loạt</button>
+                            <!-- Tab approve certification -->
+                            <div class="tab-pane" id="approveCertification">
+                                <div class="row w-btn">
+                                    <div class="col-xs-6 col-lg-2 col-md-2
+                                        col-sm-2 w">
+                                        <button type="button" name=""
+                                            class="form-control btn
+                                            btn-primary">
+                                            <i class="glyphicon
+                                                glyphicon-saved"></i> Phê duyệt
+                                            đồng loạt</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- TODO LIST -->
-                            <div class="box box-primary">
-                                <div class="box-header ui-sortable-handle">
-                                    <i class="ion ion-clipboard"></i>
+                                <!-- TODO LIST -->
+                                <div class="box box-primary">
+                                    <div class="box-header ui-sortable-handle">
+                                        <i class="ion ion-clipboard"></i>
 
-                                    <h3 class="box-title">Danh sách phê duyệt văn bằng</h3>
+                                        <h3 class="box-title">Danh sách phê
+                                            duyệt văn bằng</h3>
 
-                                    <!-- <div class="box-tools pull-right">
+                                        <!-- <div class="box-tools pull-right">
                                             <ul class="pagination pagination-sm inline">
                                                 <li><a href="#">«</a></li>
                                                 <li><a href="#">1</a></li>
@@ -177,354 +232,454 @@
                                                 <li><a href="#">»</a></li>
                                             </ul>
                                         </div> -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body" style="overflow-x:auto;">
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body"
+                                        style="overflow-x:auto;">
                                         <div class="form-group">
-                                                <select name="state" id="maxRowsListApprove"
-                                                    class="form-control" style="width:
-                                                    150px;">
-                                                    <option value="5000"> Tất cả </option>
-                                                    <option value="5"> 5 </option>
-                                                    <option value="10"> 10 </option>
-                                                    <option value="15"> 15 </option>
-                                                    <option value="20"> 20 </option>
-                                                    <option value="50"> 50 </option>
-                                                    <option value="100"> 100 </option>
-                                                </select>
-                                            </div>
-                                    <table id="listCertificationApprove" class="table table-bordered
-                                    table-striped" cellspacing="0"
-                                        style="width:100%">
-                                        <thead>
-                                            <tr class="table-header">
-                                                <th>
-                                                    <input type="checkbox" id="checkall">
-                                                </th>
-                                                <th>TT</th>
-                                                <th>Họ tên</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Chuyên ngành</th>
-                                                <th>Xếp loại</th>
-                                                <th>Năm tốt nghiệp</th>
-                                                <th>Ngày ký</th>
-                                                <th>Số hiệu</th>
-                                                <th>Số vào sổ</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                            <select name="state"
+                                                id="maxRowsListApprove"
+                                                class="form-control"
+                                                style="width:
+                                                150px;">
+                                                <option value="5000"> Tất cả
+                                                </option>
+                                                <option value="5"> 5 </option>
+                                                <option value="10"> 10 </option>
+                                                <option value="15"> 15 </option>
+                                                <option value="20"> 20 </option>
+                                                <option value="50"> 50 </option>
+                                                <option value="100"> 100
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <table id="listCertificationApprove"
+                                            class="table table-bordered
+                                            table-striped" cellspacing="0"
+                                            style="width:100%">
+                                            <thead>
+                                                <tr class="table-header">
+                                                    <th>
+                                                        <input type="checkbox"
+                                                            id="checkall">
+                                                    </th>
+                                                    <th>TT</th>
+                                                    <th>Họ tên</th>
+                                                    <th>Ngày sinh</th>
+                                                    <th>Chuyên ngành</th>
+                                                    <th>Xếp loại</th>
+                                                    <th>Năm tốt nghiệp</th>
+                                                    <th>Ngày ký</th>
+                                                    <th>Số hiệu</th>
+                                                    <th>Số vào sổ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                        </tbody>
-                                    </table>
-                                    <div class="pagination-container">
+                                            </tbody>
+                                        </table>
+                                        <div class="pagination-container">
                                             <nav>
                                                 <ul class="pagination"></ul>
                                             </nav>
                                         </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End tab approve certification -->
-
-                        <!-- Tab history -->
-                        <div class="tab-pane" id="historyCertification">
-                            <section class="content">
-
-                                <!-- row -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- The time line -->
-                                        <ul class="timeline">
-                                            <!-- timeline time label -->
-                                            <li class="time-label">
-                                                <span class="bg-red">
-                                                    10 Feb. 2014
-                                                </span>
-                                            </li>
-                                            <!-- /.timeline-label -->
-                                            <!-- timeline item -->
-                                            <li>
-                                                <i class="fa fa-envelope bg-blue"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time">
-                                                        <i class="fa fa-clock-o"></i> 12:05</span>
-
-                                                    <h3 class="timeline-header">
-                                                        <a href="#">Support Team</a> sent you an email</h3>
-
-                                                    <div class="timeline-body">
-                                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo
-                                                        kaboodle
-                                                        quora plaxo ideeli hulu weebly balihoo...
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- END timeline item -->
-                                            <!-- timeline item -->
-                                            <li>
-                                                <i class="fa fa-user bg-aqua"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time">
-                                                        <i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                                                    <h3 class="timeline-header no-border">
-                                                        <a href="#">Sarah Young</a> accepted your friend request</h3>
-                                                </div>
-                                            </li>
-                                            <!-- END timeline item -->
-                                            <!-- timeline item -->
-                                            <li>
-                                                <i class="fa fa-comments bg-yellow"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time">
-                                                        <i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                                                    <h3 class="timeline-header">
-                                                        <a href="#">Jay White</a> commented on your post</h3>
-
-                                                    <div class="timeline-body">
-                                                        Take me to your leader! Switzerland is small and neutral! We are
-                                                        more like Germany, ambitious and misunderstood!
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- END timeline item -->
-                                            <!-- timeline time label -->
-                                            <li class="time-label">
-                                                <span class="bg-green">
-                                                    3 Jan. 2014
-                                                </span>
-                                            </li>
-                                            <!-- /.timeline-label -->
-                                            <!-- timeline item -->
-                                            <li>
-                                                <i class="fa fa-camera bg-purple"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time">
-                                                        <i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                                                    <h3 class="timeline-header">
-                                                        <a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                                    <div class="timeline-body">
-                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- END timeline item -->
-                                            <li>
-                                                <i class="fa fa-clock-o bg-gray"></i>
-                                            </li>
-                                        </ul>
                                     </div>
-                                    <!-- /.col -->
                                 </div>
-                                <!-- /.row -->
-                            </section>
+                            </div>
+                            <!-- End tab approve certification -->
+
+                            <!-- Tab history -->
+                            <div class="tab-pane" id="historyCertification">
+                                <section class="content">
+
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <ul class="timeline">
+                                                <!-- timeline time label -->
+                                                <li class="time-label">
+                                                    <span class="bg-red">
+                                                        10 Feb. 2014
+                                                    </span>
+                                                </li>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <li>
+                                                    <i class="fa fa-envelope
+                                                        bg-blue"></i>
+
+                                                    <div class="timeline-item">
+                                                        <span class="time">
+                                                            <i class="fa
+                                                                fa-clock-o"></i>
+                                                            12:05</span>
+
+                                                        <h3
+                                                            class="timeline-header">
+                                                            <a href="#">Support
+                                                                Team</a> sent
+                                                            you an email</h3>
+                                                        <div
+                                                            class="timeline-body">
+                                                            Etsy doostang
+                                                            zoodles disqus
+                                                            groupon greplin oooj
+                                                            voxy zoodles,
+                                                            weebly ning heekya
+                                                            handango imeem plugg
+                                                            dopplr jibjab,
+                                                            movity
+                                                            jajah plickers
+                                                            sifteo edmodo ifttt
+                                                            zimbra. Babblely
+                                                            odeo
+                                                            kaboodle
+                                                            quora plaxo ideeli
+                                                            hulu weebly
+                                                            balihoo...
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <li>
+                                                    <i class="fa fa-user
+                                                        bg-aqua"></i>
+
+                                                    <div class="timeline-item">
+                                                        <span class="time">
+                                                            <i class="fa
+                                                                fa-clock-o"></i>
+                                                            5 mins ago</span>
+                                                        <h3
+                                                            class="timeline-header
+                                                            no-border">
+                                                            <a href="#">Sarah
+                                                                Young</a>
+                                                            accepted your friend
+                                                            request</h3>
+                                                    </div>
+                                                </li>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <li>
+                                                    <i class="fa fa-comments
+                                                        bg-yellow"></i>
+
+                                                    <div class="timeline-item">
+                                                        <span class="time">
+                                                            <i class="fa
+                                                                fa-clock-o"></i>
+                                                            27 mins ago</span>
+                                                        <h3
+                                                            class="timeline-header">
+                                                            <a href="#">Jay
+                                                                White</a>
+                                                            commented on your
+                                                            post</h3>
+
+                                                        <div
+                                                            class="timeline-body">
+                                                            Take me to your
+                                                            leader! Switzerland
+                                                            is small and
+                                                            neutral! We are
+                                                            more like Germany,
+                                                            ambitious and
+                                                            misunderstood!
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- END timeline item -->
+                                                <!-- timeline time label -->
+                                                <li class="time-label">
+                                                    <span class="bg-green">
+                                                        3 Jan. 2014
+                                                    </span>
+                                                </li>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <li>
+                                                    <i class="fa fa-camera
+                                                        bg-purple"></i>
+
+                                                    <div class="timeline-item">
+                                                        <span class="time">
+                                                            <i class="fa
+                                                                fa-clock-o"></i>
+                                                            2 days ago</span>
+                                                        <h3
+                                                            class="timeline-header">
+                                                            <a href="#">Mina Lee</a>
+                                                            uploaded new photos</h3>
+                                                        <div
+                                                            class="timeline-body">
+                                                            <img
+                                                                src="http://placehold.it/150x100"
+                                                                alt="..."
+                                                                class="margin">
+                                                            <img
+                                                                src="http://placehold.it/150x100"
+                                                                alt="..."
+                                                                class="margin">
+                                                            <img
+                                                                src="http://placehold.it/150x100"
+                                                                alt="..."
+                                                                class="margin">
+                                                            <img
+                                                                src="http://placehold.it/150x100"
+                                                                alt="..."
+                                                                class="margin">
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- END timeline item -->
+                                                <li>
+                                                    <i class="fa fa-clock-o
+                                                        bg-gray"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </section>
+                            </div>
+                            <!-- End tab history -->
                         </div>
-                        <!-- End tab history -->
+                        <!-- /.tab-content -->
                     </div>
-                    <!-- /.tab-content -->
                 </div>
-            </div>
 
-            <div id="result"></div>
-            <table id="grid1"></table>
-        </div>
-    </div>
-
-    <!-- Add certification-->
-    <div class="modal fade" id="addDegree">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <i class="fa fa-fw fa-close btn-remove"></i>
-                    </button>
-                    <h4 class="modal-title">Thêm văn bằng</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="addCertificateForm">
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Mã văn bằng</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="id" 
-                                    placeholder="Mã văn bằng"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Tên trường đại học</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="universityName"
-                                    placeholder="Tên trường đại học" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Loại văn bằng</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="typeOfDegree" 
-                                    placeholder="Loại văn bằng"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Chuyên ngành</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="major" 
-                                    placeholder="Chuyên ngành"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Họ tên</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" 
-                                    placeholder="Họ tên"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthplace" class="col-sm-2 control-label">Ngày sinh</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="dateOfBirth" 
-                                    placeholder="Ngày sinh"
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="council" class="col-sm-2 control-label">Năm tốt nghiệp</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="yearOfGraduation"
-                                    placeholder="Năm tốt nghiệp" 
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="classification" class="col-sm-2 control-label">Xếp loại</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-control" id="degreeClassification" 
-                                    placeholder="Xếp loại"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                                    <option value=""></option>
-                                    <option value="Khá">Khá</option>
-                                    <option value="Giỏi">Giỏi</option>
-                                    <option value="Xuất sắc">Xuất sắc</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="classification" class="col-sm-2 control-label">Hình thức đào tạo</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-control" id="modeOfStudy" 
-                                    placeholder="Hình thức đào tạo"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                                    <option value=""></option>
-                                    <option value="Chính quy">Chính quy</option>
-                                    <option value="Liên thông">Liên thông</option>
-                                    <option value="Tại chức">Tại chức</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="signingdate" class="col-sm-2 control-label">Ngày ký</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="certificateDeliveryDate"
-                                    placeholder="Ngày ký" 
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="number" class="col-sm-2 control-label">Số hiệu</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="number" placeholder="Số hiệu"
-                                    data-parsley-required="true" data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="numberbook" class="col-sm-2 control-label">Số vào sổ</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="regNo" placeholder="Số vào sổ"
-                                    data-parsley-required="true" data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-sm" onclick="addCertificate();">
-                        <i class="fa fa-plus"></i> Thêm</button>
-                </div>
+                <div id="result"></div>
+                <table id="grid1"></table>
             </div>
         </div>
-    </div>
-    <!-- End add certification -->
 
-    <!-- Approve certification-->
-    <div class="modal fade" id="approveDegree">
-        <div class="modal-dialog">
+        <!-- Add certification-->
+        <div class="modal fade" id="addDegree" data-backdrop="static">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <i class="fa fa-fw fa-close btn-remove"></i>
-                    </button>
-                    <h4 class="modal-title">Phê duyệt văn bằng</h4>
-                </div>
-                <div class="modal-body" style="overflow-x:auto;">
-                    <table id="degreeApprove" class="table" cellspacing="0" style="width:100%">
-                        <tbody>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                            data-dismiss="modal">x
+                        </button>
+                        <h4 class="modal-title">Thêm văn bằng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="addCertificateForm">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2
+                                    control-label">Mã văn bằng</label>
 
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-sm" onclick="doApproveCertificate();">
-                        <i class="glyphicon glyphicon-saved"></i> Phê duyệt</button>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="id"
+                                        placeholder="Mã văn bằng"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2
+                                    control-label">Tên trường đại học</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="universityName"
+                                        placeholder="Tên trường đại học"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2
+                                    control-label">Loại văn bằng</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="typeOfDegree"
+                                        placeholder="Loại văn bằng"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2
+                                    control-label">Chuyên ngành</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="major"
+                                        placeholder="Chuyên ngành"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2
+                                    control-label">Họ tên</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="name"
+                                        placeholder="Họ tên"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthplace" class="col-sm-2
+                                    control-label">Ngày sinh</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="dateOfBirth"
+                                        placeholder="Ngày sinh"
+                                        data-parsley-required="true"
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là
+                                        số.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="council" class="col-sm-2
+                                    control-label">Năm tốt nghiệp</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="yearOfGraduation"
+                                        placeholder="Năm tốt nghiệp"
+                                        data-parsley-required="true"
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là
+                                        số.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="classification" class="col-sm-2
+                                    control-label">Xếp loại</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control"
+                                        id="degreeClassification"
+                                        placeholder="Xếp loại"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                        <option value=""></option>
+                                        <option value="Khá">Khá</option>
+                                        <option value="Giỏi">Giỏi</option>
+                                        <option value="Xuất sắc">Xuất sắc</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="classification" class="col-sm-2
+                                    control-label">Hình thức đào tạo</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control"
+                                        id="modeOfStudy"
+                                        placeholder="Hình thức đào tạo"
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được
+                                        rỗng.">
+                                        <option value=""></option>
+                                        <option value="Chính quy">Chính quy</option>
+                                        <option value="Liên thông">Liên thông</option>
+                                        <option value="Tại chức">Tại chức</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signingdate" class="col-sm-2
+                                    control-label">Ngày ký</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="certificateDeliveryDate"
+                                        placeholder="Ngày ký"
+                                        data-parsley-required="true"
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là
+                                        số.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="number" class="col-sm-2
+                                    control-label">Số hiệu</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="number" placeholder="Số hiệu"
+                                        data-parsley-required="true"
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là
+                                        số.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="numberbook" class="col-sm-2
+                                    control-label">Số vào sổ</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                        id="regNo" placeholder="Số vào sổ"
+                                        data-parsley-required="true"
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là
+                                        số">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-sm"
+                            onclick="addCertificate();">
+                            <i class="fa fa-plus"></i> Thêm</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-</body>
+        <!-- End add certification -->
+
+        <!-- Approve certification-->
+        <div class="modal fade" id="approveDegree">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                            data-dismiss="modal">
+                            <i class="fa fa-fw fa-close btn-remove"></i>
+                        </button>
+                        <h4 class="modal-title">Phê duyệt văn bằng</h4>
+                    </div>
+                    <div class="modal-body" style="overflow-x:auto;">
+                        <table id="degreeApprove" class="table" cellspacing="0"
+                            style="width:100%">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-sm"
+                            onclick="doApproveCertificate();">
+                            <i class="glyphicon glyphicon-saved"></i> Phê duyệt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
 
 </html>
