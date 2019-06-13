@@ -66,107 +66,29 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="#inputCertification" data-toggle="tab">Quản lý người dùng</a>
+                            <a href="#userManage" data-toggle="tab">Quản lý người dùng</a>
                         </li>
                         <li>
-                            <a href="#approveCertification" data-toggle="tab">Quản lý trường</a>
+                            <a href="#schoolManage" data-toggle="tab">Quản lý trường</a>
                         </li>
                         <li>
-                            <a href="#historyCertification" data-toggle="tab">Lịch sử</a>
+                            <a href="#history" data-toggle="tab">Lịch sử</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <!-- Tab input certification -->
-                        <div class="active tab-pane" id="inputCertification">
-                            <div class="row w-btn">
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <button type="button" name="" class="form-control btn btn-primary"
-                                        data-toggle="modal" data-target="#addDegree">
-                                        <i class="glyphicon glyphicon-plus"></i> Thêm mới</button>
-                                </div>
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <label for="file-upload" class="custom-file-upload form-control btn btn-primary">
-                                        <i class="glyphicon glyphicon-import"></i> Import
-                                    </label>
-                                    <input id="file-upload" type="file"
-                                        accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
-                                </div>
-                                <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
-                                    <button type="button" name="" class="form-control btn btn-primary"
-                                        onclick="createTableWorkbook();">
-                                        <i class="glyphicon glyphicon-export"></i> Export</button>
-                                </div>
-                            </div>
-
-                            <!-- TODO LIST -->
-                            <div class="box box-primary">
-                                <div class="box-header ui-sortable-handle">
-                                    <i class="ion ion-clipboard"></i>
-
-                                    <h3 class="box-title">Danh sách quản lý người dùng</h3>
-                                </div>
-                                <div class="box-body"
-                                    style="overflow-x:auto;">
-                                    <div class="form-group">
-                                        <select name="state" id="maxRowsListUserManagement"
-                                            class="form-control" style="width:
-                                            150px;">
-                                            <option value="5000"> Tất cả </option>
-                                            <option value="5"> 5 </option>
-                                            <option value="10"> 10 </option>
-                                            <option value="15"> 15 </option>
-                                            <option value="20"> 20 </option>
-                                            <option value="50"> 50 </option>
-                                            <option value="100"> 100 </option>
-                                            
-                                        </select>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                        <input type="text" class="form-control" id="deleteUser">
-                                        <button type="button" class="btn btn-success btn-sm" 
-                                            onclick="deleteUserManagement();"> Xoá</button>
-                                    </div> -->
-                                    <table id="listUserManager"
-                                        class="table table-bordered
-                                        table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Address</th>
-                                                <th>ID</th>
-                                                <th>Họ tên</th>
-                                                <th>Email</th>
-                                                <th>Mật khẩu</th>
-                                                <th>Giới tính</th>
-                                                <th>Ngày sinh</th>
-                                                
-                                                <th>Khóa</th>
-                                                <th>Thời gian tạo</th>
-                                                <th>Thời gian thay đổi</th>
-                                                <th>Số CMND</th>
-                                                <th>Nơi cấp CMND</th>
-                                                
-                                                <th>Số điện thoại</th>
-                                                <th>Công việc</th>
-                                                <th>Địa chỉ </th>
-                                                <th>Thao tác </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                    <div class="pagination-container">
-                                        <nav>
-                                            <ul class="pagination"></ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- đây nè -->
                         <!-- End tab input certification -->
 
                         <!-- Tab approve certification -->
-                        <div class="tab-pane" id="approveCertification">
+                        <div class="tab-pane" id="schoolManage">
+                                <div class="row w-btn">
+                                        <div class="col-xs-6 col-lg-2 col-md-2 col-sm-2 w">
+                                            <button type="button" name="" class="form-control btn btn-primary"
+                                                data-toggle="modal" data-target="#addSchool">
+                                                <i class="glyphicon glyphicon-plus"></i> Thêm mới</button>
+                                        </div>
+                                    </div>
                             <!-- TODO LIST -->
                             <div class="box box-primary">
                                 <div class="box-header ui-sortable-handle">
@@ -174,7 +96,50 @@
                                     <h3 class="box-title">Danh sách quản lý trường</h3>
                                 </div>
                                 <!-- /.box-header -->
-                                
+                                <div class="box-body"
+                                    style="overflow-x:auto;">
+                                    <div class="form-group">
+                                        <select name="state" id="listschoolpt"
+                                            class="form-control" style="width:
+                                            150px;">
+                                            <option value="6"> 20</option>
+                                            <option value="3"> 10 </option>
+                                            <option value="6"> 20</option>
+                                            <option value="9"> 50 </option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" id="deleteUser">
+                                        <button type="button" class="btn btn-success btn-sm" 
+                                            onclick="deleteUserManagement();"> Xoá</button>
+                                    </div> -->
+                                    <table id="listSchoolManager"
+                                        class="table table-bordered
+                                        table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tên Trường</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Email</th>
+                                                <th>Fax</th>
+                                                <th>SĐT</th>
+                                                <th>Thời gian tạo</th>
+                                                <th>Thời gian thay đổi</th>
+                                                <th>Thao tác </th>
+                                                <th>Khóa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination-container">
+                                        <nav>
+                                            <ul class="pagination"></ul>
+                                        </nav>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                         <!-- End tab approve certification -->
@@ -295,189 +260,127 @@
         </div>
     </div>
 
-    <!-- Add usermanagement-->
-    <div class="modal fade" id="addDegree">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <i class="fa fa-fw fa-close btn-remove"></i>
-                    </button>
-                    <h4 class="modal-title">Thêm người dùng</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="idUserManagementForm">
-                        <!-- <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Address</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="address" 
-                                    placeholder="Address"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
+    <div class="modal fade" id="addSchool">
+            <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class="fa fa-fw fa-close btn-remove"></i>
+                        </button>
+                        <h4 class="modal-title">Thêm Trường</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="formaddschool">
+                            <!-- <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Address</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="address" 
+                                        placeholder="Address"
+                                        data-parsley-required="true" 
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">ID</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="id" 
+                                        placeholder="ID"
+                                        data-parsley-required="true" 
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
                             </div>
-                        </div> -->
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">ID</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="id" 
-                                    placeholder="ID"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Tên Trường</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name"
+                                        placeholder="Họ Tên" 
+                                        data-parsley-required="true"
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Họ Tên</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fullName"
-                                    placeholder="Họ Tên" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Địa Chỉ</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="addr" 
+                                        placeholder="Địa Chỉ"
+                                        data-parsley-required="true" 
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Email</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="email" 
-                                    placeholder="Email"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Email</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="email" 
+                                        placeholder="Email"
+                                        data-parsley-required="true" 
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Mật khẩu</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="password" 
-                                    placeholder="Mật khẩu"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
+                            <div class="form-group">
+                                <label for="number" class="col-sm-2 control-label">Fax</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="fax" 
+                                        placeholder="Số điện thoại"
+                                        data-parsley-required="true" data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là số.">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="council" class="col-sm-2 control-label">Giới tính</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-control" id="gender"
-                                    placeholder="Giới tính"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                                    <option value=""></option>
-                                    <option value="man">Nam</option>
-                                    <option value="woman">Nữ</option>
-                                </select>
-                                <!-- <input type="text" class="form-control" id="gender" 
-                                    placeholder="Giới tính"
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng."> -->
+                            <div class="form-group">
+                                <label for="number" class="col-sm-2 control-label">Số điện thoại</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone" 
+                                        placeholder="Số điện thoại"
+                                        data-parsley-required="true" data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là số.">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthplace" class="col-sm-2 control-label">Ngày sinh</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="dateOfBirth" 
-                                    placeholder="Ngày sinh"
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Trạng Thái</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="isLocked"
-                                    placeholder="Trạng Thái" 
-                                    data-parsley-required="true" 
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <!--  -->
-                        <!-- <div class="form-group">
-                            <label for="signingdate" class="col-sm-2 control-label">Thời gian tạo</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="createdTime"
-                                    placeholder="Thời gian tạo" 
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div> -->
-                        <div class="form-group">
-                            <label for="signingdate" class="col-sm-2 control-label">Thời gian chỉnh sửa</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="modifiedTime"
-                                    placeholder="Thời gian chỉnh sửa" 
-                                    data-parsley-required="true" 
-                                    data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="number" class="col-sm-2 control-label">Số CMND</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="idCardNo" placeholder="Số CMND"
-                                    data-parsley-required="true" data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Nơi cấp CMND</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="idCardIssuePlace"
-                                    placeholder="Nơi cấp CMND" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="form-group">
-                            <label for="number" class="col-sm-2 control-label">Số điện thoại</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="phoneNumber" 
-                                    placeholder="Số điện thoại"
-                                    data-parsley-required="true" data-parsley-type="number"
-                                    data-parsley-error-message="Bắt buộc là số.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Công việc</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="job"
-                                    placeholder="Công việc" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Địa chỉ</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="userAddr"
-                                    placeholder="Địa chỉ" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-sm" onclick="addUserManagement();">
-                        <i class="fa fa-plus"></i> Thêm</button>
+                            <!-- <div class="form-group">
+                                <label for="signingdate" class="col-sm-2 control-label">Thời gian tạo</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="createdTime"
+                                        placeholder="Thời gian tạo" 
+                                        data-parsley-required="true" 
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là số.">
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group">
+                                <label for="signingdate" class="col-sm-2 control-label">Thời gian chỉnh sửa</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="modifiedTime"
+                                        placeholder="Thời gian chỉnh sửa" 
+                                        data-parsley-required="true" 
+                                        data-parsley-type="number"
+                                        data-parsley-error-message="Bắt buộc là số.">
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Trạng Thái</label>
+    
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="islocked"
+                                        placeholder="Trạng Thái" 
+                                        data-parsley-required="true" 
+                                        data-parsley-error-message="Không được rỗng.">
+                                </div>
+                            </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-sm" onclick="addSchool();">
+                            <i class="fa fa-plus"></i> Thêm</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- delete Modal-->
     <div class="modal fade" id="deleteModal">
@@ -497,7 +400,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success btn-md"
-                        onclick="deleteUserManagement();">
+                        onclick="deleteSchoolManagement();">
                         Xóa</button>
                         &nbsp;
                     <button type="button" class="btn btn-danger btn-md"
@@ -511,9 +414,8 @@
 
 
     <!-- update user management-->
-    <div class="modal fade" id="updateFrontUserManagement">
+    <div class="modal fade" id="updateFrontSchoolManagement">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -529,10 +431,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-sm" onclick="updateUserManagement();">
-                        <i class="glyphicon glyphicon-saved"></i> Cập nhật</button>
-                </div> -->
             </div>
         </div>
     </div>
@@ -549,25 +447,26 @@
                 <div class="modal-body">
                     <p></p>
                 
-                </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdate"
-                                    placeholder="Gia tri cap nhat" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
-                    <p></p>
-                    
-                    <h5>Bạn chắc chắn muốn sửa?</h5>
-
+                </div>
+                <div class="modal-body1">
+                            <input type="text" class="form-control" id="valueUpdate"
+                                            placeholder="Gia tri cap nhat" 
+                                            data-parsley-required="true"
+                                            data-parsley-error-message="Không được rỗng.">
+                            <p></p>
+                            
+                            <h5>Bạn chắc chắn muốn sửa?</h5>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-md"
-                        onclick="updateUserManagement();">
-                        Sua</button>
-                        &nbsp;
-                    <button type="button" class="btn btn-danger btn-md"
-                        data-dismiss="modal">
-                        Hủy</button>
-                    <!-- Goi ham them va dong modal -->
+                        <button class="btn btn-primary btn-xs"
+                        data-toggle="modal"
+                            onclick="updateNameSchoolManagement();"><i class="far fa-edit"></i>
+                            Sửa</button>
+                            &nbsp;
+                        <button type="button" class="btn btn-danger btn-xs" 
+                        data-dismiss="modal"> <i class="far fa-trash-alt"></i>
+                            Hủy</button>
+                        <!-- Goi ham them va dong modal -->
                 </div>
             </div>
         </div>
@@ -597,20 +496,21 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-md"
-                        onclick="updateEmailUserManagement();">
-                        Sua</button>
+                    <button class="btn btn-primary btn-xs"
+                    data-toggle="modal"
+                        onclick="updateEmailSchoolManagement();"><i class="far fa-edit"></i>
+                        Sửa</button>
                         &nbsp;
-                    <button type="button" class="btn btn-danger btn-md"
-                        data-dismiss="modal">
+                    <button type="button" class="btn btn-danger btn-xs" 
+                    data-dismiss="modal"> <i class="far fa-trash-alt"></i>
                         Hủy</button>
                     <!-- Goi ham them va dong modal -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- modal update password -->
-    <div class="modal fade" id="insertValueUpdatePasswordModal">
+    <!-- modal update Address -->
+    <div class="modal fade" id="insertValueUpdateAddrModal">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -623,7 +523,7 @@
                     <p></p>
                 
                 </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdatePassword"
+                    <input type="text" class="form-control" id="valueUpdateAddr"
                                     placeholder="Gia tri cap nhat" 
                                     data-parsley-required="true"
                                     data-parsley-error-message="Không được rỗng.">
@@ -633,14 +533,89 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-md"
-                        onclick="updateEmailUserManagement();">
-                        Sua</button>
-                        &nbsp;
-                    <button type="button" class="btn btn-danger btn-md"
-                        data-dismiss="modal">
-                        Hủy</button>
-                    <!-- Goi ham them va dong modal -->
+                        <button class="btn btn-primary btn-xs"
+                        data-toggle="modal"
+                            onclick="updateAddrSchoolManagement();"><i class="far fa-edit"></i>
+                            Sửa</button>
+                            &nbsp;
+                        <button type="button" class="btn btn-danger btn-xs" 
+                        data-dismiss="modal"> <i class="far fa-trash-alt"></i>
+                            Hủy</button>
+                        <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal update Fax -->
+    <div class="modal fade" id="insertValueUpdateFaxModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật giá trị</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+                
+                </div><div class="modal-body1">
+                    <input type="text" class="form-control" id="valueUpdateFax"
+                                    placeholder="Gia tri cap nhat" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                    <p></p>
+                    
+                    <h5>Bạn chắc chắn muốn sửa?</h5>
+
+                </div>
+                <div class="modal-footer">
+                        <button class="btn btn-primary btn-xs"
+                        data-toggle="modal"
+                            onclick="updateFaxSchoolManagement();"><i class="far fa-edit"></i>
+                            Sửa</button>
+                            &nbsp;
+                        <button type="button" class="btn btn-danger btn-xs" 
+                        data-dismiss="modal"> <i class="far fa-trash-alt"></i>
+                            Hủy</button>
+                        <!-- Goi ham them va dong modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal update Phone -->
+    <div class="modal fade" id="insertValueUpdatePhoneModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật giá trị</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p></p>
+                
+                </div><div class="modal-body1">
+                    <input type="text" class="form-control" id="valueUpdatePhone"
+                                    placeholder="Gia tri cap nhat" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Không được rỗng.">
+                    <p></p>
+                    
+                    <h5>Bạn chắc chắn muốn sửa?</h5>
+
+                </div>
+                <div class="modal-footer">
+                        <button class="btn btn-primary btn-xs"
+                        data-toggle="modal"
+                            onclick="updatePhoneSchoolManagement();"><i class="far fa-edit"></i>
+                            Sửa</button>
+                            &nbsp;
+                        <button type="button" class="btn btn-danger btn-xs" 
+                        data-dismiss="modal"> <i class="far fa-trash-alt"></i>
+                            Hủy</button>
+                        <!-- Goi ham them va dong modal -->
                 </div>
             </div>
         </div>

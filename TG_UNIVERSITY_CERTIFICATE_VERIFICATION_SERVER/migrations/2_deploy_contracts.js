@@ -1,13 +1,15 @@
-var DegreeKind = artifacts.require("./DegreeKindStorage");
-var DegreeName = artifacts.require("./DegreeNameStorage");
-var Certificate = artifacts.require("./CertificateStorage");
-var User = artifacts.require("./UserManagementStorage");
+// var DegreeKind = artifacts.require("./DegreeKindStorage");
+// var DegreeName = artifacts.require("./DegreeNameStorage");
+// var Certificate = artifacts.require("./CertificateStorage");
+// var User = artifacts.require("./UserManagementStorage");
+var School = artifacts.require("./SchoolStorage");
 
 module.exports = function(deployer){
-	deployer.deploy(DegreeKind);
-	deployer.deploy(DegreeName);
-	deployer.deploy(Certificate);
-	deployer.deploy(User);
+	// deployer.deploy(DegreeKind);
+	// deployer.deploy(DegreeName);
+	// deployer.deploy(Certificate);
+	// deployer.deploy(User);
+	deployer.deploy(School);
 };
 
 
