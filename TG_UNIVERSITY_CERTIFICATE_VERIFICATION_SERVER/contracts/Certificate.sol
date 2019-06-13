@@ -1,170 +1,279 @@
 pragma solidity >=0.4.21 <0.6.0;
 
 contract CertificateStorage {
-
-    event setCertificateEvent(
-        string  _id,
-        string _universityName,
-        string _typeOfDegree,
-        string _major,
-        string _name,
-        uint256 _dateOfBirth,
-        string  _status);
-
-    event setCertificateAdditionEvent(
-        string  _id,
-        uint256 _yearOfGraduation,
-        string _degreeClassification,
-        string _modeOfStudy,
-        uint256 _certificateDeliveryDate,
-        uint256 _number,
-        string _regNo);
-
-    event setUserConfirmCertificateEvent(
-        string  _userId,
-        string _userName,
-        uint256 _dateTime,
-        string _comment);
-
-    uint256 index;
-
-    struct Certificate {
-        string id;
+    struct Certificate{
         string universityName;
         string typeOfDegree;
         string major;
         string name;
-        uint256 dateOfBirth;
+        string dateOfBirth;
         string status;
-    }
-
-    struct CertificateAddition {
-        string id;
         uint256 yearOfGraduation;
         string degreeClassification;
         string modeOfStudy;
-        uint256 certificateDeliveryDate;
+        string certificateDeliveryDate;
         uint256 number;
         string regNo;
+        uint index;
     }
 
-    struct UserConfirmCertificate {
-        string userId;
-        string userName;
-        uint256 dateTime;
+    struct historyUserCertificate {
+        string thaotac;
+        string createTimeCertificate;
         string comment;
-    }
-    mapping (string => Certificate) CertificateMapping;
-    mapping (string => CertificateAddition) CertificateAdditionMapping;
-    mapping (string => UserConfirmCertificate) UserConfirmCertificateMapping;
-
-    function setCertificate(string memory _id,
-        string memory _universityName,
-        string memory _typeOfDegree,
-        string memory _major,
-        string memory _name,
-        uint256 _dateOfBirth,
-        string memory _status,
-        uint256 _yearOfGraduation,
-        string memory _degreeClassification,
-        string memory _modeOfStudy,
-        uint256 _certificateDeliveryDate,
-        uint256 _number,
-        string memory _regNo) public {
-        CertificateMapping[_id].id = _id;
-        CertificateMapping[_id].universityName = _universityName;
-        CertificateMapping[_id].typeOfDegree = _typeOfDegree;
-        CertificateMapping[_id].major = _major;
-        CertificateMapping[_id].name = _name;
-        CertificateMapping[_id].dateOfBirth = _dateOfBirth;
-        CertificateMapping[_id].status = _status;
-
-        CertificateAdditionMapping[_id].yearOfGraduation = _yearOfGraduation;
-        CertificateAdditionMapping[_id].degreeClassification = _degreeClassification;
-        CertificateAdditionMapping[_id].modeOfStudy = _modeOfStudy;
-        CertificateAdditionMapping[_id].certificateDeliveryDate = _certificateDeliveryDate;
-        CertificateAdditionMapping[_id].number = _number;
-        CertificateAdditionMapping[_id].regNo = _regNo;
-        emit setCertificateEvent(_id, _universityName, _typeOfDegree, _major, _name, _dateOfBirth, _status);
-        emit setCertificateAdditionEvent(_id, _yearOfGraduation, _degreeClassification, _modeOfStudy,
-            _certificateDeliveryDate, _number, _regNo);
-
-        index++;
+        uint index;
     }
 
-    // function setCertificateAddition(string memory _id,
-    //     uint256 _yearOfGraduation,
-    //     string memory _degreeClassification,
-    //     string memory _modeOfStudy,
-    //     uint256 _certificateDeliveryDate,
-    //     uint256 _number,
-    //     string memory _regNo) public {
-    //     CertificateAdditionMapping[_id].id = _id;
-    //     CertificateAdditionMapping[_id].yearOfGraduation = _yearOfGraduation;
-    //     CertificateAdditionMapping[_id].degreeClassification = _degreeClassification;
-    //     CertificateAdditionMapping[_id].modeOfStudy = _modeOfStudy;
-    //     CertificateAdditionMapping[_id].certificateDeliveryDate = _certificateDeliveryDate;
-    //     CertificateAdditionMapping[_id].number = _number;
-    //     CertificateAdditionMapping[_id].regNo = _regNo;
 
-    //     emit setCertificateAdditionEvent(_id, _yearOfGraduation, _degreeClassification, _modeOfStudy,
-    //         _certificateDeliveryDate, _number, _regNo);
-    // }
+    mapping (address => Certificate) private CertificateMapping;
+    address[] private certificateIndex;
 
-    function setUserConfirmCertificate(string memory _userId,
-        string memory _userName,
-        uint256 _dateTime,
-        string memory _comment) public {
-            UserConfirmCertificateMapping[_userId].userId = _userId;
-            UserConfirmCertificateMapping[_userId].userName = _userName;
-            UserConfirmCertificateMapping[_userId].dateTime = _dateTime;
-            UserConfirmCertificateMapping[_userId].comment = _comment;
+    mapping (address => historyUserCertificate) private historyCertificate;
+    address[] private historyCerIndex;
 
-            emit setUserConfirmCertificateEvent(_userId, _userName, _dateTime, _comment);
-        }
 
-    function getCertificate(string memory _id) public view returns(string memory id,
+    event setCertificateEvent(
+        address indexed rdid,
+        string universityName,
+        string typeOfDegree,
+        string major,
+        string name);
+
+    event setCertificateAdditionEvent(
+        address indexed rdid,
+        string dateOfBirth,
+        string  status,
+        uint256 yearOfGraduation,
+        string degreeClassification);
+
+    event setCertificateAdditionEventDetail(
+        address indexed rdid,
+        string modeOfStudy,
+        string certificateDeliveryDate,
+        uint256 number,
+        string regNo,
+        uint index);
+
+    //end event insert certificate
+
+
+    event setHistoryEvent(
+        address indexed rdhid,
+        string thaotac,
+        string createTimeCertificate,
+        string comment,
+        uint index);
+
+    //event update status
+    event updateStatus(
+        address indexed rdid,
+        string universityName,
+        string typeOfDegree
+    );
+
+    event updateStatusAddition(
+        string major,
+        string name,
+        string dateOfBirth,
+        string  status
+    );
+
+    event updateStatusAdditionDetail(
+        uint256 yearOfGraduation,
+        string degreeClassification,
+        string modeOfStudy,
+        string certificateDeliveryDate,
+        uint256 number,
+        string regNo,
+        uint index
+    );
+    //End update
+    //begin insert certificate
+    function setCertificate(
+        address rdid,
         string memory universityName,
         string memory typeOfDegree,
         string memory major,
-        string memory name,
-        uint256 dateOfBirth,
-        string memory status) {
-        return (CertificateMapping[_id].id,
-            CertificateMapping[_id].universityName,
-            CertificateMapping[_id].typeOfDegree,
-            CertificateMapping[_id].major,
-            CertificateMapping[_id].name,
-            CertificateMapping[_id].dateOfBirth,
-            CertificateMapping[_id].status);
+        string memory name
+        ) public returns(uint _index){
+            CertificateMapping[rdid].universityName = universityName;
+            CertificateMapping[rdid].typeOfDegree = typeOfDegree;
+            CertificateMapping[rdid].major = major;
+            CertificateMapping[rdid].name = name;
+                emit setCertificateEvent(
+                    rdid,
+                    universityName,
+                    typeOfDegree,
+                    major,
+                    name
+                    );
+                return certificateIndex.length-1;
     }
 
-    function getCertificateAddition(string memory _id) public view returns(string memory id,
+    function setCertificateAddition(
+        address rdid,
+        string memory dateOfBirth,
+        string memory status,
         uint256 yearOfGraduation,
-        string memory degreeClassification,
-        string memory modeOfStudy,
-        uint256 certificateDeliveryDate,
-        uint256 number,
-        string memory regNo) {
-        return (CertificateAdditionMapping[_id].id,
-        CertificateAdditionMapping[_id].yearOfGraduation,
-        CertificateAdditionMapping[_id].degreeClassification,
-        CertificateAdditionMapping[_id].modeOfStudy,
-        CertificateAdditionMapping[_id].certificateDeliveryDate,
-        CertificateAdditionMapping[_id].number,
-        CertificateAdditionMapping[_id].regNo);
+        string memory degreeClassification
+    )public returns(uint _index){
+        CertificateMapping[rdid].dateOfBirth = dateOfBirth;
+        CertificateMapping[rdid].status = status;
+        CertificateMapping[rdid].yearOfGraduation = yearOfGraduation;
+        CertificateMapping[rdid].degreeClassification = degreeClassification;
+        emit setCertificateAdditionEvent(
+            rdid,
+            dateOfBirth,
+            status,
+            yearOfGraduation,
+            degreeClassification
+        );
+        return certificateIndex.length-1;
     }
 
-    function getUserConfirmCertificatioin(string memory _id) public view returns(string memory userId,
-        string memory userName,
-        uint256 dateTime,
-        string memory comment) {
-            return (UserConfirmCertificateMapping[_id].userId,
-            UserConfirmCertificateMapping[_id].userName,
-            UserConfirmCertificateMapping[_id].dateTime,
-            UserConfirmCertificateMapping[_id].comment);
-        }
-    function getCertificateIndex() public view returns(uint256) {
-        return index;
+
+    function setCertificateAdditionDetail(
+        address rdid,
+        string memory modeOfStudy,
+        string memory certificateDeliveryDate,
+        uint256 number,
+        string memory regNo
+    )public returns(uint _index){
+        CertificateMapping[rdid].modeOfStudy = modeOfStudy;
+        CertificateMapping[rdid].certificateDeliveryDate = certificateDeliveryDate;
+        CertificateMapping[rdid].number = number;
+        CertificateMapping[rdid].regNo = regNo;
+        CertificateMapping[rdid].index = certificateIndex.push(rdid)-1;
+        emit setCertificateAdditionEventDetail(
+            rdid,
+            modeOfStudy,
+            certificateDeliveryDate,
+            number,
+            regNo,
+            CertificateMapping[rdid].index
+        );
+        return certificateIndex.length-1;
     }
+
+
+    //end insert certificate
+    //insert history certificate
+
+    function setHistoryCer(
+        address rdid,
+        string memory thaotac,
+        string memory createTimeCertificate,
+        string memory comment
+    ) public returns(uint _index){
+        historyCertificate[rdid].thaotac = thaotac;
+        historyCertificate[rdid].createTimeCertificate = createTimeCertificate;
+        historyCertificate[rdid].comment = comment;
+        historyCertificate[rdid].index = historyCerIndex.push(rdid)-1;
+        emit setHistoryEvent(
+            rdid,
+            thaotac,
+            createTimeCertificate,
+            comment,
+            historyCertificate[rdid].index);
+        return historyCerIndex.length-1;
+    }
+    //end insert history event
+
+
+    //show history
+    function getHistoryCertificate(address _rdid) public view returns(
+        address rdid,
+        string memory thaotac,
+        string memory createTimeCertificate,
+        string memory comment
+    ){
+        return(
+            _rdid,
+            historyCertificate[_rdid].thaotac,
+            historyCertificate[_rdid].createTimeCertificate,
+            historyCertificate[_rdid].comment
+        );
+    }
+    //end show history
+
+
+    //update status certificate approve
+    function approveCertificate(
+        address rdid,
+        string memory status
+    ) public returns(bool success){
+        CertificateMapping[rdid].status = status;
+        emit updateStatusAddition(
+            CertificateMapping[rdid].major,
+            CertificateMapping[rdid].name,
+            CertificateMapping[rdid].dateOfBirth,
+            status
+        );
+        return true;
+    }
+
+    //Begin get certificate
+    function getCertificate(address _rdid) public view returns(address rdid,
+        string memory universityName,
+        string memory typeOfDegree,
+        string memory major,
+        string memory name){
+        return(
+            _rdid,
+            CertificateMapping[_rdid].universityName,
+            CertificateMapping[_rdid].typeOfDegree,
+            CertificateMapping[_rdid].major,
+            CertificateMapping[_rdid].name
+        );
+    }
+
+
+    function getCertificateAddition(address _rdid) public view returns(
+        string memory dateOfBirth,
+        string memory status,
+        uint256 yearOfGraduation,
+        string memory degreeClassification){
+        return(
+            CertificateMapping[_rdid].dateOfBirth,
+            CertificateMapping[_rdid].status,
+            CertificateMapping[_rdid].yearOfGraduation,
+            CertificateMapping[_rdid].degreeClassification
+        );
+    }
+
+
+    function getCertificateAdditionDetail(address _rdid) public view returns(
+        string memory modeOfStudy,
+        string memory certificateDeliveryDate,
+        uint256 number,
+        string memory regNo,
+        uint index){
+        return(
+            CertificateMapping[_rdid].modeOfStudy,
+            CertificateMapping[_rdid].certificateDeliveryDate,
+            CertificateMapping[_rdid].number,
+            CertificateMapping[_rdid].regNo,
+            CertificateMapping[_rdid].index
+        );
+    }
+    //End get certificate
+
+    //Check user or not
+    function isUser(address id) public view returns(bool isIndeed)
+    {
+        if(certificateIndex.length == 0) return false;
+        return (certificateIndex[CertificateMapping[id].index] == id);
+    }
+
+    function getUserCount() public view returns(uint count)
+    {
+        return certificateIndex.length;
+    }
+
+    function getCertificateIndex(uint _index) public view returns(address _id)
+    {
+        return certificateIndex[_index];
+    }
+
+
 }

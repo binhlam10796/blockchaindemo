@@ -129,194 +129,34 @@ var NameStorageABI = [
 
 var CertificateStorageABI = [
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "_id",
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "status",
 				"type": "string"
 			}
 		],
-		"name": "getCertificateAddition",
+		"name": "approveCertificate",
 		"outputs": [
 			{
-				"name": "id",
-				"type": "string"
-			},
-			{
-				"name": "yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeClassification",
-				"type": "string"
-			},
-			{
-				"name": "modeOfStudy",
-				"type": "string"
-			},
-			{
-				"name": "certificateDeliveryDate",
-				"type": "uint256"
-			},
-			{
-				"name": "number",
-				"type": "uint256"
-			},
-			{
-				"name": "regNo",
-				"type": "string"
+				"name": "success",
+				"type": "bool"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_id",
-				"type": "string"
-			},
-			{
-				"name": "_universityName",
-				"type": "string"
-			},
-			{
-				"name": "_typeOfDegree",
-				"type": "string"
-			},
-			{
-				"name": "_major",
-				"type": "string"
-			},
-			{
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			},
-			{
-				"name": "_status",
-				"type": "string"
-			},
-			{
-				"name": "_yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"name": "_degreeClassification",
-				"type": "string"
-			},
-			{
-				"name": "_modeOfStudy",
-				"type": "string"
-			},
-			{
-				"name": "_certificateDeliveryDate",
-				"type": "uint256"
-			},
-			{
-				"name": "_number",
-				"type": "uint256"
-			},
-			{
-				"name": "_regNo",
-				"type": "string"
-			}
-		],
-		"name": "setCertificate",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "string"
-			}
-		],
-		"name": "getUserConfirmCertificatioin",
-		"outputs": [
-			{
-				"name": "userId",
-				"type": "string"
-			},
-			{
-				"name": "userName",
-				"type": "string"
-			},
-			{
-				"name": "dateTime",
-				"type": "uint256"
-			},
-			{
-				"name": "comment",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userId",
-				"type": "string"
-			},
-			{
-				"name": "_userName",
-				"type": "string"
-			},
-			{
-				"name": "_dateTime",
-				"type": "uint256"
-			},
-			{
-				"name": "_comment",
-				"type": "string"
-			}
-		],
-		"name": "setUserConfirmCertificate",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCertificateIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "string"
-			}
-		],
-		"name": "getCertificate",
-		"outputs": [
-			{
-				"name": "id",
-				"type": "string"
+				"name": "rdid",
+				"type": "address"
 			},
 			{
 				"name": "universityName",
@@ -333,56 +173,115 @@ var CertificateStorageABI = [
 			{
 				"name": "name",
 				"type": "string"
+			}
+		],
+		"name": "setCertificate",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rdid",
+				"type": "address"
 			},
 			{
 				"name": "dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"name": "status",
 				"type": "string"
+			},
+			{
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"name": "degreeClassification",
+				"type": "string"
+			}
+		],
+		"name": "setCertificateAddition",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"name": "regNo",
+				"type": "string"
+			}
+		],
+		"name": "setCertificateAdditionDetail",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
 				"indexed": false,
-				"name": "_id",
+				"name": "universityName",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_universityName",
+				"name": "typeOfDegree",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_typeOfDegree",
+				"name": "major",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_major",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_status",
+				"name": "name",
 				"type": "string"
 			}
 		],
@@ -393,38 +292,28 @@ var CertificateStorageABI = [
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
 				"indexed": false,
-				"name": "_id",
+				"name": "dateOfBirth",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_degreeClassification",
+				"name": "status",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_modeOfStudy",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_certificateDeliveryDate",
+				"name": "yearOfGraduation",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "_number",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_regNo",
+				"name": "degreeClassification",
 				"type": "string"
 			}
 		],
@@ -435,28 +324,376 @@ var CertificateStorageABI = [
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
 				"indexed": false,
-				"name": "_userId",
+				"name": "modeOfStudy",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_userName",
+				"name": "certificateDeliveryDate",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_dateTime",
+				"name": "number",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "_comment",
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "setCertificateAdditionEventDetail",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
 				"type": "string"
 			}
 		],
-		"name": "setUserConfirmCertificateEvent",
+		"name": "setHistoryCer",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "rdhid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "comment",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "setHistoryEvent",
 		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "universityName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "typeOfDegree",
+				"type": "string"
+			}
+		],
+		"name": "updateStatus",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "major",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "updateStatusAddition",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "degreeClassification",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "updateStatusAdditionDetail",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "universityName",
+				"type": "string"
+			},
+			{
+				"name": "typeOfDegree",
+				"type": "string"
+			},
+			{
+				"name": "major",
+				"type": "string"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificateAddition",
+		"outputs": [
+			{
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"name": "status",
+				"type": "string"
+			},
+			{
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"name": "degreeClassification",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificateAdditionDetail",
+		"outputs": [
+			{
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getCertificateIndex",
+		"outputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getHistoryCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "address"
+			}
+		],
+		"name": "isUser",
+		"outputs": [
+			{
+				"name": "isIndeed",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 var UserManagementStorageABI = [

@@ -5,11 +5,12 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0xf5E9feb556d41Ac061654A5dCfbB592FCa24A306");
+var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0xAD1A28FCCFde58b3d0Ee651C748392318370c2F6");
 
 function addCertificate() {
     if ($('#addCertificateForm').parsley().validate()) {
-        var id = $("#id").val();
+        var temp = web3.eth.accounts.create();
+        var id = temp.address;
         var universityName = $("#universityName").val();
         var typeOfDegree = $("#typeOfDegree").val();
         var major = $("#major").val();
@@ -22,52 +23,104 @@ function addCertificate() {
         var number = $("#number").val();
         var regNo = $("#regNo").val();
         var status = "WAITTING";
-        certificateSessionIntance.methods.getCertificate(id).call()
-            .then((result) => {
-                if (result[0] == "" && result[1] == "" && result[2] == "" && result[3] == "" && result[4] == ""
-                    && result[5] == 0 && result[6] == "") {
-                    certificateSessionIntance.methods.setCertificate(id, universityName, typeOfDegree,
-                        major, name, dateOfBirth, status, yearOfGraduation, degreeClassification, modeOfStudy,
-                        certificateDeliveryDate, number, regNo)
-                        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                            function (error, result) {
-                                try {
-                                    if (error.message.includes("User denied transaction signature")) {
-                                        // handle the "error" as a rejection
-                                        alert('Đã từ chối dịch vụ.');
-                                        location.reload();
-                                    }
-                                }
-                                catch (err) {
-                                    console.log("Xảy ra lỗi Error: MetaMask Tx Signature: User denied transaction signature.");
-                                }
-                            })
-                        .on('transactionHash', (hash) => {
-                            $("#addDegree").hide();
-                        })
-                        .on('confirmation', (confirmationNumber, receipt) => {
-
-                        })
-                        .on('receipt', (receipt) => {
-                            location.reload();
-                            alert('Thành công.');
-                            console.log(receipt);
-                        })
-                        .on('error', console.log("có lỗi MetaMask"));
-
-                } else {
-                    alert("ID đã tồn tại!");
+        var batch = new web3.BatchRequest();
+        batch.add(certificateSessionIntance.methods.setCertificate(id, universityName, typeOfDegree, major, name)
+            .send({
+                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
+            }, function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert("Denied transaction!");
+                    }
                 }
-            });
+                catch (err) {
+                    //console.log("OK Loi~");
+                }
+            }
+            ));
+        //console.log("b1");
+
+        batch.add(certificateSessionIntance.methods.setCertificateAddition(id, dateOfBirth, status, yearOfGraduation, degreeClassification)
+            .send({
+                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
+            }, function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert("Denied transaction!");
+                    }
+                }
+                catch (err) {
+                    //console.log("OK Loi~");
+                }
+            }));
+        //console.log("b2");
+        batch.add(certificateSessionIntance.methods.setCertificateAdditionDetail(id, modeOfStudy, certificateDeliveryDate, number, regNo)
+            .send({
+                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
+            }, function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert("Denied transaction!");
+                    }
+                }
+                catch (err) {
+                    console.log("This is feature!");
+                }
+            }
+            )
+        );
+        var thaotac = "them";
+        var comment = "Day la comment!"
+        var createTimeCertificate = new Date(Date.now()).toLocaleString();
+        batch.add(certificateSessionIntance.methods.setHistoryCer(id, thaotac, createTimeCertificate, comment)
+            .send({
+                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
+            }, function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert("Denied transaction!");
+                    }
+                }
+                catch (err) {
+                    console.log("This is feature!");
+                }
+            }
+            )
+            .on('transactionHash', (hash) => {
+                // getConfirmations(hash);
+                // confirmEtherTransaction(hash, 3);
+                $("#addUser").hide();
+                alert("Processing...Please wait for the notification!");
+            })
+            .on('receipt', (receipt) => {
+                alert("Success!");
+                location.reload();
+            })
+            .on('confirmation', (confirmationNumber, receipt) => {
+                //console.log(confirmationNumber);
+            })
+            .on('error', console.err)
+        );
+        try {
+            batch.execute();
+            if (error.message.includes("JSONRPC method should be specified for params:")) {
+                console.log("This is more features!");
+            }
+        }
+        catch (err) {
+            console.log("This is feature");
+        }
     }
+    //end parsley
 }
+//Load list certificate and pagination
 function pag(){
     $('.pagination').html('')
         var table = '#listCertificationTable';
         var trnum = 0;
         var maxRows = 20;
         var totalRows = $('#listCertificationTable tbody tr').length;
-        console.log(totalRows);
+        //console.log(totalRows);
         $(table + ' tr:gt(0)').each(function () {
             trnum++
             if (trnum > maxRows) {
@@ -99,6 +152,47 @@ function pag(){
             })
         })
 }
+
+
+function pagApprove(){
+    $('#approveNumber').html('')
+        var table = '#listCertificationApprove';
+        var trnum = 0;
+        var maxRows = 20;
+        var totalRows = $('#listCertificationApprove tbody tr').length;
+        //console.log(totalRows);
+        $(table + ' tr:gt(0)').each(function () {
+            trnum++
+            if (trnum > maxRows) {
+                $(this).hide()
+            }
+            if (trnum <= maxRows) {
+                $(this).show()
+            }
+        })
+        if (totalRows > maxRows) {
+            var pagenum = Math.ceil(totalRows / maxRows)
+            for (var i = 1; i <= pagenum;) {
+                $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+            }
+        }
+        $('#approveNumber li:first-child').addClass('active')
+        $('#approveNumber li').on('click', function () {
+            var pageNum = $(this).attr('data-page')
+            var trIndex = 0
+            $('#approveNumber li').removeClass('active')
+            $(this).addClass('active')
+            $(table + ' tr:gt(0)').each(function () {
+                trIndex++
+                if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                    $(this).hide()
+                } else {
+                    $(this).show()
+                }
+            })
+        })
+}
+
 
 $(window).on('load', function () {
     listCertification();
@@ -147,10 +241,11 @@ $(window).on('load', function () {
     });
 
     listCertificationApprove();
+    setTimeout(pagApprove,5000);
     $(document).ready(function () {
         var table = '#listCertificationApprove'
         $('#maxRowsListApprove').on('change', function () {
-            $('.pagination').html('')
+            $('#approveNumber').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
             var totalRows = $(table + ' tbody tr').length
@@ -166,11 +261,11 @@ $(window).on('load', function () {
             if (totalRows > maxRows) {
                 var pagenum = Math.ceil(totalRows / maxRows)
                 for (var i = 1; i <= pagenum;) {
-                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+                    $('#approveNumber').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
                 }
             }
-            $('.pagination li:first-child').addClass('active')
-            $('.pagination li').on('click', function () {
+            $('#approveNumber li:first-child').addClass('active')
+            $('#approveNumber li').on('click', function () {
                 var pageNum = $(this).attr('data-page')
                 var trIndex = 0
                 $('.pagination li').removeClass('active')
@@ -187,7 +282,7 @@ $(window).on('load', function () {
         })
     });
 });
-
+//End Load list certificate and pagination
 function statusCodeByName(status) {
     switch (status) {
         case "WAITTING":
@@ -200,107 +295,39 @@ function statusCodeByName(status) {
 }
 
 function listCertification() {
-    var table = "";
-    certificateSessionIntance.getPastEvents('setCertificateEvent',
-        { fromBlock: 0 }).then(function (eventCer) {
-            certificateSessionIntance.getPastEvents('setCertificateAdditionEvent',
-                { fromBlock: 0 }).then(function (eventAdd) {
-                    for (var i = 0; i < eventCer.length; i++) {
-                        for (var i = 0; i < eventAdd.length; i++) {
-                            var res = eventCer[i];
-                            var id = res.returnValues._id;
-                            var universityName = res.returnValues._universityName;
-                            var typeOfDegree = res.returnValues._typeOfDegree;
-                            var major = res.returnValues._major;
-                            var name = res.returnValues._name;
-                            var dateOfBirth = res.returnValues._dateOfBirth;
-                            var status = res.returnValues._status;
-
-                            var res = eventAdd[i];
-                            var yearOfGraduation = res.returnValues._yearOfGraduation;
-                            var degreeClassification = res.returnValues._degreeClassification;
-                            var modeOfStudy = res.returnValues._modeOfStudy;
-                            var certificateDeliveryDate = res.returnValues._certificateDeliveryDate;
-                            var number = res.returnValues._number;
-                            var regNo = res.returnValues._regNo;
-
-                            table += `<tr>
-                                        <td>` + (parseInt(i) + 1) + `</td>
-                                        <td>` + id + `</td>
-                                        <td>` + universityName + `</td>
-                                        <td>` + typeOfDegree + `</td>
-                                        <td>` + major + `</td>
-                                        <td>` + name + `</td>
-                                        <td>` + dateOfBirth + `</td>
-                                        <td>` + statusCodeByName(status) + `</td>
-                                        <td>` + yearOfGraduation + `</td>
-                                        <td>` + degreeClassification + `</td>
-                                        <td>` + modeOfStudy + `</td>
-                                        <td>` + certificateDeliveryDate + `</td>
-                                        <td>` + number + `</td>
-                                        <td>` + regNo + `</td>
-                                    </tr>`;
-                        }
-                        $("#listCertificationTable").find("tbody").html(table);
-                    }
-                }).catch(err => {
-                    console.log(err);
+        var table = "";
+        certificateSessionIntance.methods.getUserCount().call().then(function (count) {
+            for (let row = 0; row < count; row++) {
+                certificateSessionIntance.methods.getCertificateIndex(row).call().then(function (addr) {
+                    certificateSessionIntance.methods.getCertificate(addr).call().then(function (result) {
+                        certificateSessionIntance.methods.getCertificateAddition(addr).call().then(function (result1) {
+                            certificateSessionIntance.methods.getCertificateAdditionDetail(addr).call().then(function (result2) {
+                                table += `<tr>  <td>` + (row + 1)   +`</td>
+                                                <td>` + result[0] + `</td>
+                                                <td>` + result[1] + `</td>
+                                                <td>` + result[2] + `</td>
+                                                <td>` + result[3] + `</td>
+                                                <td>` + result[4] + `</td>
+                                                <td>` + result1[0] + `</td>
+                                                <td>` + statusCodeByName(result1[1]) + `</td>
+                                                <td>` + result1[2] + `</td>
+                                                <td>` + result1[3] + `</td>
+                                                <td>` + result2[0] + `</td>
+                                                <td>` + result2[1] + `</td>
+                                                <td>` + result2[2] + `</td>
+                                                <td>` + result2[3] + `</td>
+                                            </tr>`;
+                                $("#listCertificationTable").find("tbody").html(table);
+                            })
+                        })
+                    })
                 });
-        }).catch(err => {
-            console.log(err);
-        });
+            }
+        })
 }
 
 function listCertificationApprove() {
-    var table = "";
-    certificateSessionIntance.getPastEvents('setCertificateEvent',
-        { fromBlock: 0 }).then(function (eventCer) {
-            certificateSessionIntance.getPastEvents('setCertificateAdditionEvent',
-                { fromBlock: 0 }).then(function (eventAdd) {
-                    for (var i = 0; i < eventCer.length; i++) {
-                        for (var i = 0; i < eventAdd.length; i++) {
-                            var res = eventCer[i];
-                            var id = res.returnValues._id;
-                            var universityName = res.returnValues._universityName;
-                            var typeOfDegree = res.returnValues._typeOfDegree;
-                            var major = res.returnValues._major;
-                            var name = res.returnValues._name;
-                            var dateOfBirth = res.returnValues._dateOfBirth;
-                            var status = res.returnValues._status;
-
-                            var res = eventAdd[i];
-                            var yearOfGraduation = res.returnValues._yearOfGraduation;
-                            var degreeClassification = res.returnValues._degreeClassification;
-                            var modeOfStudy = res.returnValues._modeOfStudy;
-                            var certificateDeliveryDate = res.returnValues._certificateDeliveryDate;
-                            var number = res.returnValues._number;
-                            var regNo = res.returnValues._regNo;
-
-                            table += `<tr>
-                                        <td>` + "" + `</td>
-                                        <td>` + (parseInt(i) + 1) + `</td>
-                                        <td> <a href="#" data-toggle="modal" data-target="#approveDegree" 
-                                            onclick="createApproveView(\`` + id + `\`,\`` + universityName + `\`,\`` + typeOfDegree + `\`,\`` + major + `\`,\`` + name +
-                                `\`,\`` + dateOfBirth + `\`,\`` + degreeClassification + `\`,\`` + modeOfStudy + `\`,\`` + yearOfGraduation +
-                                `\`,\`` + certificateDeliveryDate + `\`,\`` + number + `\`,\`` + regNo + `\`)">` + name + `</a> 
-                                        </td>
-                                        <td>` + dateOfBirth + `</td>
-                                        <td>` + major + `</td>
-                                        <td>` + degreeClassification + `</td>
-                                        <td>` + yearOfGraduation + `</td>
-                                        <td>` + certificateDeliveryDate + `</td>
-                                        <td>` + number + `</td>
-                                        <td>` + regNo + `</td>
-                                    </tr>`;
-                        }
-                        $("#listCertificationApprove").find("tbody").html(table);
-                    }
-                }).catch(err => {
-                    console.log(err);
-                });
-        }).catch(err => {
-            console.log(err);
-        });
+    
 }
 
 function createApproveView(id, universityName, typeOfDegree, major, name, dateOfBirth,
