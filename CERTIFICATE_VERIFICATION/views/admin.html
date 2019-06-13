@@ -84,7 +84,7 @@
                                 data-target="#degreeKindModal"
                                 data-backdrop="static"
                                 data-keyboard="false" id="degreeKindButton"
-                                onclick="degreeKindButton();">
+                                onclick="degreeKindButton(); setTimeout(pag1,1000);">
                                 Danh mục loại văn bằng
                             </button>
                         </div>
@@ -93,11 +93,11 @@
                                 data-target="#degreeNameModal"
                                 data-backdrop="static"
                                 data-keyboard="false" id="degreeNameButton"
-                                onclick="degreeNameButton();">
+                                onclick="degreeNameButton(); setTimeout(pag2,1000);">
                                 Danh mục tên văn bằng
                             </button>
                         </div>
-                        <div class="degree-management">
+                        <!-- <div class="degree-management">
                             <button type="button" data-toggle="modal"
                                 data-target="#degreeManagementModal"
                                 data-backdrop="static" data-keyboard="false"
@@ -113,7 +113,7 @@
                                 id="userDegreeManagementButton">
                                 Phân quyền người quản lý
                             </button>
-                        </div>
+                        </div> -->
                         <div class="degree-history">
                             <button type="button" data-toggle="modal"
                                 data-target="#historyModal"
@@ -142,6 +142,14 @@
                         </div>
                     </div>
                     <div class="box-body" style="overflow-x:auto;">
+                        <div class="form-group">
+                            <select name="state" id="datatable"
+                                class="form-control" style="width: 150px;">
+                                <option value="5" selected> 5 </option>
+                                <option value="10"> 10 </option>
+                                <option value="20"> 20 </option>   
+                            </select>
+                        </div>
                         <table id="myTable" class="table">
                             <thead>
                                 <tr>
@@ -157,6 +165,15 @@
 
                             </tbody>
                         </table>
+                        <div class="pagination-container">
+                            <nav>
+                                <ul class="pagination"></ul>
+                            </nav>
+                        </div>
+
+                        <!-- <div class="pagination">
+                            <ol id="numbers"></ol>
+                        </div> -->
                     </div>
                 </div>
                 <!-- DEGREE KIND POPUP -->
@@ -180,18 +197,14 @@
                                             class="glyphicon glyphicon-plus"></i>
                                         Thêm</button>
                                 </div>
-                                <div style="overflow-x:auto;">
+                                <div style="margin-top: 13px">
                                     <div class="form-group">
                                         <select name="state" id="maxRows"
                                             class="form-control" style="width:
                                             150px;">
-                                            <option value="5000"> Tất cả </option>
-                                            <option value="5"> 5 </option>
                                             <option value="10"> 10 </option>
-                                            <option value="15"> 15 </option>
                                             <option value="20"> 20 </option>
                                             <option value="50"> 50 </option>
-                                            <option value="100"> 100 </option>
                                             
                                         </select>
                                     </div>
@@ -209,7 +222,7 @@
                                             </tr>
                                         </thead>
                                     </table> -->
-                                    <p><button onclick="sortTable($('#degreeKindTable'),'asc')">Sắp xếp theo số thứ tự</button></p>
+                                    <!-- <p><button onclick="sortTable($('#degreeKindTable'),'asc')">Sắp xếp theo số thứ tự</button></p> -->
                                     <table id="degreeKindTable"
                                         class="table table-bordered
                                         table-striped">
@@ -242,7 +255,7 @@
 
                                     <div class="pagination-container">
                                         <nav>
-                                            <ul class="pagination"></ul>
+                                            <ul class="pagination" id="pagination1"></ul>
                                         </nav>
                                     </div>
                                     
@@ -376,22 +389,17 @@
                                             class="glyphicon glyphicon-plus"></i>
                                         Thêm</button>
                                 </div>
-                                <div style="overflow-x:auto;">
+                                <div style="margin-top: 13px;">
                                     <div class="form-group">
                                         <select name="state" id="maxRowsName"
                                             class="form-control" style="width:
                                             150px;">
-                                            <option value="5000"> Tất cả
-                                            </option>
-                                            <option value="5"> 5 </option>
-                                            <option value="10"> 10 </option>
-                                            <option value="15"> 15 </option>
-                                            <option value="20"> 20 </option>
-                                            <option value="50"> 50 </option>
-                                            <option value="100"> 100 </option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
                                         </select>
                                     </div>
-                                    <p><button onclick="sortTable($('#degreeNameTable'),'asc')">Sắp xếp theo thứ tự</button></p>
+                                    <!-- <p><button onclick="sortTable($('#degreeNameTable'),'asc')">Sắp xếp theo thứ tự</button></p> -->
                                     <table id="degreeNameTable" class="table
                                         table-bordered table-striped">
                                         <thead>
@@ -463,7 +471,7 @@
                                     </table>
                                     <div class="pagination-container">
                                         <nav>
-                                            <ul class="pagination"></ul>
+                                            <ul class="pagination" id="pagination2"></ul>
                                         </nav>
                                     </div>
                                 </div>
@@ -531,11 +539,11 @@
                 </div>
 
                 <!-- DEGREE MANAGEMENT POPUP -->
-                <div class="modal fade" id="degreeManagementModal">
-                    <div class="modal-dialog modal-lg">
+                <!-- <div class="modal fade" id="degreeManagementModal">
+                    <div class="modal-dialog modal-lg"> -->
 
                         <!-- Modal content-->
-                        <div class="modal-content">
+                        <!-- <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close"
                                     data-dismiss="modal">x</button>
@@ -576,22 +584,22 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success
                                     col-xs-2 col-lg-2 col-md-2 col-sm-2"
-                                    data-dismiss="modal">Lưu</button>
+                                    data-dismiss="modal">Lưu</button> -->
                                 <!-- <button type="button" class="btn btn-danger col-xs-2 col-lg-2 col-md-2 col-sm-2"
                                 data-dismiss="modal">Xóa</button> -->
-                                <button type="button" class="btn btn-default"
+                                <!-- <button type="button" class="btn btn-default"
                                     data-dismiss="modal">Close</button>
                             </div>
                         </div>
 
                     </div>
-                </div>
+                </div> -->
 
-                <div class="modal fade" id="addDegreeManagement">
-                    <div class="modal-dialog">
+                <!-- <div class="modal fade" id="addDegreeManagement">
+                    <div class="modal-dialog"> -->
 
                         <!-- Modal content-->
-                        <div class="modal-content">
+                        <!-- <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close"
                                     data-dismiss="modal">x</button>
@@ -649,7 +657,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
 
                 <!-- END POPUP CONTENT -->
 
@@ -668,19 +676,16 @@
                                 <div style="overflow-x:auto;">
                                     <table id="historyTable" class="table">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Đơn vị quản lý</th>
-                                            <th>Tên văn bằng</th>
-                                            <th>Từ ngày</th>
-                                            <th>Đến ngày</th>
+                                            <th>TT</th>
+                                            <th>Thao tác</th>
+                                            <th>Tài khoản</th>
+                                            <th>Thời gian</th>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>K.Công nghệ thông tin & truyền
-                                                thông</td>
-                                            <td>Chứng chỉ A tin học</td>
+                                            <td>Đã thêm văn bằng A tin học</td>
+                                            <td></td>
                                             <td>19/10/2015</td>
-                                            <td>03/01/2019</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -695,18 +700,18 @@
                 <!-- END POPUP CONTENT -->
 
                 <!-- USER DEGREE MANAGEMENT POPUP -->
-                <div class="modal fade" id="userDegreeManagementModal">
-                    <div class="modal-dialog modal-lg">
+                <!-- <div class="modal fade" id="userDegreeManagementModal">
+                    <div class="modal-dialog modal-lg"> -->
 
                         <!-- Modal content-->
-                        <div class="modal-content">
+                        <!-- <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close"
                                     data-dismiss="modal">x</button>
                                 <h4 class="modal-title">Phân quyền người quản lý</h4>
                             </div>
                             <div class="modal-body">
-                                <div style="overflow-x:auto;">
+                                <div style="overflow-x:auto;"> -->
                                     <!-- <div class="tab">
                                     <button class="tablinks" onclick="openCity(event, 'London')"
                                         id="defaultOpen">London</button>
@@ -734,20 +739,20 @@
                                     // Get the element with id="defaultOpen" and click on it
                                     document.getElementById("defaultOpen").click();
                                 </script> -->
-                                </div>
+                                <!-- </div> -->
 
 
                                 <!-- <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div> -->
-                            </div>
+                            <!-- </div>
 
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END POPUP CONTENT -->
 
 
-                </div>
+                <!-- </div> -->
             </div>
 
             <!-- <script

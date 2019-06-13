@@ -2,36 +2,36 @@ pragma solidity >=0.4.21 <0.6.0;
 
 contract DegreeKindStorage {
 
-    // event setDegreeKindEvent(uint degreeKindId, string degreeKindName);
+    // event setDegreeKindEvent(address userAddressKind, string degreeKindName);
     uint256 index;
 
     struct DegreeKind {
-        uint8 degreeKindId;
+        address userAddressKind;
         string degreeKindName;
     }
 
-    mapping (uint8 => DegreeKind) DegreeKindMapping;
+    mapping (address => DegreeKind) DegreeKindMapping;
 
 
-    event LeaderUpdated(uint8 degreeKindId , string degreeKindName);
-    event CountryDelete(uint8 degreeKindId);
+    // event LeaderUpdated(address userAddressKind , string degreeKindName);
+    // event CountryDelete(address userAddressKind);
 
     DegreeKind degreeKind;
 
-    function setDegreeKind(uint8 _degreeKindId, string memory _degreeKindName) public returns(bool) {
-        degreeKind.degreeKindId = _degreeKindId;
+    function setDegreeKind(address _userAddressKind, string memory _degreeKindName) public returns(bool) {
+        degreeKind.userAddressKind = _userAddressKind;
         degreeKind.degreeKindName = _degreeKindName;
 
-        DegreeKindMapping[_degreeKindId] = degreeKind;
-        // emit setDegreeKindEvent(_degreeKindId, _degreeKindName);
+        DegreeKindMapping[_userAddressKind] = degreeKind;
+        // emit setDegreeKindEvent(_userAddressKind, _degreeKindName);
         index++;
 
         return true;
     }
 
-    function getDegreeKind(uint8 _degreeKindId) public view returns(uint8 degreeKindId, string memory degreeKindName) {
-        DegreeKind memory tmpData = DegreeKindMapping[_degreeKindId];
-        return (tmpData.degreeKindId, tmpData.degreeKindName);
+    function getDegreeKind(address _userAddressKind) public view returns(address userAddressKind, string memory degreeKindName) {
+        DegreeKind memory tmpData = DegreeKindMapping[_userAddressKind];
+        return (tmpData.userAddressKind, tmpData.degreeKindName);
     }
 
     function getDegreeKindIndex() public view returns(uint256) {

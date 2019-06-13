@@ -7,19 +7,19 @@ contract DegreeNameStorage {
     uint256 index;
 
     struct DegreeName {
-        uint256 degreeKindId;
-        uint256 degreeNameId;
+        string userAddressKind;
+        address userAddressName;
         string degreeName;
     }
 
-    mapping (uint256 => DegreeName) DegreeNameMapping;
+    mapping (address => DegreeName) DegreeNameMapping;
 
      //DegreeName degreeNames;
 
-    function setDegreeName(uint256 _degreeKindId, uint256 _degreeNameId, string memory _degreeName) public {
-        DegreeNameMapping[_degreeNameId].degreeKindId = _degreeKindId;
-        DegreeNameMapping[_degreeNameId].degreeNameId = _degreeNameId;
-        DegreeNameMapping[_degreeNameId].degreeName = _degreeName;
+    function setDegreeName(string memory _userAddressKind, address _userAddressName, string memory _degreeName) public {
+        DegreeNameMapping[_userAddressName].userAddressKind = _userAddressKind;
+        DegreeNameMapping[_userAddressName].userAddressName = _userAddressName;
+        DegreeNameMapping[_userAddressName].degreeName = _degreeName;
 
         // DegreeNameMapping[_degreeNameId] = degreeNames;
         index++;
@@ -28,11 +28,12 @@ contract DegreeNameStorage {
         // return true;
     }
 
-    function getDegreeName(uint256 _degreeNameId) public view returns(uint256 degreeKindId, uint256 degreeNameId, string memory degreeName) {
+    function getDegreeName(address _userAddressName) public view returns(string memory userAddressKind, address userAddressName,
+    string memory degreeName) {
         // DegreeName memory tmpData = DegreeNameMapping[_degreeNameId];
-        return (DegreeNameMapping[_degreeNameId].degreeKindId,
-        DegreeNameMapping[_degreeNameId].degreeNameId,
-        DegreeNameMapping[_degreeNameId].degreeName);
+        return (DegreeNameMapping[_userAddressName].userAddressKind,
+        DegreeNameMapping[_userAddressName].userAddressName,
+        DegreeNameMapping[_userAddressName].degreeName);
     }
 
     function getDegreeNameIndex() public view returns(uint256) {
