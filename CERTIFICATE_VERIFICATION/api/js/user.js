@@ -62,22 +62,76 @@ function addCertificate() {
     }
 }
 
+// $('#listCertificationTable').bootstrapTable({
+//     cache: false,
+//     height: 400,
+//     striped: true,
+//     pagination: true,
+//     pageSize: 5, //specify 5 here
+//     pageList: [20, 10, 20, 50]//list can be specified here
+// });
+function onloadSelected(){
+    $('.pagination').html('')
+        var table = '#listCertificationTable';
+        var trnum = 0;
+        var maxRows = 1;
+        var totalRows = $('#listCertificationTable tbody tr').length;
+        // console.log(totalRows);
+        $(table + ' tr:gt(0)').each(function () {
+            trnum++
+            if (trnum > maxRows) {
+                $(this).hide()
+            }
+            if (trnum <= maxRows) {
+                $(this).show()
+            }
+        })
+        if(totalRows > maxRows){
+            var pagenum = Math.ceil(totalRows/maxRows)
+            for(var i=1; i<=pagenum;){
+                $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span> </span>\ </li>').show()
+            }
+        }
+        $('.pagination li:first-child').addClass('active')
+        $('.pagination li').on('click', function () {
+            var pageNum = $(this).attr('data-page')
+            var trIndex = 0
+            $('.pagination li').removeClass('active')
+            $(this).addClass('active')
+            $(table + ' tr:gt(0)').each(function () {
+                trIndex++
+                if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+                    $(this).hide()
+                }else{
+                    $(this).show()
+                }
+            })
+        })
+} 
 
 $(window).on('load', function () {
     listCertification();
+    // $('.table tbody').on('click', '.btn', function(){
+    //     var currow = $(this).closest('tr');
+    //     var col1 = currow.find('td:eq(0)').text();
+    //     alert(col1);
+    //     console.log(col1);
+    // })  
     $(document).ready(function () {
-        var table = '#listCertificationTable'
-        $('#maxRowsListDegree').on('change',function(){
+        var table = '#listCertificationTable';
+        setTimeout(onloadSelected,2000);
+        
+        $('#maxRowsListDegree').on('change', function () {
             $('.pagination').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
-            var totalRows = $(table+' tbody tr').length
-            $(table+' tr:gt(0)').each(function(){
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
                 trnum++
-                if(trnum > maxRows){
+                if (trnum > maxRows) {
                     $(this).hide()
                 }
-                if(trnum <= maxRows){
+                if (trnum <= maxRows) {
                     $(this).show()
                 }
             })
@@ -88,12 +142,12 @@ $(window).on('load', function () {
                 }
             }
             $('.pagination li:first-child').addClass('active')
-            $('.pagination li').on('click', function(){
+            $('.pagination li').on('click', function () {
                 var pageNum = $(this).attr('data-page')
                 var trIndex = 0
                 $('.pagination li').removeClass('active')
                 $(this).addClass('active')
-                $(table+' tr:gt(0)').each(function(){
+                $(table + ' tr:gt(0)').each(function () {
                     trIndex++
                     if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
                         $(this).hide()
@@ -103,22 +157,24 @@ $(window).on('load', function () {
                 })
             })
         })
+        
     });
-
     listCertificationApprove();
     $(document).ready(function () {
-        var table = '#listCertificationApprove'
-        $('#maxRowsListApprove').on('change',function(){
+        var table = '#listCertificationApprove';
+        setTimeout(onloadSelected,2000);
+        
+        $('#maxRowsListApprove').on('change', function () {
             $('.pagination').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
-            var totalRows = $(table+' tbody tr').length
-            $(table+' tr:gt(0)').each(function(){
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
                 trnum++
-                if(trnum > maxRows){
+                if (trnum > maxRows) {
                     $(this).hide()
                 }
-                if(trnum <= maxRows){
+                if (trnum <= maxRows) {
                     $(this).show()
                 }
             })
@@ -129,12 +185,12 @@ $(window).on('load', function () {
                 }
             }
             $('.pagination li:first-child').addClass('active')
-            $('.pagination li').on('click', function(){
+            $('.pagination li').on('click', function () {
                 var pageNum = $(this).attr('data-page')
                 var trIndex = 0
                 $('.pagination li').removeClass('active')
                 $(this).addClass('active')
-                $(table+' tr:gt(0)').each(function(){
+                $(table + ' tr:gt(0)').each(function () {
                     trIndex++
                     if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
                         $(this).hide()
@@ -144,8 +200,104 @@ $(window).on('load', function () {
                 })
             })
         })
+        
     });
 });
+
+
+// $(window).on('load', function () {
+//     listCertification();
+    
+//     $(document).ready(function () {
+        
+//         // $('#listCertificationTable').dataTable( {
+//         //     "iDisplayLength": 2
+//         // });
+//         var table = '#listCertificationTable'
+        
+//         $('#maxRowsListDegree').on('change',function(){
+//             $('.pagination').html('')
+//             var trnum = 0;
+//             var maxRows = parseInt($(this).val())
+//             var totalRows = $(table+' tbody tr').length
+//             $(table+' tr:gt(0)').each(function(){
+//                 trnum++
+//                 if(trnum > maxRows){
+//                     $(this).hide()
+//                 }
+//                 if(trnum <= maxRows){
+//                     $(this).show()
+//                 }
+//             })
+//             if(totalRows > maxRows){
+//                 var pagenum = Math.ceil(totalRows/maxRows)
+//                 for(var i=1; i<=pagenum;){
+//                     $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span> </span>\ </li>').show()
+//                 }
+//             }
+//             $('.pagination li:first-child').addClass('active')
+//             $('.pagination li').on('click', function(){
+//                 var pageNum = $(this).attr('data-page')
+//                 var trIndex = 0
+//                 $('.pagination li').removeClass('active')
+//                 $(this).addClass('active')
+//                 $(table+' tr:gt(0)').each(function(){
+//                     trIndex++
+//                     if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+//                         $(this).hide()
+//                     }else{
+//                         $(this).show()
+//                     }
+//                 })
+//             })
+//         })
+//     });
+
+//     listCertificationApprove();
+//     $(document).ready(function () {
+//         var table = '#listCertificationApprove'
+//         $('#maxRowsListApprove').on('change',function(){
+//             $('.pagination').html('')
+//             var trnum = 0;
+//             var maxRows = parseInt($(this).val())
+//             var totalRows = $(table+' tbody tr').length
+//             $(".pagination").append("<li class='current-page active'><a href='javascript:void(0)'>" + 1 + "</a></li>");
+//             $(table+' tr:gt(0)').each(function(){
+//                 trnum++
+//                 if(trnum > maxRows){
+//                     $(this).hide()
+//                 }
+//                 if(trnum <= maxRows){
+//                     $(this).show()
+//                 }
+//             })
+//             if(totalRows > maxRows){
+//                 var pagenum = Math.ceil(totalRows/maxRows)
+//                 for(var i=1; i<=pagenum;){
+//                     $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span> </span>\ </li>').show()
+//                 }
+//             }
+//             $('.pagination li:first-child').addClass('active')
+//             $('.pagination li').on('click', function(){
+//                 var pageNum = $(this).attr('data-page')
+//                 var trIndex = 0
+//                 $('.pagination li').removeClass('active')
+//                 $(this).addClass('active')
+//                 $(table+' tr:gt(0)').each(function(){
+//                     trIndex++
+//                     if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+//                         $(this).hide()
+//                     }else{
+//                         $(this).show()
+//                     }
+//                 })
+//             })
+//         })
+//     });
+//     // $('#listCertificationTable').dataTable( {
+//     //     "displayStart": 20
+//     //   } );
+// });
 
 function statusCodeByName(status) {
     switch (status) {

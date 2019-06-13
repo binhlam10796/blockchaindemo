@@ -23,6 +23,7 @@ function sortTable(table, order) {
     }).appendTo(tbody);
 }
 
+
 function sortTable1() {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("degreeNameTable");
@@ -111,10 +112,10 @@ function addDegreeKind() {
 }
 
 function degreeKindButton() {
-    sortTable($('#degreeKindTable'),'asc');
     getListDegreeKind();
-    //panigation
+    sortTable($('#degreeKindTable'),'asc');
     $(document).ready(function () {
+        getListDegreeKind();
         var table = '#degreeKindTable'
         $('#maxRows').on('change',function(){
             $('.pagination').html('')
@@ -153,6 +154,9 @@ function degreeKindButton() {
             })
         })
     });
+    getListDegreeKind();
+    //panigation
+    
     // $(document).ready( function () {
     //     $('#degreeKindTable').DataTable();
     //     getListDegreeKind();
