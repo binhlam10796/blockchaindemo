@@ -488,6 +488,9 @@ function doApproveCertificate() {
     var regNo = document.getElementById("tdRegNo").innerText;
 
     var batch = new web3.BatchRequest();
+    //tao 2 function createApproveView & doApproveCertificate
+    //o tren lay data trong form nhap add -> history
+    //goi addInsertHistory
     certificateSessionIntance.methods.setCertificate(id, universityName, typeOfDegree,
         major, name, dateOfBirth, status, yearOfGraduation,
         degreeClassification, modeOfStudy, certificateDeliveryDate, number, regNo)

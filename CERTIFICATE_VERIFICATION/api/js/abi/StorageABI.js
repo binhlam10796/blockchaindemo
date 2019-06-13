@@ -466,44 +466,17 @@ var UserManagementStorageABI = [
 			{
 				"name": "_userAddress",
 				"type": "address"
-			},
-			{
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
 			}
 		],
-		"name": "updateDateOfBirth",
+		"name": "deleteUser",
 		"outputs": [
 			{
-				"name": "success",
-				"type": "bool"
+				"name": "index",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			}
-		],
-		"name": "isUser",
-		"outputs": [
-			{
-				"name": "isIndeed",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -514,19 +487,35 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_idCardNo",
+				"name": "_userId",
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_fullName",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"name": "_dateOfBirth",
+				"type": "string"
 			}
 		],
-		"name": "updateIdCardNo",
+		"name": "insertUser",
 		"outputs": [
 			{
-				"name": "success",
-				"type": "bool"
+				"name": "index",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -546,11 +535,11 @@ var UserManagementStorageABI = [
 			},
 			{
 				"name": "_createdTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"name": "_idCardNo",
@@ -578,29 +567,10 @@ var UserManagementStorageABI = [
 			{
 				"name": "_userAddress",
 				"type": "address"
-			}
-		],
-		"name": "deleteUser",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
 			},
 			{
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"name": "_job",
@@ -630,15 +600,15 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_idCardIssuePlace",
+				"name": "_dateOfBirth",
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_modifiedTime",
+				"type": "string"
 			}
 		],
-		"name": "updateIdCardIssuePlace",
+		"name": "updateDateOfBirth",
 		"outputs": [
 			{
 				"name": "success",
@@ -661,8 +631,8 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_modifiedTime",
+				"type": "string"
 			}
 		],
 		"name": "updateEmail",
@@ -684,251 +654,12 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_userId",
-				"type": "string"
-			},
-			{
 				"name": "_fullName",
 				"type": "string"
 			},
 			{
-				"name": "_email",
+				"name": "_modifiedTime",
 				"type": "string"
-			},
-			{
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			}
-		],
-		"name": "insertUser",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			}
-		],
-		"name": "getUser",
-		"outputs": [
-			{
-				"name": "userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_userId",
-				"type": "string"
-			},
-			{
-				"name": "_fullName",
-				"type": "string"
-			},
-			{
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			}
-		],
-		"name": "getUserDetailMoreMore",
-		"outputs": [
-			{
-				"name": "_phoneNumber",
-				"type": "uint256"
-			},
-			{
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"name": "_userAddr",
-				"type": "string"
-			},
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateGender",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateJob",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getUserCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updatePassword",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_isLocked",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateIsLocked",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_fullName",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
 			}
 		],
 		"name": "updateFullName",
@@ -950,15 +681,15 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_userAddr",
+				"name": "_gender",
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_modifiedTime",
+				"type": "string"
 			}
 		],
-		"name": "updateUserAddr",
+		"name": "updateGender",
 		"outputs": [
 			{
 				"name": "success",
@@ -970,38 +701,138 @@ var UserManagementStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
 				"name": "_userAddress",
 				"type": "address"
-			}
-		],
-		"name": "getUserDetailMore",
-		"outputs": [
+			},
 			{
-				"name": "_isLocked",
+				"name": "_idCardIssuePlace",
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
-			},
-			{
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
+			}
+		],
+		"name": "updateIdCardIssuePlace",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
 			},
 			{
 				"name": "_idCardNo",
 				"type": "string"
 			},
 			{
-				"name": "_idCardIssuePlace",
+				"name": "_modifiedTime",
 				"type": "string"
 			}
 		],
+		"name": "updateIdCardNo",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_isLocked",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateIsLocked",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_job",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateJob",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updatePassword",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1013,11 +844,11 @@ var UserManagementStorageABI = [
 			},
 			{
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_modifiedTime",
+				"type": "string"
 			}
 		],
 		"name": "updatePhoneNumber",
@@ -1032,22 +863,30 @@ var UserManagementStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "_index",
-				"type": "uint256"
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_userAddr",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
 			}
 		],
-		"name": "getUserAtIndex",
+		"name": "updateUserAddr",
 		"outputs": [
 			{
-				"name": "userAddress",
-				"type": "address"
+				"name": "success",
+				"type": "bool"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1086,7 +925,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"name": "SetUserManagementEvent",
@@ -1108,12 +947,12 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_createdTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -1140,7 +979,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -1197,7 +1036,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"name": "SetLogUpdateUserManagementEven",
@@ -1219,12 +1058,12 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
 				"name": "_createdTime",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -1251,7 +1090,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -1288,5 +1127,166 @@ var UserManagementStorageABI = [
 		],
 		"name": "SetLogDeleteUserManagement",
 		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUser",
+		"outputs": [
+			{
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_userId",
+				"type": "string"
+			},
+			{
+				"name": "_fullName",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"name": "_dateOfBirth",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getUserAtIndex",
+		"outputs": [
+			{
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUserDetailMore",
+		"outputs": [
+			{
+				"name": "_isLocked",
+				"type": "string"
+			},
+			{
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			},
+			{
+				"name": "_idCardNo",
+				"type": "string"
+			},
+			{
+				"name": "_idCardIssuePlace",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUserDetailMoreMore",
+		"outputs": [
+			{
+				"name": "_phoneNumber",
+				"type": "string"
+			},
+			{
+				"name": "_job",
+				"type": "string"
+			},
+			{
+				"name": "_userAddr",
+				"type": "string"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			}
+		],
+		"name": "isUser",
+		"outputs": [
+			{
+				"name": "isIndeed",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];

@@ -5,14 +5,15 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xadCe998Cfb3BD7C3E6b6Af4d1D7C7d2bB1aAFEC3");
-
+var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0x9751a8eD861Bd1835Ce818FA7B25f06756753902");
+// var userManagementHistorySessionInstance = new web3.eth.Contract(UserManagementHistoryStorageABI, "0xadCe998Cfb3BD7C3E6b6Af4d1D7C7d2bB1aAFEC3");
 //create address random and unique
 var temp = web3.eth.accounts.create();
 var randomAddress = temp.address;
 //0x8a6931B13B1EC63402bCcB5805BD5a5dD29F813e nam
 //0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183 tai
 //0x4446B5dF39FAB2F3FAD857b13910C323786a0632 dlinh
+//0xadCe998Cfb3BD7C3E6b6Af4d1D7C7d2bB1aAFEC3 okok
 function addUserManagement() {
 
     if ($('#idUserManagementForm').parsley().validate()) {
@@ -25,10 +26,15 @@ function addUserManagement() {
         var gender = $("#gender").val();
         var dateOfBirth = $("#dateOfBirth").val();
         var isLocked = $("#isLocked").val();
-        var date = Date.now();
+        var createdTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toLocaleString();
+        // var date = Date.now();
         //var datetime = Date(date);
-        var createdTime = date.toString();
-        var modifiedTime = $("#modifiedTime").val();
+        // var createdTime = date.toString();
+        // var modifiedTime = date.toString();
+        // var createdTime = new Date(date.toLocalString());
+        // var modifiedTime = new Date(date.toLocalString());
+        // var modifiedTime = $("#modifiedTime").val();
         var idCardNo = $("#idCardNo").val();
         var idCardIssuePlace = $("#idCardIssuePlace").val();
         var phoneNumber = $("#phoneNumber").val();
@@ -206,9 +212,8 @@ $(window).on('load', function () {
 
 
 // $(window).on('load', function () {
-    // listUserManagement();
 //     $(document).ready(function () {
-//         var table = '#listUserManager'
+//         var tabcreatetime = '#listUserManager'
 //         $('#maxRowsListUserManagement').on('change', function () {
 //             $('.pagination').html('')
 //             var trnum = 0;
@@ -319,6 +324,7 @@ function listUserManagement() {
     })
 }
 
+//modal delete
 function createDeleteView(address) {
     var parag = `<p>` + address + `</p>`;
     $("#deleteModal").find(".modal-body").html(parag);
@@ -358,6 +364,8 @@ function deleteUserManagement() {
 }
 
 // them address vao modal de get qua function update
+
+//update fullname
 function createUpdateView(address) {
     var parag = `<p>` + address + `</p>`;
     $("#insertValueUpdateFullNameModal").find(".modal-body").html(parag);
@@ -548,7 +556,8 @@ function frontUpdateUserManagement(address, id, fullName, email, password, gende
 function updateUserManagement() {
     var address = $('#insertValueUpdateFullNameModal .modal-body p').text();
     var fullName = $('#valueUpdate').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
+    // var modifiedTime = Date.now();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateFullName(address, fullName, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -594,7 +603,7 @@ function updateUserManagement() {
 function updateEmailUserManagement() {
     var address = $('#insertValueUpdateEmailModal .modal-body p').text();
     var email = $('#valueUpdateEmail').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateEmail(address, email, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -639,7 +648,7 @@ function updateEmailUserManagement() {
 function updatePasswordUserManagement() {
     var address = $('#insertValueUpdatePasswordModal .modal-body p').text();
     var password = $('#valueUpdatePassword').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updatePassword(address, password, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -684,7 +693,7 @@ function updatePasswordUserManagement() {
 function updateGenderUserManagement() {
     var address = $('#insertValueUpdateGenderModal .modal-body p').text();
     var gender = $('#valueUpdateGender').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateGender(address, gender, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -728,7 +737,7 @@ function updateGenderUserManagement() {
 function updateDateOfBirthUserManagement() {
     var address = $('#insertValueUpdateDateOfBirthModal .modal-body p').text();
     var dateOfBirth = $('#valueUpdateDateOfBirth').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateDateOfBirth(address, dateOfBirth, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -772,7 +781,7 @@ function updateDateOfBirthUserManagement() {
 function updateUserAddrUserManagement() {
     var address = $('#insertValueUpdateUserAddrModal .modal-body p').text();
     var userAddr = $('#valueUpdateUserAddr').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateUserAddr(address, userAddr, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -816,7 +825,7 @@ function updateUserAddrUserManagement() {
 function updateIdCardNoUserManagement() {
     var address = $('#insertValueUpdateIdCardNoModal .modal-body p').text();
     var idCardNo = $('#valueUpdateIdCardNo').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateIdCardNo(address, idCardNo, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -860,7 +869,7 @@ function updateIdCardNoUserManagement() {
 function updateIdCardIssuePlaceUserManagement() {
     var address = $('#insertValueUpdateIdCardIssuePlaceModal .modal-body p').text();
     var idCardIssuePlace = $('#valueUpdateIdCardIssuePlace').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateIdCardIssuePlace(address, idCardIssuePlace, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -904,7 +913,7 @@ function updateIdCardIssuePlaceUserManagement() {
 function updatePhoneNumberUserManagement() {
     var address = $('#insertValueUpdatePhoneNumberModal .modal-body p').text();
     var phoneNumber = $('#valueUpdatePhoneNumber').val();
-    var modifiedTime = Date.now();
+    var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updatePhoneNumber(address, phoneNumber, modifiedTime)
             .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
@@ -945,6 +954,7 @@ function updatePhoneNumberUserManagement() {
         }
 }
 
+// export table date to excel
 function exportTableToExcel(tableID, filename = ''){
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
@@ -974,6 +984,90 @@ function exportTableToExcel(tableID, filename = ''){
         //triggering the function
         downloadLink.click();
     }
+}
+
+function listHistory() {
+    var table = "";
+    userManagementSessionInstance.getPastEvents('SetUserManagementEvent',
+        { fromBlock: 0 }).then(function (eventCer) {
+            userManagementSessionInstance.getPastEvents('SetUserManagementAdditionEvent',
+                { fromBlock: 0 }).then(function (eventAdd) {
+                    userManagementSessionInstance.getPastEvents('SetUserManagementAdditionFlusEvent',
+                        { fromBlock: 0 }).then(function (eventUser) {
+                            for (var i = 0; i < eventCer.length; i++) {
+                                for (var i = 0; i < eventAdd.length; i++) {
+                                    for (var i = 0; i < eventUser.length; i++) {
+                                    var res = eventCer[i];
+
+                                    
+
+                                    var address = res.returnValues._userAddress;
+                                    var id = res.returnValues._userId;
+                                    var fullName = res.returnValues._fullName;
+                                    var email = res.returnValues._email;
+                                    var password = res.returnValues._password;
+                                    var gender = res.returnValues._gender;
+                                    var dateOfBirth = res.returnValues._dateOfBirth;
+                                    var isLocked = res.returnValues._isLocked;
+
+                                    var res = eventAdd[i];
+                                    var address1 = res.returnValues._userAddress;
+                                    var createdTime = res.returnValues._createdTime;
+                                    var modifiedTime = res.returnValues._modifiedTime;
+                                    var idCardNo = res.returnValues._idCardNo;
+                                    var idCardIssuePlace = res.returnValues._idCardIssuePlace;
+
+                                    var res = eventUser[i];
+                                    var address2 = res.returnValues._userAddress;
+                                    var phoneNumber = res.returnValues._phoneNumber;
+                                    var job = res.returnValues._job;
+                                    var userAddr = res.returnValues._userAddr;
+                                    // <td>` + address + `</td>
+
+                                    table += `<tr>
+                                                    <td>` + (parseInt(i) + 1) + `</td>
+                                                    <td>` + address + `</td>
+                                                    <td>` + id + `</td>
+                                                    <td>` + fullName + `</td>
+                                                    <td>` + email + `</td>
+                                                    <td>` + password + `</td>
+                                                    <td>` + gender + `</td>
+                                                    <td>` + dateOfBirth + `</td>
+                                                    <td>` + isLocked + `</td>
+
+                                                    <td>` + createdTime + `</td>
+                                                    <td>` + modifiedTime + `</td>
+                                                    <td>` + idCardNo + `</td>
+                                                    <td>` + idCardIssuePlace + `</td>
+
+                                                    <td>` + phoneNumber + `</td>
+                                                    <td>` + job + `</td>
+                                                    <td>` + userAddr + `</td>
+
+                                                    <td>
+                                                        <button class="btn btn-danger btn-xs" onclick="deleteUserManagement()">
+                                                            <i class="far fa-trash-alt"></i>
+                                                            Xóa
+                                                        </button>
+                                                        <button class="btn btn-primary btn-xs">
+                                                            <i class="far fa-edit"></i>
+                                                            Sửa
+                                                        </button>
+                                                    </td>
+                                                </tr>`;
+                                    }
+                                    $("#listUserManager").find("tbody").html(table);
+                                }
+                            }
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                }).catch(err => {
+                    console.log(err);
+                });
+        }).catch(err => {
+            console.log(err);
+        });
 }
 
 //export file excel
@@ -1086,44 +1180,11 @@ function exportTableToExcel(tableID, filename = ''){
                                     
 //                                 }
                             
-                            
-                            
-                            
-        
-                                
 
 //                                 // Populate the table with data
                                 
 
-//                                 // sheet.getCell('A3').value(3224);
-//                                 // sheet.getCell('B3').value('Armin Barrywater');
-//                                 // sheet.getCell('C3').value('In Review');
-//                                 // sheet.getCell('D3').value('Underwriter is out until next week.');
 
-//                                 // sheet.getCell('A4').value(3225);
-//                                 // sheet.getCell('B4').value('Shiela Donahue');
-//                                 // sheet.getCell('C4').value('In Review');
-//                                 // sheet.getCell('D4').value('');
-
-//                                 // sheet.getCell('A5').value(3226);
-//                                 // sheet.getCell('B5').value('Perry Kane');
-//                                 // sheet.getCell('C5').value('On Hold');
-//                                 // sheet.getCell('D5').value('Waiting on paperwork from customer.');
-
-//                                 // sheet.getCell('A6').value(3235);
-//                                 // sheet.getCell('B6').value('Xavier Fannello');
-//                                 // sheet.getCell('C6').value('New');
-//                                 // sheet.getCell('D6').value('');
-
-//                                 // sheet.getCell('A7').value(3244);
-//                                 // sheet.getCell('B7').value('Georgi Angelchov');
-//                                 // sheet.getCell('C7').value('New');
-//                                 // sheet.getCell('D7').value('');
-
-//                                 // sheet.getCell('A8').value(3257);
-//                                 // sheet.getCell('B8').value('Imelda Sanchez');
-//                                 // sheet.getCell('C8').value('New');
-//                                 // sheet.getCell('D8').value('');
 
 //                                 // Sort the table by the Applicant column
 //                                 //table.columns('Applicant').sortCondition(new $.ig.excel.OrderedSortCondition());
@@ -1158,86 +1219,3 @@ function exportTableToExcel(tableID, filename = ''){
 //     });
 // }
 
-// $.ig.loader({
-//     // scriptPath: "http://cdn-na.infragistics.com/igniteui/2019.1/latest/js/infragistics.loader.js",
-//     scriptPath: "https://secure-cdn-na.infragistics.com/igniteui/2016.2/latest/js/infragistics.loader.js",
-//     cssPath: "https://secure-cdn-na.infragistics.com/igniteui/2016.2/latest/css/",
-//     resources: "igGrid.Sorting"
-//     //resources: "igGrid.Summaries"
-// });
-
-// $.ig.loader(function () {
-//     $("#grid1").igGrid({
-//         autoGenerateColumns: false,
-//         autoCommit: true,
-//         columns: [
-//             {
-//                 headerText: "Product ID", key: "ProductID",
-//                 dataType: "number", width: "200px"
-//             },
-//             {
-//                 headerText: "Product Name", key: "Name",
-//                 dataType: "string", width: "300px"
-//             },
-//             {
-//                 headerText: "Product Number", key: "ProductNumber",
-//                 dataType: "string", width: "200px"
-//             }
-//         ],
-//         primaryKey: "ProductID",
-//         dataSource: adventureWorks,
-//         height: "500px"
-//     });
-// });
-
-// function exportWorkbook() {
-//     var workbook = new $.ig.excel.Workbook($.ig.excel.WorkbookFormat.excel2007);
-//     var worksheet = workbook.worksheets().add('Sheet1');
-//     var xlRowIndex = 0;
-//     var headersTable = $("#grid1").igGrid("headersTable")[0];
-//     for (var headerRowIndex = 0;
-//         headerRowIndex < headersTable.rows.length;
-//         headerRowIndex++, xlRowIndex++) {
-//         var headerRow = headersTable.rows[headerRowIndex];
-//         var xlHeaderRow = worksheet.rows(xlRowIndex);
-//         var computedStyle = window.getComputedStyle(headerRow);
-//         var xlColorInfo = new $.ig.excel.WorkbookColorInfo(computedStyle.color);
-//         xlHeaderRow.cellFormat().font().colorInfo(xlColorInfo);
-//         for (var headerCellIndex = 0;
-//             headerCellIndex < headerRow.cells.length;
-//             headerCellIndex++) {
-//             var headerCell = headerRow.cells[headerCellIndex];
-//             worksheet.columns(headerCellIndex).setWidth(
-//                 headerCell.offsetWidth, $.ig.excel.WorksheetColumnWidthUnit.pixel);
-//             var xlHeaderCell = xlHeaderRow.cells(headerCellIndex);
-//             var computedStyle = window.getComputedStyle(headerCell);
-//             xlHeaderCell.cellFormat().fill(
-//                 $.ig.excel.CellFill.createSolidFill(computedStyle.backgroundColor));
-//             xlHeaderCell.value($(headerCell).text());
-//         }
-//     }
-//     var rows = $("#grid1").igGrid("rows");
-//     for (var dataRowIndex = 0;
-//         dataRowIndex < rows.length;
-//         dataRowIndex++, xlRowIndex++) {
-//         var dataRow = rows[dataRowIndex];
-//         var xlRow = worksheet.rows(xlRowIndex);
-//         for (var dataCellIndex = 0;
-//             dataCellIndex < dataRow.cells.length;
-//             dataCellIndex++) {
-//             var dataCell = dataRow.cells[dataCellIndex];
-//             xlRow.setCellValue(dataCellIndex, $(dataCell).text());
-//         }
-//     }
-//     workbook.save(function (err, data) {
-//         if (err) {
-//             alert('Error Exporting');
-//         }
-//         else {
-//             var blob = new Blob([data], {
-//                 type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-//             });
-//             saveAs(blob, "grid.xlsx");
-//         }
-//     });
-// }
