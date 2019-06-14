@@ -117,47 +117,48 @@ function addUserManagement() {
 }
 
 
-function onloadSelected(){
+function onloadSelected() {
     $('.pagination').html('')
-        var table = '#listUserManager';
-        var trnum = 0;
-        var maxRows = 1;
-        var totalRows = $('#listUserManager tbody tr').length;
-        // console.log(totalRows);
+    var table = '#listUserManager';
+    var trnum = 0;
+    var maxRows = 1;
+    var totalRows = $('#listUserManager tbody tr').length;
+    // console.log(totalRows);
+    $(table + ' tr:gt(0)').each(function () {
+        trnum++
+        if (trnum > maxRows) {
+            $(this).hide()
+        }
+        if (trnum <= maxRows) {
+            $(this).show()
+        }
+    })
+    if (totalRows > maxRows) {
+        var pagenum = Math.ceil(totalRows / maxRows)
+        for (var i = 1; i <= pagenum;) {
+            $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+        }
+    }
+    $('.pagination li:first-child').addClass('active')
+    $('.pagination li').on('click', function () {
+        var pageNum = $(this).attr('data-page')
+        var trIndex = 0
+        $('.pagination li').removeClass('active')
+        $(this).addClass('active')
         $(table + ' tr:gt(0)').each(function () {
-            trnum++
-            if (trnum > maxRows) {
+            trIndex++
+            if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
                 $(this).hide()
-            }
-            if (trnum <= maxRows) {
+            } else {
                 $(this).show()
             }
         })
-        if(totalRows > maxRows){
-            var pagenum = Math.ceil(totalRows/maxRows)
-            for(var i=1; i<=pagenum;){
-                $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span> </span>\ </li>').show()
-            }
-        }
-        $('.pagination li:first-child').addClass('active')
-        $('.pagination li').on('click', function () {
-            var pageNum = $(this).attr('data-page')
-            var trIndex = 0
-            $('.pagination li').removeClass('active')
-            $(this).addClass('active')
-            $(table + ' tr:gt(0)').each(function () {
-                trIndex++
-                if(trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum)-maxRows)){
-                    $(this).hide()
-                }else{
-                    $(this).show()
-                }
-            })
-        })
-} 
+    })
+}
 
 $(window).on('load', function () {
     listUserManagement();
+    test();
     // $('.table tbody').on('click', '.btn', function(){
     //     var currow = $(this).closest('tr');
     //     var col1 = currow.find('td:eq(0)').text();
@@ -166,10 +167,10 @@ $(window).on('load', function () {
     // })  
     $(document).ready(function () {
         var table = '#listUserManager';
-        setTimeout(onloadSelected,1000);
-        
+        setTimeout(onloadSelected, 1000);
+
         $('#maxRowsListUserManagement').on('change', function () {
-            $('.pagination').html('')
+            // $('.pagination').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
             var totalRows = $(table + ' tbody tr').length
@@ -182,77 +183,87 @@ $(window).on('load', function () {
                     $(this).show()
                 }
             })
-            if(totalRows > maxRows){
-                var pagenum = Math.ceil(totalRows/maxRows)
-                for(var i=1; i<=pagenum;){
+            if (totalRows > maxRows) {
+                var pagenum = Math.ceil(totalRows / maxRows)
+                for (var i = 1; i <= pagenum;) {
                     $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
                 }
             }
             $('.pagination li:first-child').addClass('active')
-            $('.pagination li').on('click', function () {
-                var pageNum = $(this).attr('data-page')
-                var trIndex = 0
-                $('.pagination li').removeClass('active')
-                $(this).addClass('active')
-                $(table + ' tr:gt(0)').each(function () {
-                    trIndex++
-                    if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
-                        $(this).hide()
-                    }else{
-                        $(this).show()
-                    }
-                })
-            })
+
         })
-        
+
     });
 });
 
+function test() {
+    
+        var timeLine = "";
+        
+            userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
+                for (let row = 0; row < count; row++) {
+                    userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
+                        userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
+                            userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
+                                userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
+                                    timeLine +=
+                                                `
+                                                <li class="time-label">
+                                                    <span>` + result1[1] + `</span>
+                                                </li>
 
+                                                <li>
+                                                    <i class="fa fa-user bg-aqua"></i>
+                                                    <div class="timeline-item">
+                                                        <span class="time">
+                                                            <i class="fa fa-clock-o"></i> 5 mins ago </span>
+                                                            <h3 class="timeline-header no-border">
+                                                                <a href="#">` + result[2] + `</a> `+result[0]+ ` co `+result[1]+`
+                                                                </h3>
+                                                        
+                                                    </div>
+                                                </li>
+                                                `
+                                                ;
+                                    $("#historyUsermanagement").find(".timeline").html(timeLine);
+                                })
 
-
+                            })
+                        })
+                    });
+                }
+            })
+}
 // $(window).on('load', function () {
 //     $(document).ready(function () {
-//         var tabcreatetime = '#listUserManager'
-//         $('#maxRowsListUserManagement').on('change', function () {
-//             $('.pagination').html('')
-//             var trnum = 0;
-//             var maxRows = parseInt($(this).val())
-//             var totalRows = $(table + ' tbody tr').length
-//             $(".pagination").append("<li class='current-page active'><a href='javascript:void(0)'>" + 1 + "</a></li>");
-//             $(table + ' tr:gt(0)').each(function () {
-//                 trnum++
-//                 if (trnum > maxRows) {
-//                     $(this).hide()
-//                 }
-//                 if (trnum <= maxRows) {
-//                     $(this).show()
+//          setTimeout(onloadSelected,1000);
+//         var parag = "";
+//         $('#historyUsermanagement').on('change', function () {
+//             // $('.pagination').html('')
+//             userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
+//                 for (let row = 0; row < count; row++) {
+//                     userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
+//                         userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
+//                             userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
+//                                 userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
+//                                      parag += 
+//                                                 `<liv>
+//                                                     <span>` + createdTime + `</span>
+//                                                 </liv>`   
+//                                                     ;
+//                                     $("#historyUsermanagement").find(".timeline").html(parag);
+//                                 })
+
+//                             })
+//                         })
+//                     });
 //                 }
 //             })
-//             if (totalRows > maxRows) {
-//                 var pagenum = Math.ceil(totalRows / maxRows)
-//                 for (var i = 1; i <= pagenum;) {
-//                     $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
-//                 }
-//             }
-//             $('.pagination li:first-child').addClass('active')
-//             $('.pagination li').on('click', function () {
-//                 var pageNum = $(this).attr('data-page')
-//                 var trIndex = 0
-//                 $('.pagination li').removeClass('active')
-//                 $(this).addClass('active')
-//                 $(table + ' tr:gt(0)').each(function () {
-//                     trIndex++
-//                     if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
-//                         $(this).hide()
-//                     } else {
-//                         $(this).show()
-//                     }
-//                 })
-//             })
+
+
 //         })
+
 //     });
-    
 // });
 
 
@@ -365,6 +376,18 @@ function deleteUserManagement() {
 
 // them address vao modal de get qua function update
 
+//create view history
+//inset 4<liv>
+// function createHistoryView(createdTime) {
+//     var parag="";
+//     var parag = 
+//                 `<liv>
+//                     <span>` + createdTime + `</span>
+//                 </liv>`   
+//                     ;
+//     $("#historyUsermanagement").find(".timeline").html(parag);
+// }
+
 //update fullname
 function createUpdateView(address) {
     var parag = `<p>` + address + `</p>`;
@@ -414,10 +437,10 @@ function createUpdatePhoneNumberView(address) {
 function frontUpdateUserManagement(address, id, fullName, email, password, gender, dateOfBirth, userAddr,
     createdTime, modifiedTime, idCardNo, idCardIssuePlace, phoneNumber, isLocked) {
     var table = "";
-    
-                            table +=    `<tr>
+
+    table += `<tr>
                                             <th>Address</th>
-                                            <td id="tdAddress">`+ address +`</td>
+                                            <td id="tdAddress">`+ address + `</td>
 
                                         <tr>
                                             <th>ID</th>
@@ -437,7 +460,7 @@ function frontUpdateUserManagement(address, id, fullName, email, password, gende
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td id="tdEmail">`+ email +`</td>
+                                            <td id="tdEmail">`+ email + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
                                                 data-toggle="modal" data-target="#insertValueUpdateEmailModal"
@@ -545,8 +568,8 @@ function frontUpdateUserManagement(address, id, fullName, email, password, gende
                                             <td id="tdIsLocked">`+ isLocked + `</td>
                                         </tr>`;
 
-                            
-                            $("#tableUpdateUser").find("tbody").html(table);
+
+    $("#tableUpdateUser").find("tbody").html(table);
 
 }
 
@@ -560,43 +583,43 @@ function updateUserManagement() {
     // var modifiedTime = Date.now();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateFullName(address, fullName, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateFullNameModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateFullNameModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
-    
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
+
 }
 
 //update email
@@ -606,43 +629,43 @@ function updateEmailUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateEmail(address, email, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateEmailModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateEmailModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
-    
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
+
 }
 
 function updatePasswordUserManagement() {
@@ -651,43 +674,43 @@ function updatePasswordUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updatePassword(address, password, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdatePasswordModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdatePasswordModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
-    
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
+
 }
 
 function updateGenderUserManagement() {
@@ -696,42 +719,42 @@ function updateGenderUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateGender(address, gender, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateGenderModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateGenderModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 function updateDateOfBirthUserManagement() {
@@ -740,42 +763,42 @@ function updateDateOfBirthUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateDateOfBirth(address, dateOfBirth, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateDateOfBirthModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateDateOfBirthModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 function updateUserAddrUserManagement() {
@@ -784,42 +807,42 @@ function updateUserAddrUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateUserAddr(address, userAddr, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateUserAddrModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateUserAddrModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 function updateIdCardNoUserManagement() {
@@ -828,42 +851,42 @@ function updateIdCardNoUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateIdCardNo(address, idCardNo, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateIdCardNoModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateIdCardNoModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 function updateIdCardIssuePlaceUserManagement() {
@@ -872,42 +895,42 @@ function updateIdCardIssuePlaceUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updateIdCardIssuePlace(address, idCardIssuePlace, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdateIdCardIssuePlaceModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdateIdCardIssuePlaceModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 function updatePhoneNumberUserManagement() {
@@ -916,71 +939,71 @@ function updatePhoneNumberUserManagement() {
     var modifiedTime = new Date(Date.now()).toLocaleString();
     var batch = new web3.BatchRequest();
     batch.add(userManagementSessionInstance.methods.updatePhoneNumber(address, phoneNumber, modifiedTime)
-            .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
-                function (error, result) {
-                    try {
-                        if (error.message.includes("User denied transaction signature")) {
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
-                        }
-                    }
-                    catch (err) {
-                        console.log("Đã fix lỗi.");
+        .send({ from: "0x67a9c71DF6FfEC79CbEc0C5eC57490F8862aba0b" },
+            function (error, result) {
+                try {
+                    if (error.message.includes("User denied transaction signature")) {
+                        alert('Đã từ chối dịch vụ.');
+                        location.reload();
                     }
                 }
-            )
-            .on('transactionHash', (hash) => {
-                $("#insertValueUpdatePhoneNumberModal").hide();
-                $("#updateFrontUserManagement").hide();
-                alert("Vui lòng chờ xử lý giao dịch!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Cập nhật hoàn thành.");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("Đã fix lỗi.");
+                catch (err) {
+                    console.log("Đã fix lỗi.");
+                }
             }
-        }
-        catch (err) {
+        )
+        .on('transactionHash', (hash) => {
+            $("#insertValueUpdatePhoneNumberModal").hide();
+            $("#updateFrontUserManagement").hide();
+            alert("Vui lòng chờ xử lý giao dịch!");
+        })
+        .on('receipt', (receipt) => {
+            alert("Cập nhật hoàn thành.");
+            location.reload();
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+
+        })
+        .on('error', console.err)
+    );
+    try {
+        batch.execute();
+        if (error.message.includes("JSONRPC method should be specified for params:")) {
             console.log("Đã fix lỗi.");
         }
+    }
+    catch (err) {
+        console.log("Đã fix lỗi.");
+    }
 }
 
 // export table date to excel
-function exportTableToExcel(tableID, filename = ''){
+function exportTableToExcel(tableID, filename = '') {
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
     var tableSelect = document.getElementById(tableID);
     var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    
+
     // Specify file name
-    filename = filename?filename+'.xls':'excel_data.xls';
-    
+    filename = filename ? filename + '.xls' : 'excel_data.xls';
+
     // Create download link element
     downloadLink = document.createElement("a");
-    
+
     document.body.appendChild(downloadLink);
-    
-    if(navigator.msSaveOrOpenBlob){
+
+    if (navigator.msSaveOrOpenBlob) {
         var blob = new Blob(['\ufeff', tableHTML], {
             type: dataType
         });
-        navigator.msSaveOrOpenBlob( blob, filename);
-    }else{
+        navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
         // Create a link to the file
         downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-    
+
         // Setting the file name
         downloadLink.download = filename;
-        
+
         //triggering the function
         downloadLink.click();
     }
@@ -997,34 +1020,34 @@ function listHistory() {
                             for (var i = 0; i < eventCer.length; i++) {
                                 for (var i = 0; i < eventAdd.length; i++) {
                                     for (var i = 0; i < eventUser.length; i++) {
-                                    var res = eventCer[i];
+                                        var res = eventCer[i];
 
-                                    
 
-                                    var address = res.returnValues._userAddress;
-                                    var id = res.returnValues._userId;
-                                    var fullName = res.returnValues._fullName;
-                                    var email = res.returnValues._email;
-                                    var password = res.returnValues._password;
-                                    var gender = res.returnValues._gender;
-                                    var dateOfBirth = res.returnValues._dateOfBirth;
-                                    var isLocked = res.returnValues._isLocked;
 
-                                    var res = eventAdd[i];
-                                    var address1 = res.returnValues._userAddress;
-                                    var createdTime = res.returnValues._createdTime;
-                                    var modifiedTime = res.returnValues._modifiedTime;
-                                    var idCardNo = res.returnValues._idCardNo;
-                                    var idCardIssuePlace = res.returnValues._idCardIssuePlace;
+                                        var address = res.returnValues._userAddress;
+                                        var id = res.returnValues._userId;
+                                        var fullName = res.returnValues._fullName;
+                                        var email = res.returnValues._email;
+                                        var password = res.returnValues._password;
+                                        var gender = res.returnValues._gender;
+                                        var dateOfBirth = res.returnValues._dateOfBirth;
+                                        var isLocked = res.returnValues._isLocked;
 
-                                    var res = eventUser[i];
-                                    var address2 = res.returnValues._userAddress;
-                                    var phoneNumber = res.returnValues._phoneNumber;
-                                    var job = res.returnValues._job;
-                                    var userAddr = res.returnValues._userAddr;
-                                    // <td>` + address + `</td>
+                                        var res = eventAdd[i];
+                                        var address1 = res.returnValues._userAddress;
+                                        var createdTime = res.returnValues._createdTime;
+                                        var modifiedTime = res.returnValues._modifiedTime;
+                                        var idCardNo = res.returnValues._idCardNo;
+                                        var idCardIssuePlace = res.returnValues._idCardIssuePlace;
 
-                                    table += `<tr>
+                                        var res = eventUser[i];
+                                        var address2 = res.returnValues._userAddress;
+                                        var phoneNumber = res.returnValues._phoneNumber;
+                                        var job = res.returnValues._job;
+                                        var userAddr = res.returnValues._userAddr;
+                                        // <td>` + address + `</td>
+
+                                        table += `<tr>
                                                     <td>` + (parseInt(i) + 1) + `</td>
                                                     <td>` + address + `</td>
                                                     <td>` + id + `</td>
@@ -1135,7 +1158,7 @@ function listHistory() {
 //                             //                     <td>` + result1[4] + `</td>
 //                             //                     <td>` + result2[0] + `</td>
 //                             //                     <td>` + result1[0] + `</td>
-                                            
+
 //                             //         </tr>`;
 //                             var result0 = result[0];
 //                             var result01 = result[1];
@@ -1177,12 +1200,12 @@ function listHistory() {
 //                                     continue;
 //                                     }
 //                                 continue;
-                                    
+
 //                                 }
-                            
+
 
 //                                 // Populate the table with data
-                                
+
 
 
 
@@ -1203,12 +1226,12 @@ function listHistory() {
 //                 })
 //             });
 
-            
-             
+
+
 //         }
 //     })
 //     // Specify the style to use in the table (this can also be specified as an optional 3rd argument to the 'add' call above).
-    
+
 // }
 
 // function saveWorkbook(workbook, name) {
