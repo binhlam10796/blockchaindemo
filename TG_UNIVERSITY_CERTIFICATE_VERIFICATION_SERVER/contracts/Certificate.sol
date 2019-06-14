@@ -276,4 +276,16 @@ contract CertificateStorage {
     }
 
 
+    //history
+
+    function getHisCount() public view returns(uint count)
+    {
+        return historyCerIndex.length;
+    }
+
+    function getHisIndex(uint _index) public view returns(address _id)
+    {
+        return historyCerIndex[_index];
+    }
+
 }
