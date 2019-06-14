@@ -1,14 +1,15 @@
 <html lang="en-US">
 
     <head>
-        <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
+        <title>BlockChain</title>
         <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
     
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+        <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script> -->
+        <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script> -->
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -59,7 +60,7 @@
                 </a>
                 <div class="header-left">
                     <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
-                    <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+                    <h2>BlockChain</h2>
                 </div>
             </div>
             <div class="content-user">
@@ -341,6 +342,20 @@
                                         data-parsley-error-message="Bắt buộc là số.">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                    <label for="classification" class="col-sm-2
+                                        control-label">Khóa</label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="isLocked"
+                                            placeholder=""
+                                            data-parsley-required="true">
+                                            <option value="ON"
+                                                selected="selected">On</option>
+                                            <option value="OFF">Off</option>
+                                        </select>
+                                    </div>
+                                </div>
                             <!-- <div class="form-group">
                                 <label for="signingdate" class="col-sm-2 control-label">Thời gian tạo</label>
     
@@ -414,7 +429,7 @@
 
 
     <!-- update user management-->
-    <div class="modal fade" id="updateFrontSchoolManagement">
+    <div class="modal fade" id="updateModal">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -425,7 +440,7 @@
                     <h4 class="modal-title">Cập nhật người dùng</h4>
                 </div>
                 <div class="modal-body" style="overflow-x:auto;">
-                    <table id="tableUpdateUser" class="table" cellspacing="0" style="width:100%">
+                    <table id="tableUpdateSchool" class="table" cellspacing="0" style="width:100%">
                         <tbody>
 
                         </tbody>
@@ -445,20 +460,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <p></p>
+                    <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
                 
                 </div>
-                <div class="modal-body1">
-                            <input type="text" class="form-control" id="valueUpdate"
-                                            placeholder="Gia tri cap nhat" 
-                                            data-parsley-required="true"
-                                            data-parsley-error-message="Không được rỗng.">
-                            <p></p>
-                            
-                            <h5>Bạn chắc chắn muốn sửa?</h5>
+                <div >
+                    <table align="center" >
+                        <tr><td><input type="text" class="form-control" id="valueUpdateName"
+                            placeholder="Gia tri cap nhat" 
+                            data-parsley-required="true"
+                            data-parsley-error-message="Không được rỗng.">
+                            </td> 
+                        </tr>
+                        <table><tr><td><p></p></td></tr></table>
+                    </table>
+                    <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
+                    <p></p>
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-primary btn-xs"
+                        <button type="button" class="btn btn-primary btn-xs"
                         data-toggle="modal"
                             onclick="updateNameSchoolManagement();"><i class="far fa-edit"></i>
                             Sửa</button>
@@ -483,20 +502,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <p></p>
+                    <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
                 
-                </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdateEmail"
-                                    placeholder="Gia tri cap nhat" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
+                </div>
+                <div >
+                    <table align="center" >
+                        <tr><td><input type="text" class="form-control" id="valueUpdateEmail"
+                            placeholder="Gia tri cap nhat" 
+                            data-parsley-required="true"
+                            data-parsley-error-message="Không được rỗng.">
+                            </td> 
+                        </tr>
+                        <table><tr><td><p></p></td></tr></table>
+                    </table>
+                    <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
                     <p></p>
-                    
-                    <h5>Bạn chắc chắn muốn sửa?</h5>
-
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-xs"
+                    <button type="button" class="btn btn-primary btn-xs"
                     data-toggle="modal"
                         onclick="updateEmailSchoolManagement();"><i class="far fa-edit"></i>
                         Sửa</button>
@@ -520,20 +543,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <p></p>
+                    <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
                 
-                </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdateAddr"
-                                    placeholder="Gia tri cap nhat" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
+                </div>
+                <div >
+                    <table align="center" >
+                        <tr><td><input type="text" class="form-control" id="valueUpdateAddr"
+                            placeholder="Gia tri cap nhat" 
+                            data-parsley-required="true"
+                            data-parsley-error-message="Không được rỗng.">
+                            </td> 
+                        </tr>
+                        <table><tr><td><p></p></td></tr></table>
+                    </table>
+                    <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
                     <p></p>
-                    
-                    <h5>Bạn chắc chắn muốn sửa?</h5>
-
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-primary btn-xs"
+                        <button type="button" class="btn btn-primary btn-xs"
                         data-toggle="modal"
                             onclick="updateAddrSchoolManagement();"><i class="far fa-edit"></i>
                             Sửa</button>
@@ -557,20 +584,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <p></p>
+                    <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
                 
-                </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdateFax"
-                                    placeholder="Gia tri cap nhat" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
+                </div>
+                <div >
+                    <table align="center" >
+                        <tr><td><input type="text" class="form-control" id="valueUpdateFax"
+                            placeholder="Gia tri cap nhat" 
+                            data-parsley-required="true"
+                            data-parsley-error-message="Không được rỗng.">
+                            </td> 
+                        </tr>
+                        <table><tr><td><p></p></td></tr></table>
+                    </table>
+                    <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
                     <p></p>
-                    
-                    <h5>Bạn chắc chắn muốn sửa?</h5>
-
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-primary btn-xs"
+                        <button type="button" class="btn btn-primary btn-xs"
                         data-toggle="modal"
                             onclick="updateFaxSchoolManagement();"><i class="far fa-edit"></i>
                             Sửa</button>
@@ -594,20 +625,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <p></p>
+                    <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
                 
-                </div><div class="modal-body1">
-                    <input type="text" class="form-control" id="valueUpdatePhone"
-                                    placeholder="Gia tri cap nhat" 
-                                    data-parsley-required="true"
-                                    data-parsley-error-message="Không được rỗng.">
+                </div>
+                <div >
+                    <table align="center" >
+                        <tr><td><input type="text" class="form-control" id="valueUpdatePhone"
+                            placeholder="Gia tri cap nhat" 
+                            data-parsley-required="true"
+                            data-parsley-error-message="Không được rỗng.">
+                            </td> 
+                        </tr>
+                        <table><tr><td><p></p></td></tr></table>
+                    </table>
+                    <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
                     <p></p>
-                    
-                    <h5>Bạn chắc chắn muốn sửa?</h5>
-
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-primary btn-xs"
+                        <button type="button" class="btn btn-primary btn-xs"
                         data-toggle="modal"
                             onclick="updatePhoneSchoolManagement();"><i class="far fa-edit"></i>
                             Sửa</button>
@@ -620,6 +655,46 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="insertValueUpdateisLockModal">
+            <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cập nhật giá trị</h4>
+                    </div>
+    
+                    <div class="modal-body">
+                        <table align="center"><tr><td class="modal-body2"><p></p></td></tr></table>
+                    
+                    </div>
+                    <div >
+                        <table align="center" >
+                            <tr><td><select id="valueUpdateisLock" >
+                                    <option value="ON">On</option>
+                                    <option value="OFF">Off</option>
+                                    </select>
+                                </td> 
+                            </tr>
+                        </table>
+                        <table align="center"><tr><td>Bạn chắc chắn muốn sửa?</td></tr></table>
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-xs"
+                            data-toggle="modal"
+                                onclick="updateisLockSchoolManagement();"><i class="far fa-edit"></i>
+                                Sửa</button>
+                                &nbsp;
+                            <button type="button" class="btn btn-danger btn-xs" 
+                            data-dismiss="modal"> <i class="far fa-trash-alt"></i>
+                                Hủy</button>
+                            <!-- Goi ham them va dong modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     
 </body>
 

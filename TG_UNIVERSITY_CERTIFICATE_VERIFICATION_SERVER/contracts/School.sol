@@ -8,8 +8,8 @@ contract SchoolStorage {
         string name;
         string addr;
         string email;
-        uint256 fax;
-        uint256 phone;
+        string fax;
+        string phone;
 
         string createdTime;
         string modifiedTime;
@@ -22,8 +22,8 @@ contract SchoolStorage {
         string _name,
         string _addr,
         string _email,
-        uint256 _fax,
-        uint256 _phone);
+        string _fax,
+        string _phone);
 
     event SetSchoolAdditionEvent(
         address _schoolAddress,
@@ -39,8 +39,8 @@ contract SchoolStorage {
         string _name,
         string _addr,
         string _email,
-        uint256 _fax,
-        uint256 _phone);
+        string _fax,
+        string _phone);
 
     event SetLogUpdateSchoolAdditionEvent(
         address _schoolAddress,
@@ -69,8 +69,8 @@ contract SchoolStorage {
         string memory _name,
         string memory _addr,
         string memory _email,
-        uint256 _fax,
-        uint256 _phone
+        string memory _fax,
+        string memory _phone
         )
         public returns(uint256 index){
             SchoolStructsMap[_schoolAddress].id = _id;
@@ -141,8 +141,8 @@ contract SchoolStorage {
             string memory name,
             string memory email,
             string memory addr,
-            uint256 fax,
-            uint256 phone
+            string memory fax,
+            string memory phone
             ){
             return(
                 _schoolAddress,
@@ -189,14 +189,14 @@ contract SchoolStorage {
         return true;
     }
 
-    function updateFax(address _schoolAddress, uint256 _fax, string memory _modifiedTime)
+    function updateFax(address _schoolAddress, string memory _fax, string memory _modifiedTime)
         public returns(bool success) {
         SchoolStructsMap[_schoolAddress].fax = _fax;
         SchoolStructsMap[_schoolAddress].modifiedTime = _modifiedTime;
         return true;
     }
 
-    function updatePhone(address _schoolAddress, uint256  _phone, string memory _modifiedTime)
+    function updatePhone(address _schoolAddress, string memory  _phone, string memory _modifiedTime)
         public returns(bool success) {
         SchoolStructsMap[_schoolAddress].phone = _phone;
         SchoolStructsMap[_schoolAddress].modifiedTime = _modifiedTime;

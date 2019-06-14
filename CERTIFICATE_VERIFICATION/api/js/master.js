@@ -5,7 +5,7 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0xb504F970D92D3708E8d9440e6059BF49381A2D55");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x4b828c3161Ac64769F78e77E682e4f8c0Daa2d6B");
 // var date = new Date();
 // var s = date.toString();
 
@@ -30,7 +30,7 @@ function addSchool() {
         var modifiedTime = new Date(Date.now()).toString();
         // var createdTime = Date.now();
         // var modifiedTime = Date.now();
-        var isLocked = "false";
+        var isLocked = $("#isLocked").val();
         // var date = Date.now();
         // var idCardNo = $("#idCardNo").val();
         // var idCardIssuePlace = $("#idCardIssuePlace").val();
@@ -215,8 +215,8 @@ function listSchoolManagement() {
                                                     Xóa
                                                 </button>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#updateFrontSchoolManagement"
-                                                onclick="frontUpdateUserManagement(
+                                                data-toggle="modal" data-target="#updateModal"
+                                                onclick="frontUpdateSchoolManagement(
                                                     
                                                     \`` + result[0] + `\`,
                                                     \`` + result[1] + `\`,
@@ -297,43 +297,43 @@ function deleteSchoolManagement() {
 function createUpdateView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateFullNameModal").find(".modal-body").html(parag);
+    $("#insertValueUpdateFullNameModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
 
 function createUpdateEmailView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateEmailModal").find(".modal-body").html(parag);
+    $("#insertValueUpdateEmailModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
 function createUpdateAddrView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateAddrModal").find(".modal-body").html(parag);
+    $("#insertValueUpdateAddrModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
 function createUpdateFaxView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateFaxModal").find(".modal-body").html(parag);
+    $("#insertValueUpdateFaxModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
 function createUpdatePhoneView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdatePhoneModal").find(".modal-body").html(parag);
+    $("#insertValueUpdatePhoneModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
-function createUpdateKeyView(address) {
+function createUpdateisLockView(address) {
     var parag = `<p>` + address + `</p>`;
     // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateKeyModal").find(".modal-body").html(parag);
+    $("#insertValueUpdateisLockModal").find(".modal-body2").html(parag);
     // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
 }
 
 
-function frontUpdateUserManagement(address, id, fullName, userAddr, email, fax, phoneNumber, createdTime, modifiedTime, isLocked) {
+function frontUpdateSchoolManagement(address, id, fullName, userAddr, email, fax, phoneNumber, createdTime, modifiedTime, isLocked) {
     var table = "";
     
                             table +=    `<tr>
@@ -406,17 +406,18 @@ function frontUpdateUserManagement(address, id, fullName, userAddr, email, fax, 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Khóa</th>
-                                            <td id="tdIsLocked">`+ isLocked + `</td>
+                                        <tr>
+                                            <th>Trạng thái</th>
+                                            <td id="tdisLocked">`+ isLocked + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateKeyModal"
-                                                onclick="createUpdateKeyView(\`` + address + `\`)" >
+                                                data-toggle="modal" data-target="#insertValueUpdateisLockModal"
+                                                onclick="createUpdateisLockView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
                                                 </button>
                                             </td>
-                                        </tr>
+                                        <tr>
                                         <tr>
                                             <th>Thời gian tạo</th>
                                             <td id="tdCreatedTime">`+ createdTime + `</td>
@@ -429,14 +430,14 @@ function frontUpdateUserManagement(address, id, fullName, userAddr, email, fax, 
                                         </tr>`;
 
                             
-                            $("#tableUpdateUser").find("tbody").html(table);
+                            $("#tableUpdateSchool").find("tbody").html(table);
 
 }
 
 
 function updateNameSchoolManagement() {
     var address = $('#insertValueUpdateFullNameModal .modal-body p').text();
-    var fullName = $('#valueUpdate').val();
+    var fullName = $('#valueUpdateName').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
     batch.add(SchoolManagementSessionInstance.methods.updateFullName(address, fullName, modifiedTime)
@@ -659,47 +660,49 @@ function updatePhoneSchoolManagement() {
     
 }
 
-// function updateAddrSchoolManagement() {
-//     var address = $('#insertValueUpdateAddrModal .modal-body p').text();
-//     var addr = $('#valueUpdateAddr').val();
-//     var modifiedTime = Date.now();
-//     var batch = new web3.BatchRequest();
-//     batch.add(SchoolManagementSessionInstance.methods.updateAddr(address, addr, modifiedTime)
-//             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
-//                 function (error, result) {
-//                     try {
-//                         if (error.message.includes("User denied transaction signature")) {
-//                             alert('Đã từ chối dịch vụ.');
-//                             location.reload();
-//                         }
-//                     }
-//                     catch (err) {
-//                         console.log("Đã fix lỗi.");
-//                     }
-//                 }
-//             )
-//             .on('transactionHash', (hash) => {
-//                 $("#insertValueUpdateFullNameModal").hide();
-//                 $("#updateFrontSchoolManagement").hide();
-//                 alert("Vui lòng chờ xử lý giao dịch!");
-//             })
-//             .on('receipt', (receipt) => {
-//                 alert("Success!");
-//                 location.reload();
-//             })
-//             .on('confirmation', (confirmationNumber, receipt) => {
 
-//             })
-//             .on('error', console.err)
-//         );
-//         try {
-//             batch.execute();
-//             if (error.message.includes("JSONRPC method should be specified for params:")) {
-//                 console.log("Đã fix lỗi.");
-//             }
-//         }
-//         catch (err) {
-//             console.log("Đã fix lỗi.");
-//         }
+
+function updateisLockSchoolManagement() {
+    var address = $('#insertValueUpdateisLockModal .modal-body p').text();
+    var isLocked = $('#valueUpdateisLock').val();
+    var modifiedTime = new Date(Date.now()).toString();
+    var batch = new web3.BatchRequest();
+    batch.add(SchoolManagementSessionInstance.methods.updateIslocked(address, isLocked, modifiedTime)
+            .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
+                function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert('Đã từ chối dịch vụ.');
+                            location.reload();
+                        }
+                    }
+                    catch (err) {
+                        console.log("Đã fix lỗi.");
+                    }
+                }
+            )
+            .on('transactionHash', (hash) => {
+                $("#insertValueUpdateisLockModal").hide();
+                $("#updateFrontSchoolManagement").hide();
+                alert("Vui lòng chờ xử lý giao dịch!");
+            })
+            .on('receipt', (receipt) => {
+                alert("Success!");
+                location.reload();
+            })
+            .on('confirmation', (confirmationNumber, receipt) => {
+
+            })
+            .on('error', console.err)
+        );
+        try {
+            batch.execute();
+            if (error.message.includes("JSONRPC method should be specified for params:")) {
+                console.log("Đã fix lỗi.");
+            }
+        }
+        catch (err) {
+            console.log("Đã fix lỗi.");
+        }
     
-// }
+}

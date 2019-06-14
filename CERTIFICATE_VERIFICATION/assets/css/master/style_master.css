@@ -449,7 +449,7 @@ table#listSchoolManager th, td {
     background-color: #1459b3 !important;
 }
 
-table#tableUpdateUser {
+table#tableUpdateSchool {
     border-collapse: collapse;
     width: 100%;
     font-size: 13px;
@@ -460,15 +460,15 @@ table#tableUpdateUser {
     color: white;
 } */
 
-table#tableUpdateUser tr, table#tableUpdateUser td, table#tableUpdateUser th {
+table#tableUpdateSchool tr, table#tableUpdateSchool td, table#tableUpdateSchool th {
     border: 1px solid #ddd;
 }
 
-table#tableUpdateUser tr:hover {
+table#tableUpdateSchool tr:hover {
     background-color: #337ab7;
     color: white;
 }
 
-table#tableUpdateUser th, td {
+table#tableUpdateSchool th, td {
     white-space: nowrap;
 }
