@@ -159,13 +159,7 @@ function onloadSelected() {
 $(window).on('load', function () {
     listUserManagement();
     history();
-    abc();
-    // $('.table tbody').on('click', '.btn', function(){
-    //     var currow = $(this).closest('tr');
-    //     var col1 = currow.find('td:eq(0)').text();
-    //     alert(col1);
-    //     console.log(col1);
-    // })  
+ 
     $(document).ready(function () {
         var table = '#listUserManager';
         setTimeout(onloadSelected, 1000);
@@ -193,52 +187,23 @@ $(window).on('load', function () {
             $('.pagination li:first-child').addClass('active')
 
         })
-
     });
 });
 
-// function timeSince(date) {
-
-//     var seconds = Math.floor((new Date() - date) / 1000);
-  
-//     var interval = Math.floor(seconds / 31536000);
-  
-//     if (interval > 1) {
-//       return interval + " years";
-//     }
-//     interval = Math.floor(seconds / 2592000);
-//     if (interval > 1) {
-//       return interval + " months";
-//     }
-//     interval = Math.floor(seconds / 86400);
-//     if (interval > 1) {
-//       return interval + " days";
-//     }
-//     interval = Math.floor(seconds / 3600);
-//     if (interval > 1) {
-//       return interval + " hours";
-//     }
-//     interval = Math.floor(seconds / 60);
-//     if (interval > 1) {
-//       return interval + " minutes";
-//     }
-//     return Math.floor(seconds) + " seconds";
-//   }
-//   var aDay = 24*60*60*1000
-//   console.log(timeSince(new Date(Date.now()).toLocaleString()-aDay));
-//   console.log(timeSince(new Date(Date.now()-aDay*2)));
-
-function abc(){
-    var lis = document.querySelectorAll("span strong");  //select the elements
-    for (var i = 0; i < lis.length; i++) {  //loop over the HTML collection
-    var li = lis[i],  //reference the current element of the collection
-    text = li.innerHTML,  //read the text (could use textContent)
-    result = humanized_time_span(text);  //run the function
-    li.innerHTML = result;  //replace the text with the result returned from calling the function
+function abc() {
+    
+        var lis = document.querySelectorAll("span strong");  //select the elements
+            for (var i = 0; i < lis.length; i++) {  //loop over the HTML collection
+            var li = lis[i],  //reference the current element of the collection
+            text = li.innerHTML,  //read the text (could use textContent)
+            result = humanized_time_span(text);  //run the function
+            li.innerHTML = result;  //replace the text with the result returned from calling the function
+        }
 }
-}
+
 function history() { 
     var timeLine = "";
+    
     // var timeago = timeAgo.format(Date.now() - 60 * 1000, 'time')
     userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
         for (let row = count-1; row >=0; row--) {
@@ -256,13 +221,13 @@ function history() {
                                     <i class="fa fa-user bg-aqua"></i>
                                     <div class="timeline-item">
                                         <span class="time"> 
-                                            <i class="fa fa-clock-o"></i> <strong>` + result1[1] + ` </strong>
-                                            <button class="btn btn-danger btn-xs" 
+                                            <i class="fa fa-clock-o"></i> <strong id="sss">` + result1[1] + ` </strong>
+                                            <button style="display: none !important" id="btnTimeAgo" class="btn btn-danger btn-xs" 
                                                  
-                                                onclick = "abc(\`` + result1[1] + `\`)"
+                                                onclick = "abc()"
                                                  >
                                                 <i class="far fa-eye"></i>
-                                                    Đã truy cập
+                                                    Xem lúc truy cập
                                             </button>
                                         </span>
                                         <h3 class="timeline-header no-border">
@@ -276,7 +241,7 @@ function history() {
                                 <li>
                                     <div class="timeline-item">
                                         <span class="time">
-                                            <i class="fa fa-clock-o"></i> 27 mins ago</span>
+                                            <i class="fa fa-clock-o"></i> ..</span>
 
                                         <h3 class="timeline-header">
                                             <a href="#"> `+ result[2] +` </a> commented on your post</h3>
@@ -289,6 +254,7 @@ function history() {
                                 </li>
                                 `;
                             $("#historyUsermanagement").find(".timeline").html(timeLine);
+                            document.getElementById("btnTimeAgo").click();
                         })
 
                     })
@@ -296,47 +262,15 @@ function history() {
             });
         }
     })
+    
+    
 }
 
 function createTimeAgoView(timeAgo) {
-
-    
-    
     var ago = new Intl.DateTimeFormat('ban', 'id').format(timeAgo);
     var parag = `<p>` + ago + `</p>`;
     $("#timeAgoModal").find(".modal-body").html(parag);
 }
-// $(window).on('load', function () {
-//     $(document).ready(function () {
-//          setTimeout(onloadSelected,1000);
-//         var parag = "";
-//         $('#historyUsermanagement').on('change', function () {
-//             // $('.pagination').html('')
-//             userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
-//                 for (let row = 0; row < count; row++) {
-//                     userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
-//                         userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
-//                             userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
-//                                 userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
-//                                      parag += 
-//                                                 `<liv>
-//                                                     <span>` + createdTime + `</span>
-//                                                 </liv>`   
-//                                                     ;
-//                                     $("#historyUsermanagement").find(".timeline").html(parag);
-//                                 })
-
-//                             })
-//                         })
-//                     });
-//                 }
-//             })
-
-
-//         })
-
-//     });
-// });
 
 
 function listUserManagement() {
