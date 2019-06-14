@@ -26,8 +26,8 @@ function addUserManagement() {
         var gender = $("#gender").val();
         var dateOfBirth = $("#dateOfBirth").val();
         var isLocked = $("#isLocked").val();
-        var createdTime = new Date(Date.now()).toLocaleString();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var createdTime = new Date(Date.now()).toString();
+        var modifiedTime = new Date(Date.now()).toString();
         // var date = Date.now();
         //var datetime = Date(date);
         // var createdTime = date.toString();
@@ -158,7 +158,8 @@ function onloadSelected() {
 
 $(window).on('load', function () {
     listUserManagement();
-    test();
+    history();
+    abc();
     // $('.table tbody').on('click', '.btn', function(){
     //     var currow = $(this).closest('tr');
     //     var col1 = currow.find('td:eq(0)').text();
@@ -196,43 +197,114 @@ $(window).on('load', function () {
     });
 });
 
-function test() {
-    
-        var timeLine = "";
-        
-            userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
-                for (let row = 0; row < count; row++) {
-                    userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
-                        userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
-                            userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
-                                userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
-                                    timeLine +=
-                                                `
-                                                <li class="time-label">
-                                                    <span>` + result1[1] + `</span>
-                                                </li>
+// function timeSince(date) {
 
-                                                <li>
-                                                    <i class="fa fa-user bg-aqua"></i>
-                                                    <div class="timeline-item">
-                                                        <span class="time">
-                                                            <i class="fa fa-clock-o"></i> 5 mins ago </span>
-                                                            <h3 class="timeline-header no-border">
-                                                                <a href="#">` + result[2] + `</a> `+result[0]+ ` co `+result[1]+`
-                                                                </h3>
-                                                        
-                                                    </div>
-                                                </li>
-                                                `
-                                                ;
-                                    $("#historyUsermanagement").find(".timeline").html(timeLine);
-                                })
+//     var seconds = Math.floor((new Date() - date) / 1000);
+  
+//     var interval = Math.floor(seconds / 31536000);
+  
+//     if (interval > 1) {
+//       return interval + " years";
+//     }
+//     interval = Math.floor(seconds / 2592000);
+//     if (interval > 1) {
+//       return interval + " months";
+//     }
+//     interval = Math.floor(seconds / 86400);
+//     if (interval > 1) {
+//       return interval + " days";
+//     }
+//     interval = Math.floor(seconds / 3600);
+//     if (interval > 1) {
+//       return interval + " hours";
+//     }
+//     interval = Math.floor(seconds / 60);
+//     if (interval > 1) {
+//       return interval + " minutes";
+//     }
+//     return Math.floor(seconds) + " seconds";
+//   }
+//   var aDay = 24*60*60*1000
+//   console.log(timeSince(new Date(Date.now()).toLocaleString()-aDay));
+//   console.log(timeSince(new Date(Date.now()-aDay*2)));
 
-                            })
+function abc(){
+    var lis = document.querySelectorAll("span strong");  //select the elements
+    for (var i = 0; i < lis.length; i++) {  //loop over the HTML collection
+    var li = lis[i],  //reference the current element of the collection
+    text = li.innerHTML,  //read the text (could use textContent)
+    result = humanized_time_span(text);  //run the function
+    li.innerHTML = result;  //replace the text with the result returned from calling the function
+}
+}
+function history() { 
+    var timeLine = "";
+    // var timeago = timeAgo.format(Date.now() - 60 * 1000, 'time')
+    userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
+        for (let row = count-1; row >=0; row--) {
+            userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
+                userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
+                    userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
+                        userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
+                            timeLine +=
+                                `
+                                <li class="time-label">
+                                    <span>` + result1[1] + `</span>
+                                </li>
+
+                                <li>
+                                    <i class="fa fa-user bg-aqua"></i>
+                                    <div class="timeline-item">
+                                        <span class="time"> 
+                                            <i class="fa fa-clock-o"></i> <strong>` + result1[1] + ` </strong>
+                                            <button class="btn btn-danger btn-xs" 
+                                                 
+                                                onclick = "abc(\`` + result1[1] + `\`)"
+                                                 >
+                                                <i class="far fa-eye"></i>
+                                                    Đã truy cập
+                                            </button>
+                                        </span>
+                                        <h3 class="timeline-header no-border">
+                                            <a href="#"> `+ result[2] +` </a> `+result[0]+` 
+                                                <br>
+                                        </h3>
+                                                
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-item">
+                                        <span class="time">
+                                            <i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                                        <h3 class="timeline-header">
+                                            <a href="#"> `+ result[2] +` </a> commented on your post</h3>
+
+                                        <div class="timeline-body">
+                                            Take me to your leader! Switzerland is small and neutral! We are
+                                            more like Germany, ambitious and misunderstood!
+                                        </div>
+                                    </div>
+                                </li>
+                                `;
+                            $("#historyUsermanagement").find(".timeline").html(timeLine);
                         })
-                    });
-                }
-            })
+
+                    })
+                })
+            });
+        }
+    })
+}
+
+function createTimeAgoView(timeAgo) {
+
+    
+    
+    var ago = new Intl.DateTimeFormat('ban', 'id').format(timeAgo);
+    var parag = `<p>` + ago + `</p>`;
+    $("#timeAgoModal").find(".modal-body").html(parag);
 }
 // $(window).on('load', function () {
 //     $(document).ready(function () {
