@@ -494,29 +494,37 @@ function getHistory(){
         for (let row = 0; row < count; row++) {
             certificateSessionIntance.methods.getHisIndex(row).call().then(function (addr) {
                 certificateSessionIntance.methods.getHistoryCertificate(addr).call().then(function (result) {
-                    //sconsole.log("Hello");
                     if($(".time-label").length==0){
-                        //console.log("Hello!");
                         timeLine(result[0],result[1],result[2]);
                     }
+                    else if($(".time-label").length!=0 && $(".time-label").last().text().trim()==tg(result[2])){
+                        $('.time-label').last().after(`<li>
+                             <i class="fa fa-user bg-aqua"></i>
+                             <div class="timeline-item">
+                                    <span class="time">
+                                     <i class="fa fa-clock-o"></i>`+relativeTime(result[2])+`</span>
+                                     <h3 class="timeline-header no-border">
+                                         <a href="#">User&nbsp;</a>`+result[0]+`                             
+                                         đã `+result[1]+`</h3>
+                             </div>
+                         </li>`);
+                    }
                     else{
-                        if($(".time-label").text().trim()==tg(result[2])){
-                            //console.log("Hello!");
-                            $('.time-label').after(`<li>
+                             $('li').last().after(`
+                            <li class="time-label">
+                                    <span class="bg-green">`+tg(result[2])+`</span>
+                            </li>
+                            <li>
                             <i class="fa fa-user bg-aqua"></i>
                             <div class="timeline-item">
                                     <span class="time">
                                     <i class="fa fa-clock-o"></i>`+relativeTime(result[2])+`</span>
                                     <h3 class="timeline-header no-border">
-                                        <a href="#">Sarah Young &nbsp;</a>`+result[0]+`                             
+                                        <a href="#">New&nbsp;</a>`+result[0]+`                             
                                         đã `+result[1]+`</h3>
                             </div>
                         </li>`);
-                        }
-                        else{
-                            timeLine(result[0],result[1],result[2]);
-                        }
-                    } 
+                        }; 
                 })
             })
         }
@@ -533,20 +541,19 @@ function tg(date){
 //ham time line break
 function timeLine(id,thaotac,thoigian){
     var history = "";
-    history += `
-                                <li class="time-label">
-                                    <span class="bg-red">`+tg(thoigian)+`</span>
-                                </li>
-                                <li>
-                                    <i class="fa fa-user bg-aqua"></i>
-                                    <div class="timeline-item">
-                                            <span class="time">
-                                            <i class="fa fa-clock-o"></i>`+relativeTime(thoigian)+`</span>
-                                            <h3 class="timeline-header no-border">
-                                                <a href="#">Sarah Young &nbsp;</a>`+id+`                             
-                                                đã `+thaotac+`</h3>
-                                    </div>
-                                </li>`;
+    
+    history += `<li class="time-label">
+                    <span class="bg-red">`+tg(thoigian)+`</span>
+                </li>
+                <li>
+                <i class="fa fa-user bg-aqua"></i>
+                <div class="timeline-item">
+                <span class="time">
+                    <i class="fa fa-clock-o"></i>`+relativeTime(thoigian)+`</span>
+                        <h3 class="timeline-header no-border">
+                            <a href="#">Begin&nbsp;</a>`+id+`đã `+thaotac+`</h3>
+                </div>
+                </li>`;
                            $("#historyCertification").find(".timeline").html(history);
 }
 //Ham xu li thoi gian
