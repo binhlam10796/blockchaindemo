@@ -138,6 +138,7 @@ function pag(){
 
 $(window).on('load', function () {
     listSchoolManagement();
+    history();
     // $('.table tbody').on('click', '.btn', function(){
     //     var currow = $(this).closest('tr');
     //     var col1 = currow.find('td:eq(0)').text();
@@ -187,6 +188,63 @@ $(window).on('load', function () {
     });
 });
 
+function abc() {
+    
+    var lis = document.querySelectorAll("span strong");  //select the elements
+        for (var i = 0; i < lis.length; i++) {  //loop over the HTML collection
+        var li = lis[i],  //reference the current element of the collection
+        text = li.innerHTML,  //read the text (could use textContent)
+        result = humanized_time_span(text);  //run the function
+        li.innerHTML = result;  //replace the text with the result returned from calling the function
+    }
+}
+
+function history() { 
+var timeLine = "";
+// var timeago = timeAgo.format(Date.now() - 60 * 1000, 'time')
+SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (count) {
+    for (let row = count-1; row >=0; row--) {
+        SchoolManagementSessionInstance.methods.getSchoolAtIndex(row).call().then(function (addr) {
+            SchoolManagementSessionInstance.methods.getSchool(addr).call().then(function (result) {
+                SchoolManagementSessionInstance.methods.getSchoolAddition(addr).call().then(function (result1) {
+                        timeLine +=
+                            `
+                            <li class="time-label">
+                                <span>` + result1[0] + `</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-user bg-aqua"></i>
+                                <div class="timeline-item">
+                                    <span class="time"> 
+                                        <i class="fa fa-clock-o"></i> <strong id="sss">` + result1[0] + ` </strong>
+                                        <button style="display: none !important" id="btnTimeAgo" class="btn btn-danger btn-xs" 
+                                             
+                                            onclick = "abc()"
+                                             >
+                                            <i class="far fa-eye"></i>
+                                                Xem lúc truy cập
+                                        </button>
+                                    </span>
+                                    <h3 class="timeline-header no-border">
+                                        <a href="#"> `+ result[2] +` </a> `+result[0]+` 
+                                            <br>
+                                        <a href="#"> `+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+`</a>
+                                            <br>
+                                        `+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+` `+ result1[2] +`
+                                            <br>
+                                    </h3>
+                                    
+                                </div>
+                            </li>`;
+                        $("#history").find(".timeline").html(timeLine);
+                        document.getElementById("btnTimeAgo").click();
+                })
+            })
+        });
+    }
+})
+
+}
 
 function listSchoolManagement() {
     var table = "";
