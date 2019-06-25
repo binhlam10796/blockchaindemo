@@ -119,7 +119,7 @@
                                         table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th onclick="sortTable($('#listSchoolManager'),'asc')" >STT</th>
                                                 <th>Tên Trường</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Email</th>
@@ -284,7 +284,7 @@
                                         data-parsley-error-message="Không được rỗng.">
                                 </div>
                             </div> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="name" class="col-sm-2 control-label">ID</label>
     
                                 <div class="col-sm-10">
@@ -293,7 +293,7 @@
                                         data-parsley-required="true" 
                                         data-parsley-error-message="Không được rỗng.">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="name" class="col-sm-2 control-label">Tên Trường</label>
     
@@ -414,12 +414,13 @@
                     <p></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-md"
-                        onclick="deleteSchoolManagement();">
+                    <button type="button" class="btn btn-danger btn-xs"
+                    data-toggle="modal"
+                        onclick="deleteSchoolManagement();"><i class="far fa-trash-alt"></i>
                         Xóa</button>
                         &nbsp;
-                    <button type="button" class="btn btn-danger btn-md"
-                        data-dismiss="modal">
+                    <button type="button" class="btn btn-danger btn-xs" 
+                    data-dismiss="modal"></i>
                         Hủy</button>
                     <!-- Goi ham them va dong modal -->
                 </div>

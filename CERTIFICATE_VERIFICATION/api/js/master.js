@@ -8,7 +8,18 @@ ethereum.enable();
 var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x4b828c3161Ac64769F78e77E682e4f8c0Daa2d6B");
 // var date = new Date();
 // var s = date.toString();
-
+function sortTable(table, order) {
+    var asc   = order === 'asc',
+        tbody = table.find('tbody');
+        
+    tbody.find('tr').sort(function(a, b) {
+        if (asc) {
+            return $('td:first', a).text().localeCompare($('td:first', b).text(), false, {numeric: true});
+        } else {
+            return $('td:first', b).text().localeCompare($('td:first', a).text(), false, {numeric: true});
+        }
+    }).appendTo(tbody);
+}
 //create address random and unique
 var temp = web3.eth.accounts.create();
 var randomAddress = temp.address;
@@ -257,7 +268,7 @@ function listSchoolManagement() {
                             // console.log(result1);
                             // console.log(result2);
                             table += `<tr>
-                                                <td>` + result[1] + `</td>
+                                                <td>` + (parseInt(row)+1) + `</td>
                                                 <td>` + result[2] + `</td>
                                                 <td>` + result[4] + `</td>
                                                 <td>` + result[3] + `</td>
@@ -308,7 +319,7 @@ function createDeleteView(address) {
     $("#deleteModal").find(".modal-body").html(parag);
 }
 
-//delete quan ly nguoi dung
+//delete quan ly truong
 function deleteSchoolManagement() {
     // $('#listUserManager tbody').on('click', '.btn', function(){
     //     var currow = $(this).closest('tr');
