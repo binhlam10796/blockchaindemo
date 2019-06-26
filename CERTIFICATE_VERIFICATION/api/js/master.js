@@ -5,7 +5,7 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x4b828c3161Ac64769F78e77E682e4f8c0Daa2d6B");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x99440E9b6Fc1ff3a7E0E16C90822A55038c62F60");
 // var date = new Date();
 // var s = date.toString();
 function sortTable(table, order) {
@@ -31,7 +31,7 @@ function addSchool() {
     if ($('#formaddschool').parsley().validate()) {
         // this.console.log(temp);
         var address = randomAddress;
-        var id = $("#id").val();
+        // var id = $("#id").val();
         var fullName = $("#name").val();
         var userAddr = $("#addr").val();
         var email = $("#email").val();
@@ -51,7 +51,7 @@ function addSchool() {
         // var gender = $("#gender").val();
         // var dateOfBirth = $("#dateOfBirth").val();
         var batch = new web3.BatchRequest();
-        batch.add(SchoolManagementSessionInstance.methods.insertSchool(address, id, fullName, userAddr, email,
+        batch.add(SchoolManagementSessionInstance.methods.insertSchool(address, fullName, userAddr, email,
             fax, phoneNumber)
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
@@ -112,7 +112,7 @@ function pag(){
     $('.pagination').html('')
         var table = '#listSchoolManager';
         var trnum = 0;
-        var maxRows = 6;
+        var maxRows = 10;
         var totalRows = $('#listSchoolManager tbody tr').length;
         // console.log(totalRows);
         $(table + ' tr:gt(0)').each(function () {
@@ -269,11 +269,11 @@ function listSchoolManagement() {
                             // console.log(result2);
                             table += `<tr>
                                                 <td>` + (parseInt(row)+1) + `</td>
+                                                <td>` + result[1] + `</td>
+                                                <td>` + result[3] + `</td>
                                                 <td>` + result[2] + `</td>
                                                 <td>` + result[4] + `</td>
-                                                <td>` + result[3] + `</td>
                                                 <td>` + result[5] + `</td>
-                                                <td>` + result[6] + `</td>
                                                 <td>` + result1[0] + `</td>
                                                 <td>` + result1[1] + `</td>
                                                 <td>
@@ -293,7 +293,6 @@ function listSchoolManagement() {
                                                     \`` + result[4] + `\`,
                                                     \`` + result[3] + `\`,
                                                     \`` + result[5] + `\`,
-                                                    \`` + result[6] + `\`,
 
                                                     \`` + result1[1] + `\`,
                                                     \`` + result1[0] + `\`,

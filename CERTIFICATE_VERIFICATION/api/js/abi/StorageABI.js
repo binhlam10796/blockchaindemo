@@ -58,49 +58,6 @@ var SchoolStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_schoolAddress",
-				"type": "address"
-			},
-			{
-				"name": "_id",
-				"type": "string"
-			},
-			{
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"name": "_addr",
-				"type": "string"
-			},
-			{
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"name": "_fax",
-				"type": "string"
-			},
-			{
-				"name": "_phone",
-				"type": "string"
-			}
-		],
-		"name": "insertSchool",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [
 			{
@@ -186,10 +143,6 @@ var SchoolStorageABI = [
 			{
 				"name": "SchoolAddress",
 				"type": "address"
-			},
-			{
-				"name": "id",
-				"type": "string"
 			},
 			{
 				"name": "name",
@@ -317,6 +270,45 @@ var SchoolStorageABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"name": "_phone",
+				"type": "string"
+			}
+		],
+		"name": "insertSchool",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "getSchoolCount",
@@ -364,11 +356,6 @@ var SchoolStorageABI = [
 				"indexed": false,
 				"name": "_schoolAddress",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_id",
-				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -438,11 +425,6 @@ var SchoolStorageABI = [
 				"indexed": false,
 				"name": "_schoolAddress",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_id",
-				"type": "string"
 			},
 			{
 				"indexed": false,

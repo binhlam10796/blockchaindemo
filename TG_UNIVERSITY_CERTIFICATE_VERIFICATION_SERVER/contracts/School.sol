@@ -4,7 +4,7 @@ contract SchoolStorage {
     //eventInsert
     struct School {
         address SchoolAddress;
-        string id;
+        // string id;
         string name;
         string addr;
         string email;
@@ -18,7 +18,7 @@ contract SchoolStorage {
     }
     event SetSchoolEvent(
         address _schoolAddress,
-        string _id,
+        // string _id,
         string _name,
         string _addr,
         string _email,
@@ -35,7 +35,7 @@ contract SchoolStorage {
     //eventUpdate
     event SetLogUpdateSchoolEvent(
         address _schoolAddress,
-        string _id,
+        // string _id,
         string _name,
         string _addr,
         string _email,
@@ -65,7 +65,7 @@ contract SchoolStorage {
 
     function insertSchool(
         address _schoolAddress,
-        string memory _id,
+        // string memory _id,
         string memory _name,
         string memory _addr,
         string memory _email,
@@ -73,14 +73,14 @@ contract SchoolStorage {
         string memory _phone
         )
         public returns(uint256 index){
-            SchoolStructsMap[_schoolAddress].id = _id;
+            // SchoolStructsMap[_schoolAddress].id = _id;
             SchoolStructsMap[_schoolAddress].name = _name;
             SchoolStructsMap[_schoolAddress].addr = _addr;
             SchoolStructsMap[_schoolAddress].email = _email;
             SchoolStructsMap[_schoolAddress].fax = _fax;
             SchoolStructsMap[_schoolAddress].phone = _phone;
 
-            emit SetSchoolEvent(_schoolAddress, _id, _name, _addr, _email, _fax, _phone);
+            emit SetSchoolEvent(_schoolAddress, _name, _addr, _email, _fax, _phone);
         return SchoolIndex.length-1;
     }
 
@@ -118,7 +118,7 @@ contract SchoolStorage {
 
         emit SetLogUpdateSchoolEvent(
             keyToMove,
-            SchoolStructsMap[keyToMove].id,
+            // SchoolStructsMap[keyToMove].id,
             SchoolStructsMap[keyToMove].name,
             SchoolStructsMap[keyToMove].email,
             SchoolStructsMap[keyToMove].addr,
@@ -137,7 +137,7 @@ contract SchoolStorage {
 
     function getSchool(address _schoolAddress) public view returns(
             address SchoolAddress,
-            string memory id,
+            // string memory id,
             string memory name,
             string memory email,
             string memory addr,
@@ -146,7 +146,7 @@ contract SchoolStorage {
             ){
             return(
                 _schoolAddress,
-                SchoolStructsMap[_schoolAddress].id,
+                // SchoolStructsMap[_schoolAddress].id,
                 SchoolStructsMap[_schoolAddress].name,
                 SchoolStructsMap[_schoolAddress].email,
                 SchoolStructsMap[_schoolAddress].addr,
