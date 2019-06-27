@@ -1,411 +1,305 @@
 <html lang="en-US">
 
-    <head>
-        <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
-        <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
-        <script
-            src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
-        <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css"
-            href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript"
-            src="http://code.jquery.com/jquery-latest.pack.js"></script>
+<head>
+    <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
+    <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
 
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-            crossorigin="anonymous">
-        <!-- <link rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-        <link rel='stylesheet'
-            href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="../assets/css/admin/style_admin.css">
-        <link rel="stylesheet" href="../assets/css/common/style_header.css">
-        <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script> -->
-        <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.js"></script> -->
-        <script type="text/javascript" src="../api/js/abi/StorageABI.js"></script>
-        <script type="text/javascript" src="../api/js/admin.js"></script>
-        <script type="text/javascript" src="../api/js/libs/parsley.min.js"></script>
-        <!-- Style Css -->
-        <link rel="stylesheet" href="../assets/css/common/style.css">
-        <!-- Ionicons -->
-        <link rel="stylesheet"
-            href="../bower_components/Ionicons/css/ionicons.min.css">
-        <!-- Spinner-CSS -->
-        <link rel="stylesheet" href="../assets/css/common/spinner.css"
-            type="text/css" media="all" />
-        <!-- Google Font -->
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <meta content="text/html, charset=UTF-8; initial-scale=1,
-            maximum-scale=1" http-equiv="content-type"
-            name="viewport">
-        <link rel='stylesheet'
-            href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
-    </head>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
 
-    <!-- <style>
-        .tableDegreeKind tr { display: none ; }
-        .tableDegreeKind tr:nth-child(-n+5) { display: table-row ; }
-        .tableDegreeKind0 tr { display: none ; }
-        .tableDegreeKind0 tr:nth-child(-n+5) { display: table-row ; }
-        .table tr { display: none ; }
-        .table tr:nth-child(-n+5) { display: table-row ; }
-    </style> -->
-    <body class="bkg">
-        <div class="spinner" id="spinner" style="display: none">
-            <div class="blob blob-0"></div>
-        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
 
-        <script type="text/javascript">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../assets/css/admin/style_admin.css">
+    <link rel="stylesheet" href="../assets/css/common/style_header.css">
+
+    <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script> -->
+    <!-- <script type="text/javascript" src="../node_modules/web3/dist/web3.js"></script> -->
+    <script type="text/javascript" src="../api/js/abi/StorageABI.js"></script>
+
+    <script type="text/javascript" src="../api/js/admin.js"></script>
+    <script type="text/javascript" src="../api/js/libs/parsley.min.js"></script>
+    <!-- Style Css -->
+    <link rel="stylesheet" href="../assets/css/common/style.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Spinner-CSS -->
+    <link rel="stylesheet" href="../assets/css/common/spinner.css" type="text/css" media="all" />
+    <!-- Google Font -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <meta content="text/html, charset=UTF-8; initial-scale=1, maximum-scale=1" http-equiv="content-type"
+        name="viewport">
+    
+    
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<body class="bkg">
+    <div class="spinner" id="spinner" style="display: none">
+        <div class="blob blob-0"></div>
+    </div>
+
+    <script type="text/javascript">
         var div = document.getElementById('spinner');
         div.style.display = "block";
         setTimeout(function () {
             div.style.display = "none";
         }, 1000);
     </script>
-        <div>
-            <div class="ctn">
-                <div class="header">
-                    <a href="#default" class="logo">
-                        <img class="img-responsive"
-                            src="../assets/images/_shortcutIcon.png">
-                    </a>
-                    <div class="header-left">
-                        <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
-                        <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+
+    <div>
+        <div class="ctn">
+            <div class="header">
+                <a href="#default" class="logo">
+                    <img class="img-responsive" src="../assets/images/_shortcutIcon.png">
+                </a>
+                <div class="header-left">
+                    <h1>CÔNG TY CÔNG NGHỆ THÔNG TIN VNPT</h1>
+                    <h2>Hệ thống tra cứu văn bằng chứng chỉ</h2>
+                </div>
+                <div class="navigation" id="myTopNav">
+                    <div class="degree-kind">
+                        <button type="button" data-toggle="modal" data-target="#degreeKindModal" data-backdrop="static"
+                            data-keyboard="false" id="degreeKindButton" onclick="degreeKindButton();">
+                            Danh mục loại văn bằng
+                        </button>
                     </div>
-                    <div class="navigation" id="myTyopNav">
-                        <div class="degree-kind">
-                            <button type="button" data-toggle="modal"
-                                data-target="#degreeKindModal"
-                                data-backdrop="static"
-                                data-keyboard="false" id="degreeKindButton"
-                                onclick="degreeKindButton();">
-                                Danh mục loại văn bằng
-                            </button>
-                        </div>
-                        <div class="degree-name">
-                            <button type="button" data-toggle="modal"
-                                data-target="#degreeNameModal"
-                                data-backdrop="static"
-                                data-keyboard="false" id="degreeNameButton"
-                                onclick="degreeNameButton();">
-                                Danh mục tên văn bằng
-                            </button>
-                        </div>
-                        <div class="degree-management">
-                            <button type="button" data-toggle="modal"
-                                data-target="#degreeManagementModal"
-                                data-backdrop="static" data-keyboard="false"
-                                id="degreeManagementButton"
-                                onclick="degreeManagementButton();">
-                                Lịch sử
-                            </button>
-                        </div>
-                        <div class="user-degree-management">
-                            <button type="button" data-toggle="modal"
-                                data-target="#userDegreeManagementModal"
-                                data-backdrop="static" data-keyboard="false"
-                                id="userDegreeManagementButton">
-                                Phân quyền người quản lý
-                            </button>
-                        </div>
-                        <div class="degree-history">
-                            <button type="button" data-toggle="modal"
-                                data-target="#historyModal"
-                                data-backdrop="static"
-                                data-keyboard="false" id="historyButton">Lịch sử
-                                quản lý văn bằng</button>
-                        </div>
+                    <div class="degree-name">
+                        <button type="button" data-toggle="modal" data-target="#degreeNameModal" data-backdrop="static"
+                            data-keyboard="false" id="degreeNameButton" onclick="degreeNameButton(), sortTableName();">
+                            Danh mục tên văn bằng
+                        </button>
+                    </div>
+                    <div class="degree-management">
+                        <button type="button" data-toggle="modal" data-target="#degreeManagementModal"
+                            data-backdrop="static" data-keyboard="false" id="degreeManagementButton"
+                            onclick="degreeManagementButton();">
+                            Phân quyền quản lý văn bằng
+                        </button>
+                    </div>
+                    <div class="user-degree-management">
+                        <button type="button" data-toggle="modal" data-target="#userDegreeManagementModal"
+                            data-backdrop="static" data-keyboard="false" id="userDegreeManagementButton">
+                            Phân quyền người quản lý
+                        </button>
+                    </div>
+                    <div class="degree-history">
+                        <button type="button" data-toggle="modal" data-target="#historyModal" data-backdrop="static"
+                            data-keyboard="false" id="historyButton">Lịch sử quản lý văn bằng</button>
                     </div>
                 </div>
-                <div class="box box-primary">
-                    <div class="box-header ui-sortable-handle">
-                        <i class="ion ion-clipboard"></i>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header ui-sortable-handle">
+                    <i class="ion ion-clipboard"></i>
 
-                        <h3 class="box-title">Nhật ký phê duyệt văn bằng</h3>
-                    </div>
-                    <div class="filter">
-                        <div>
-                            <input type="text" id="nameInput"
-                                onkeyup="filterByName();"
-                                placeholder="Tìm theo tên cán bộ...">
-                            <select id="typeInput" onchange="filterByType();">
-                                <option value="" selected>Lọc theo thao tác</option>
-                                <option value="Đã duyệt">Đã Duyệt</option>
-                                <option value="Đợi duyệt">Đợi Duyệt</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="box-body" style="overflow-x:auto;">
-                        <table id="myTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Mã cán bộ</th>
-                                    <th>Tên cán bộ</th>
-                                    <th>Mã văn bằng</th>
-                                    <th>Thao tác</th>
-                                    <th>Thời điểm</th>
-                                    <th>Diễn giải</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                    <h3 class="box-title">Nhật ký phê duyệt văn bằng</h3>
+                </div>
+                <div class="filter">
+                    <div>
+                        <input type="text" id="nameInput" onkeyup="filterByName();"
+                            placeholder="Tìm theo tên cán bộ...">
+                        <select id="typeInput" onchange="filterByType();">
+                            <option value="" selected>Lọc theo thao tác</option>
+                            <option value="Đã duyệt">Duyệt</option>
+                            <option value="Đợi duyệt">Không Duyệt</option>
+                        </select>
                     </div>
                 </div>
-                <!-- DEGREE KIND POPUP -->
-                <div class="modal fade" id="degreeKindModal">
-                    <div class="modal-dialog">
+                <div class="box-body" style="overflow-x:auto;">
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Mã cán bộ</th>
+                                <th>Tên cán bộ</th>
+                                <th>Mã văn bằng</th>
+                                <th>Thao tác</th>
+                                <th>Thời điểm</th>
+                                <th>Diễn giải</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- DEGREE KIND POPUP -->
+            <div class="modal fade" id="degreeKindModal">
+                <div class="modal-dialog">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Danh mục loại văn bằng</h4>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Danh mục loại văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <button type="button" data-toggle="modal" data-target="#addKindModal"
+                                    data-backdrop="static" data-keyboard="false" class="btn btn-success btn-sm"><i
+                                        class="glyphicon glyphicon-plus"></i>
+                                    Thêm</button>
                             </div>
-                            <div class="modal-body">
-                                <div>
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#addKindModal"
-                                        data-backdrop="static"
-                                        data-keyboard="false" class="btn
-                                        btn-success btn-sm"><i
-                                            class="glyphicon glyphicon-plus"></i>
-                                        Thêm</button>
-                                </div>
-                                <div style="overflow-x:auto;">
-                                    <div class="form-group">
-                                        <select name="state" id="maxRows"
-                                            class="form-control" style="width:
-                                            150px;">
-                                            <option value="5000"> Tất cả </option>
-                                            <option value="5"> 5 </option>
-                                            <option value="10"> 10 </option>
-                                            <option value="15"> 15 </option>
-                                            <option value="20"> 20 </option>
-                                            <option value="50"> 50 </option>
-                                            <option value="100"> 100 </option>
-                                            
-                                        </select>
-                                    </div>
-                                    <!-- <tabel id="degreeKindTable0"
-                                        class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 5%
-                                                    !important;">#</th>
-                                                <th style="width: 60%
-                                                    !important;">Tên loại văn
-                                                    bằng</th>
-                                                <th style="width: 35%
-                                                    !important;">Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                    </table> -->
-                                    <p><button onclick="sortTable($('#degreeKindTable'),'asc')">Sắp xếp theo số thứ tự</button></p>
-                                    <table id="degreeKindTable"
-                                        class="table table-bordered
-                                        table-striped">
-                                        <!-- <div>
-                                            <a class="previous">Previous</a>
-                                            <a class="next">Next</a>
-                                            <input type="hidden" id="hdnActivePage" value="1">
-                                        </div> -->
-                                        <!-- <div>
-                                                <span class="left" id="total_reg"></span>
-                                                <ul class="pagination pager" id="myPager"></ul>
-                                        </div> -->
-                                        <thead>
-                                            <!-- <tr style="visibility: hidden;"> -->
-                                            <tr>
-                                                <th onclick="sortTable($('#degreeKindTable'),'asc')" style="width: 5%
-                                                    !important;">#</th>
-                                                <th style="width: 60%
-                                                    !important;">Tên loại văn
-                                                    bằng</th>
-                                                <th style="width: 35%
-                                                    !important;">Thao tác</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-
-                                    <div class="pagination-container">
-                                        <nav>
-                                            <ul class="pagination"></ul>
-                                        </nav>
-                                    </div>
-                                    
-                                    <!-- <div>
-                                        <a class="previous">Previous</a>
-                                        <a class="next">Next</a>
-                                        <input type="hidden" id="hdnActivePage"
-                                            value="1">
-                                    </div> -->
-                                </div>
-                                <!-- <script>
-                                    var table = '#degreeKindTable'
-                                    $('#maxRows').on('change',function(){
-                                        $('.pagination').html('')
-                                        var trnum = 0;
-                                        var maxRows = parseInt($(this).val())
-                                        var totalRows = $(table+' tbody tr').length
-                                        $(table+' tr:gt(0)').each(function(){
-                                            trnum++
-                                            if(trnum > maxRows){
-                                                $(this).hide()
-                                            }
-                                            if(trnum <= maxRows){
-                                                $(this).show()
-                                            }
-                                        })
-                                        if(totalRows > maxRows){
-                                            var pagenum = Math.ceil(totalRows/maxRows)
-                                            for(var i=1; i<=pagenum;){
-                                                $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span> </span>\ </li>').show()
-                                            }
-                                        }
-                                        $('.pagination li:first-child').addClass('active')
-                                        $('.pagination li').on('click', function(){
-                                            var pageNum = $(this).attr('data-page')
-                                            var trIndex = 0
-                                            $('.pagination li').removeClass('active')
-                                            $(this).addClass('active')
-                                            $(table+' tr:gt(0)').each(function(){
-                                                trIndex++
-                                                if(trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
-                                                    $(this).hide()
-                                                }else{
-                                                    $(this).show()
-                                                }
-                                            })
-                                        })
-                                    })
-                                    // $(function(){
-                                    //     $('table tr:eq(0)').prepend('<th>ID</th>')
-                                    //     var id=0;
-                                    //     $('table tr:gt(0)').each(function(){
-                                    //         id++
-                                    //         $(this).prepend('<td>'+id+'<td>')
-                                    //     })
-                                    //})
-                                </script> -->
+                        </br>
+                            <div>
+                                <select name="state" id="maxRows" class="form-control" style="width:150px;">
+                                    <option value="5" >5</option>
+                                    <option value="10">10</option>
+                                    <option value="5000" selected="selected">Show all</option>
+                                </select>
                             </div>
-                            <!-- <div class="modal-footer">
+                            <div style="overflow-x:auto;">
+                                <table id="degreeKindTable" class="table display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th onclick="sortTable(0)">#&nbsp;&nbsp;&nbsp;<i class="fa fa-sort" style="font-size:13px;"></i></th>
+
+                                            <th onclick="sortTable(1)">Tên loại văn bằng &nbsp;&nbsp;&nbsp;<i class="fa fa-sort" style="font-size:13px;"></i></th>
+                                            <th onclick="sortTable(2)">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td>1</td>
+                                            <td>Chứng chỉ</td>
+                                            <td>
+                                                <button class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i>
+                                                    Xóa</button>
+                                                <button class="btn btn-primary btn-xs"><i class="far fa-edit"></i>
+                                                    Sửa</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Chứng nhận</td>
+                                            <td>
+                                                <button class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i>
+                                                    Xóa</button>
+                                                <button class="btn btn-primary btn-xs"><i class="far fa-edit"></i>
+                                                    Sửa</button>
+                                            </td>
+                                        </tr> -->
+
+                                    </tbody>
+                                    <script>
+                                
+
+                                    // $('#degreeKindTable').DataTable( {
+                                    //     "searching" : false,
+                                    // } );
+                                
+                                </script>
+                                </table>
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination"></ul>
+                                    </nav>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div> -->
-                        </div>
                     </div>
                 </div>
-                <!-- END POPUP CONTENT -->
+            </div>
+            <!-- END POPUP CONTENT -->
 
-                <!-- ADD DEGREE KIND POPUP -->
-                <div class="modal fade" id="addKindModal">
-                    <div class="modal-dialog modal-sm">
+            <!-- ADD DEGREE KIND POPUP -->
+            <div class="modal fade" id="addKindModal">
+                <div class="modal-dialog modal-sm">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Thêm loại văn bằng</h4>
+
+                    <!-- Modal content-->
+                    <form id="formkinddegree">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Thêm loại văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <input type="text" name="idKindDegree" id="idKindDegree" 
+                                    placeholder="Nhập ID loại văn bằng" 
+                                    data-parsley-required="true" 
+                                    data-parsley-type="number"
+                                    data-parsley-error-message="ID phai la mot so!">
                             </div>
-                            <div class="modal-body">
-                                <form id="idDegreeKindForm">
-                                    <div>
-                                        <input type="text" name="idKindDegree"
-                                            id="idKindDegree"
-                                            placeholder="Nhập ID loại văn bằng"
-                                            data-parsley-type="number"
-                                            data-parsley-required="true"
-                                            data-parsley-error-message="ID bắt
-                                            buộc phải là số.">
-                                    </div>
-                                    <div>
-                                        <input type="text" name="nameKindDegree"
-                                            id="nameKindDegree"
-                                            placeholder="Nhập tên loại văn bằng"
-                                            data-parsley-required="true"
-                                            data-parsley-error-message="Không
-                                            được rỗng.">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <div>
-                                    <button type="button" class="btn btn-success
-                                        btn-xs" onclick="addDegreeKind();"><i
-                                            class="glyphicon glyphicon-plus"></i>
-                                        Thêm</button>
-                                </div>
+                            <div>
+                                <input type="text" name="nameKindDegree" id="nameKindDegree" 
+                                    placeholder="Nhập tên loại văn bằng" 
+                                    data-parsley-required="true"
+                                    data-parsley-error-message="Khong duoc de trong!">
                             </div>
                         </div>
-
-                    </div>
-                </div>
-
-
-                <!-- DEGREE NAME POPUP -->
-                <div class="modal fade" id="degreeNameModal">
-                    <div class="modal-dialog modal-lg">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Danh mục tên văn bằng</h4>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-success btn-xs" onclick="addDegreeKind();"><i
+                                        class="glyphicon glyphicon-plus"></i>
+                                    Thêm</button>
                             </div>
-                            <div class="modal-body">
-                                <div>
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#addNameModal"
-                                        data-backdrop="static"
-                                        data-keyboard="false" class="btn
-                                        btn-success btn-sm"><i
-                                            class="glyphicon glyphicon-plus"></i>
-                                        Thêm</button>
-                                </div>
-                                <div style="overflow-x:auto;">
-                                    <div class="form-group">
-                                        <select name="state" id="maxRowsName"
-                                            class="form-control" style="width:
-                                            150px;">
-                                            <option value="5000"> Tất cả
-                                            </option>
-                                            <option value="5"> 5 </option>
-                                            <option value="10"> 10 </option>
-                                            <option value="15"> 15 </option>
-                                            <option value="20"> 20 </option>
-                                            <option value="50"> 50 </option>
-                                            <option value="100"> 100 </option>
-                                        </select>
-                                    </div>
-                                    <p><button onclick="sortTable($('#degreeNameTable'),'asc')">Sắp xếp theo thứ tự</button></p>
-                                    <table id="degreeNameTable" class="table
-                                        table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th onclick="sortTable($('#degreeNameTable'),'asc')">#</th>
-                                                <th onclick="sortTable1()">Loại văn bằng</th>
-                                                <th>Tên văn bằng</th>
-                                                <th>Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                        </div>
+                    </div>
 
-                                        </tbody>
-                                        <!-- <tr>
+                </div>
+            </div>
+        </form>
+
+
+
+
+            <!-- DEGREE NAME POPUP -->
+            <div class="modal fade" id="degreeNameModal">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Danh mục tên văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <button type="button" data-toggle="modal" data-target="#addNameModal"
+                                    data-backdrop="static" data-keyboard="false" class="btn btn-success btn-sm"><i
+                                        class="glyphicon glyphicon-plus"></i>
+                                    Thêm</button>
+                            </div>
+                        </br>
+                        <div>
+                          
+                            <select name="state" id="maxRow" class="form-control" style="width:150px;">
+                                <option value="5000" selected="selected">Show all</option>
+                                <option value="5" >5</option>
+                                <option value="10">10</option>
+                            </select>
+                            
+                        </div>
+                            <div style="overflow-x:auto;">
+                                <table id="degreeNameTable" class="table display">
+                                    <thead>
+                                        <tr>
+                                            <th onclick="sortTableName();">#&nbsp;&nbsp;&nbsp;<i class="fa fa-sort" style="font-size:13px;"></i></th>
+                                            <th onclick="sortTableName();">Tên văn bằng</th>
+                                            <th onclick="sortTableName();">Loại văn bằng</th>
+                                            <th onclick="sortTableName();">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>Chứng chỉ tiếng Anh trình độ A</td>
                                         <td>Chứng chỉ</td>
@@ -460,254 +354,228 @@
                                                 Sửa</button>
                                         </td>
                                     </tr> -->
-                                    </table>
-                                    <div class="pagination-container">
+                                </table>
+                                <div class="pagination-container">
                                         <nav>
                                             <ul class="pagination"></ul>
                                         </nav>
+    
                                     </div>
-                                </div>
                             </div>
-                            <!-- <div class="modal-footer">
+                        </div>
+                        <!-- <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div> -->
-                        </div>
-
                     </div>
+
                 </div>
-                <!-- END POPUP CONTENT -->
+            </div>
+            <!-- END POPUP CONTENT -->
 
 
-                <!-- ADD DEGREE NAME POPUP -->
-                <div class="modal fade" id="addNameModal">
-                    <div class="modal-dialog modal-sm">
+            <!-- ADD DEGREE NAME POPUP -->
+        <form id="formNameDegree">
+            <div class="modal fade" id="addNameModal">
+                <div class="modal-dialog modal-sm">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Thêm tên văn bằng</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="idDegreeNameForm">
-                                    <div>
-                                        <select name="idKindDegreeSelect"
-                                            id="idKindDegreeSelect">
-                                            <!-- <option value="" selected disabled>Chọn loại văn bằng</option>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Thêm tên văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <select name="idKindDegreeSelect" id="idKindDegreeSelect"
+                                data-parsley-required="true"
+                                >
+                                    <!-- <option value="" selected disabled>Chọn loại văn bằng</option>
                                     <option value="">Chứng chỉ</option>
                                     <option value="">Chứng nhận</option> -->
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" name="idDegreeName" id="idDegreeName"
+                                    placeholder="Nhập ID tên văn bằng"
+                                    data-parsley-required="true" 
+                                    data-parsley-type="number"
+                                    data-parsley-error-message="ID phai la mot so!">
+                                    
+                            </div>
+                            <div>
+                                <input type="text" name="nameDegree" id="nameDegree"
+                                    placeholder="Nhập tên loại văn bằng"
+                                    data-parsley-required="true" 
+                                    data-parsley-error-message="Ten phai la mot chuoi!"
+                                    >
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-xs" onclick="addDegreeName();"><i
+                                    class="glyphicon glyphicon-plus"></i>
+                                Thêm</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+
+
+            <!-- DEGREE MANAGEMENT POPUP -->
+            <div class="modal fade" id="degreeManagementModal">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Phân quyền quản lý văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body" style="overflow-x:auto;">
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-xs-4 col-lg-4 col-md-2 col-sm-2">
+                                        <button type="button" name="" class="form-control btn btn-primary"
+                                            data-toggle="modal" data-target="#addDegreeManagement"
+                                            data-backdrop="static" data-keyboard="false">
+                                            <i class="fa fa-plus"></i> Thêm</button>
+                                    </div>
+                                </div>
+                                <table id="degreeManagementTable" class="table table-striped table-bordered table-sm"
+                                    cellspacing="0" style="width:100%">
+                                    <thead>
+                                        <tr class="table-header">
+                                            <th>Tên văn bằng</th>
+                                            <th>Đơn vị</th>
+                                            <th>Từ ngày</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success col-xs-2 col-lg-2 col-md-2 col-sm-2"
+                                data-dismiss="modal">Lưu</button>
+                            <!-- <button type="button" class="btn btn-danger col-xs-2 col-lg-2 col-md-2 col-sm-2"
+                                data-dismiss="modal">Xóa</button> -->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="addDegreeManagement">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Thêm phân quyền</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="nameCertify" class="col-sm-2 control-label">Tên văn bằng</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="nameCertify"
+                                            placeholder="Name certification">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="organization" class="col-sm-2 control-label">Đơn vị</label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="organization" placeholder="Organization">
+                                            <option value=""></option>
+                                            <option value="1">System</option>
+                                            <option value="2">CNTT</option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <input type="text" name="idDegreeName"
-                                            id="idDegreeName"
-                                            placeholder="Nhập ID tên văn bằng"
-                                            data-parsley-type="number"
-                                            data-parsley-required="true"
-                                            data-parsley-error-message="ID bắt
-                                            buộc phải là số.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateform" class="col-sm-2 control-label">Từ ngày</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="datefrom" placeholder="Date from">
                                     </div>
-                                    <div>
-                                        <input type="text" name="nameDegree"
-                                            id="nameDegree"
-                                            placeholder="Nhập tên loại văn bằng"
-                                            placeholder="Nhập tên loại văn bằng"
-                                            data-parsley-required="true"
-                                            data-parsley-error-message="Không
-                                            được rỗng.">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success
-                                    btn-xs" onclick="addDegreeName();"><i
-                                        class="glyphicon glyphicon-plus"></i>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-success btn-sm">
+                                    <i class="glyphicon glyphicon-plus"></i>
                                     Thêm</button>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+            </div>
 
-                <!-- DEGREE MANAGEMENT POPUP -->
-                <div class="modal fade" id="degreeManagementModal">
-                    <div class="modal-dialog modal-lg">
+            <!-- END POPUP CONTENT -->
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Phân quyền quản lý văn
-                                    bằng</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="box-body" style="overflow-x:auto;">
-                                    <div class="row" style="margin-bottom:
-                                        10px;">
-                                        <div class="col-xs-4 col-lg-4 col-md-2
-                                            col-sm-2">
-                                            <button type="button" name=""
-                                                class="form-control btn
-                                                btn-primary"
-                                                data-toggle="modal"
-                                                data-target="#addDegreeManagement"
-                                                data-backdrop="static"
-                                                data-keyboard="false">
-                                                <i class="fa fa-plus"></i> Thêm</button>
-                                        </div>
-                                    </div>
-                                    <table id="degreeManagementTable">
-                                        <thead>
-                                            <tr class="table-header">
-                                                <th>Tên văn bằng</th>
-                                                <th>Đơn vị</th>
-                                                <th>Từ ngày</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+            <!-- HISTORY POPUP -->
+            <div class="modal fade" id="historyModal">
+                <div class="modal-dialog modal-lg">
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success
-                                    col-xs-2 col-lg-2 col-md-2 col-sm-2"
-                                    data-dismiss="modal">Lưu</button>
-                                <!-- <button type="button" class="btn btn-danger col-xs-2 col-lg-2 col-md-2 col-sm-2"
-                                data-dismiss="modal">Xóa</button> -->
-                                <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">Close</button>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Lịch sử quản lý văn bằng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="overflow-x:auto;">
+                                <table id="historyTable" class="table">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Đơn vị quản lý</th>
+                                        <th>Tên văn bằng</th>
+                                        <th>Từ ngày</th>
+                                        <th>Đến ngày</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>K.Công nghệ thông tin & truyền thông</td>
+                                        <td>Chứng chỉ A tin học</td>
+                                        <td>19/10/2015</td>
+                                        <td>03/01/2019</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-
-                <div class="modal fade" id="addDegreeManagement">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Thêm phân quyền</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="nameCertify" class="col-sm-2
-                                            control-label">Tên văn bằng</label>
-                                        <div class="col-sm-10">
-                                            <input type="text"
-                                                class="form-control"
-                                                id="nameCertify"
-                                                placeholder="Name
-                                                certification">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="organization"
-                                            class="col-sm-2 control-label">Đơn
-                                            vị</label>
-
-                                        <div class="col-sm-10">
-                                            <select class="form-control"
-                                                id="organization"
-                                                placeholder="Organization">
-                                                <option value=""></option>
-                                                <option value="1">System</option>
-                                                <option value="2">CNTT</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dateform" class="col-sm-2
-                                            control-label">Từ ngày</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="date"
-                                                class="form-control"
-                                                id="datefrom" placeholder="Date
-                                                from">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <div>
-                                    <button type="button" class="btn btn-success
-                                        btn-sm">
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        Thêm</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- END POPUP CONTENT -->
-
-                <!-- HISTORY POPUP -->
-                <div class="modal fade" id="historyModal">
-                    <div class="modal-dialog modal-lg">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Lịch sử quản lý văn bằng</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div style="overflow-x:auto;">
-                                    <table id="historyTable" class="table">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Đơn vị quản lý</th>
-                                            <th>Tên văn bằng</th>
-                                            <th>Từ ngày</th>
-                                            <th>Đến ngày</th>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>K.Công nghệ thông tin & truyền
-                                                thông</td>
-                                            <td>Chứng chỉ A tin học</td>
-                                            <td>19/10/2015</td>
-                                            <td>03/01/2019</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- <div class="modal-footer">
+                        <!-- <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div> -->
-                        </div>
-
                     </div>
+
                 </div>
-                <!-- END POPUP CONTENT -->
+            </div>
+            <!-- END POPUP CONTENT -->
 
-                <!-- USER DEGREE MANAGEMENT POPUP -->
-                <div class="modal fade" id="userDegreeManagementModal">
-                    <div class="modal-dialog modal-lg">
+            <!-- USER DEGREE MANAGEMENT POPUP -->
+            <div class="modal fade" id="userDegreeManagementModal">
+                <div class="modal-dialog modal-lg">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close"
-                                    data-dismiss="modal">x</button>
-                                <h4 class="modal-title">Phân quyền người quản lý</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div style="overflow-x:auto;">
-                                    <!-- <div class="tab">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Phân quyền người quản lý</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="overflow-x:auto;">
+                                <!-- <div class="tab">
                                     <button class="tablinks" onclick="openCity(event, 'London')"
                                         id="defaultOpen">London</button>
                                     <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
@@ -734,35 +602,28 @@
                                     // Get the element with id="defaultOpen" and click on it
                                     document.getElementById("defaultOpen").click();
                                 </script> -->
-                                </div>
-
-
-                                <!-- <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div> -->
                             </div>
 
+
+                            <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div> -->
                         </div>
+
                     </div>
-                    <!-- END POPUP CONTENT -->
-
-
                 </div>
+                <!-- END POPUP CONTENT -->
+
+
             </div>
-
-            <!-- <script
-                src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-            <!-- <script type="text/javascript" charset="utf8"
-                src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
-            <!-- <script
-                src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
-            <!-- <script
-                src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script> -->
-            <!-- <script type="text/javascript" charset="utf8"
-                src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
-            <!-- <script
-                src='http://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js'></script> -->
-        </body>
-
-
-    </html>
+        </div>
+        <!-- <script>
+             $('#degreeKindTable').DataTable( {
+                                        "destroy": true,
+                                        "retrieve": true,
+                                        "searching" : false,
+                                        "lengthMenu": [ 5, 10 ]
+                                    } );
+        </script> -->
+</body>
+</html>

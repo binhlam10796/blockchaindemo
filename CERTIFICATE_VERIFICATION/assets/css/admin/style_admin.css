@@ -213,42 +213,20 @@ table#myTable tr:hover {
 
 
 /* Degree kind table */
-table#degreeKindTable0 {
+table#degreeKindTable {
     margin-top: 10px;
     border-collapse: collapse;
     width: 100%;
     font-size: 13px;
 }
 
-table#degreeKindTable {
-    /* margin-top: 10px; */
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 13px;
-}
-
-table#degreeKindTable0 th {
-    background-color: #337ab7;
-    color: white;
-}
-
-
 table#degreeKindTable th {
     background-color: #337ab7;
     color: white;
 }
 
-table#degreeKindTable0 tr, table#degreeKindTable0 td, table#degreeKindTable0 th {
-    border: 1px solid #ddd;
-}
-
 table#degreeKindTable tr, table#degreeKindTable td, table#degreeKindTable th {
     border: 1px solid #ddd;
-}
-
-table#degreeKindTable0 tr:hover {
-    background-color: #337ab7;
-    color: white;
 }
 
 table#degreeKindTable tr:hover {
@@ -315,9 +293,9 @@ table#historyTable tr:hover {
         white-space: nowrap;
     }
 
-    #degreeKindTable0 th, td {
+    /* #degreeKindTable0 th, td {
         white-space: nowrap;
-    }
+    } */
 
     #degreeKindTable th, td {
         white-space: nowrap;

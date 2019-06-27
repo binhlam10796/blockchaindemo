@@ -1,12 +1,59 @@
 var KindStorageABI = [
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDegreeKindIndex",
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_degreeKindId",
+				"type": "address"
+			}
+		],
+		"name": "deleteDegreeKind",
 		"outputs": [
 			{
-				"name": "",
+				"name": "index",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_degreeKindId",
+				"type": "address"
+			},
+			{
+				"name": "_degreeKindName",
+				"type": "string"
+			}
+		],
+		"name": "updateDegreeKindName",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDegreeKindAtIndex",
+		"outputs": [
+			{
+				"name": "userAddress",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -14,18 +61,41 @@ var KindStorageABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_degreeKindId",
+				"type": "address"
+			},
+			{
+				"name": "_degreeKindName",
+				"type": "string"
+			}
+		],
+		"name": "InsertDegreeKind",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
 				"name": "_degreeKindId",
-				"type": "uint8"
+				"type": "address"
 			}
 		],
 		"name": "getDegreeKind",
 		"outputs": [
 			{
 				"name": "degreeKindId",
-				"type": "uint8"
+				"type": "address"
 			},
 			{
 				"name": "degreeKindName",
@@ -37,97 +107,113 @@ var KindStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
+		"inputs": [],
+		"name": "getDegreeKindCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"name": "_degreeKindId",
-				"type": "uint8"
+				"type": "address"
 			},
 			{
+				"indexed": false,
 				"name": "_degreeKindName",
 				"type": "string"
 			}
 		],
-		"name": "setDegreeKind",
+		"name": "LeaderUpdatedEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_degreeKindId",
+				"type": "address"
+			}
+		],
+		"name": "CountryDeleteEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_degreeKindId",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_degreeKindName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "SetDegreeKindEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_degreeKindId",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "SetDeleteDegreeKind",
+		"type": "event"
+	}
+];
+
+var CertificateStorageABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "approveCertificate",
 		"outputs": [
 			{
-				"name": "",
+				"name": "success",
 				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
-	}
-];
-
-var NameStorageABI = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeKindId",
-				"type": "uint256"
-			},
-			{
-				"name": "_degreeNameId",
-				"type": "uint256"
-			},
-			{
-				"name": "_degreeName",
-				"type": "string"
-			}
-		],
-		"name": "setDegreeName",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDegreeNameIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "uint256"
-			}
-		],
-		"name": "getDegreeName",
-		"outputs": [
-			{
-				"name": "degreeKindId",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeNameId",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeName",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
-
-var CertificateStorageABI = [
 	{
 		"constant": false,
 		"inputs": [
@@ -161,79 +247,6 @@ var CertificateStorageABI = [
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_rdid",
-				"type": "address"
-			}
-		],
-		"name": "getCertificateAdditionDetail",
-		"outputs": [
-			{
-				"name": "modeOfStudy",
-				"type": "string"
-			},
-			{
-				"name": "certificateDeliveryDate",
-				"type": "string"
-			},
-			{
-				"name": "number",
-				"type": "uint256"
-			},
-			{
-				"name": "regNo",
-				"type": "string"
-			},
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "id",
-				"type": "address"
-			}
-		],
-		"name": "isUser",
-		"outputs": [
-			{
-				"name": "isIndeed",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "getCertificateIndex",
-		"outputs": [
-			{
-				"name": "_id",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -272,96 +285,6 @@ var CertificateStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_rdid",
-				"type": "address"
-			}
-		],
-		"name": "getHistoryCertificate",
-		"outputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "thaotac",
-				"type": "string"
-			},
-			{
-				"name": "createTimeCertificate",
-				"type": "string"
-			},
-			{
-				"name": "comment",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getHisCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_rdid",
-				"type": "address"
-			}
-		],
-		"name": "getCertificateAddition",
-		"outputs": [
-			{
-				"name": "dateOfBirth",
-				"type": "string"
-			},
-			{
-				"name": "status",
-				"type": "string"
-			},
-			{
-				"name": "yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeClassification",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getUserCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
@@ -394,114 +317,6 @@ var CertificateStorageABI = [
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "getHisIndex",
-		"outputs": [
-			{
-				"name": "_id",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "status",
-				"type": "string"
-			}
-		],
-		"name": "approveCertificate",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "thaotac",
-				"type": "string"
-			},
-			{
-				"name": "createTimeCertificate",
-				"type": "string"
-			},
-			{
-				"name": "comment",
-				"type": "string"
-			}
-		],
-		"name": "setHistoryCer",
-		"outputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_rdid",
-				"type": "address"
-			}
-		],
-		"name": "getCertificate",
-		"outputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "universityName",
-				"type": "string"
-			},
-			{
-				"name": "typeOfDegree",
-				"type": "string"
-			},
-			{
-				"name": "major",
-				"type": "string"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -606,11 +421,60 @@ var CertificateStorageABI = [
 		"type": "event"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"name": "idCer",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
+				"type": "string"
+			}
+		],
+		"name": "setHistoryCer",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": true,
 				"name": "rdhid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "idCer",
 				"type": "address"
 			},
 			{
@@ -727,8 +591,743 @@ var CertificateStorageABI = [
 		],
 		"name": "updateStatusAdditionDetail",
 		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "universityName",
+				"type": "string"
+			},
+			{
+				"name": "typeOfDegree",
+				"type": "string"
+			},
+			{
+				"name": "major",
+				"type": "string"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificateAddition",
+		"outputs": [
+			{
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"name": "status",
+				"type": "string"
+			},
+			{
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"name": "degreeClassification",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificateAdditionDetail",
+		"outputs": [
+			{
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getCertificateIndex",
+		"outputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getHisCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getHisIndex",
+		"outputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getHistoryCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"name": "idCer",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "address"
+			}
+		],
+		"name": "isUser",
+		"outputs": [
+			{
+				"name": "isIndeed",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
+
+var SchoolStorageABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_islocked",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateIslocked",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			},
+			{
+				"name": "_islocked",
+				"type": "string"
+			}
+		],
+		"name": "insertSchoolAddition",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			}
+		],
+		"name": "getSchoolAddition",
+		"outputs": [
+			{
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			},
+			{
+				"name": "_islocked",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getSchoolAtIndex",
+		"outputs": [
+			{
+				"name": "SchoolAddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateFax",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			}
+		],
+		"name": "getSchool",
+		"outputs": [
+			{
+				"name": "SchoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"name": "addr",
+				"type": "string"
+			},
+			{
+				"name": "fax",
+				"type": "string"
+			},
+			{
+				"name": "phone",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_phone",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updatePhone",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateAddr",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			}
+		],
+		"name": "deleteSchool",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateFullName",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"name": "_phone",
+				"type": "string"
+			}
+		],
+		"name": "insertSchool",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getSchoolCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateEmail",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_phone",
+				"type": "string"
+			}
+		],
+		"name": "SetSchoolEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_modifiedTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_isLocked",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "SetSchoolAdditionEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_phone",
+				"type": "string"
+			}
+		],
+		"name": "SetLogUpdateSchoolEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_modifiedTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_isLocked",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "SetLogUpdateSchoolAdditionEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "SetLogDeleteSchool",
+		"type": "event"
+	}
+];
+
+
 var UserManagementStorageABI = [
 	{
 		"constant": false,
@@ -739,10 +1338,10 @@ var UserManagementStorageABI = [
 			},
 			{
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -788,7 +1387,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -797,6 +1396,72 @@ var UserManagementStorageABI = [
 			{
 				"name": "success",
 				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_phoneNumber",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "uint256"
+			}
+		],
+		"name": "updatePhoneNumber",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_userAddress",
+				"type": "address"
+			},
+			{
+				"name": "_fullName",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_password",
+				"type": "string"
+			},
+			{
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"name": "_dateOfBirth",
+				"type": "string"
+			}
+		],
+		"name": "insertUser",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -869,42 +1534,11 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_phoneNumber",
-				"type": "uint256"
-			},
-			{
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"name": "_userAddr",
-				"type": "string"
-			}
-		],
-		"name": "insertUserDetailFlus",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
 				"name": "_idCardIssuePlace",
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -931,7 +1565,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -940,49 +1574,6 @@ var UserManagementStorageABI = [
 			{
 				"name": "success",
 				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_userId",
-				"type": "string"
-			},
-			{
-				"name": "_fullName",
-				"type": "string"
-			},
-			{
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_dateOfBirth",
-				"type": "uint256"
-			}
-		],
-		"name": "insertUser",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -1004,10 +1595,6 @@ var UserManagementStorageABI = [
 				"type": "address"
 			},
 			{
-				"name": "_userId",
-				"type": "string"
-			},
-			{
 				"name": "_fullName",
 				"type": "string"
 			},
@@ -1025,7 +1612,7 @@ var UserManagementStorageABI = [
 			},
 			{
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -1044,7 +1631,7 @@ var UserManagementStorageABI = [
 		"outputs": [
 			{
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"name": "_job",
@@ -1075,7 +1662,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1102,7 +1689,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1143,7 +1730,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1170,7 +1757,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1197,7 +1784,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1224,7 +1811,7 @@ var UserManagementStorageABI = [
 				"type": "string"
 			},
 			{
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			}
 		],
@@ -1283,18 +1870,22 @@ var UserManagementStorageABI = [
 			},
 			{
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
-				"name": "_createdTime",
-				"type": "uint256"
+				"name": "_job",
+				"type": "string"
+			},
+			{
+				"name": "_userAddr",
+				"type": "string"
 			}
 		],
-		"name": "updatePhoneNumber",
+		"name": "insertUserDetailFlus",
 		"outputs": [
 			{
-				"name": "success",
-				"type": "bool"
+				"name": "index",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -1330,11 +1921,6 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_userId",
-				"type": "string"
-			},
-			{
-				"indexed": false,
 				"name": "_fullName",
 				"type": "string"
 			},
@@ -1356,7 +1942,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"name": "SetUserManagementEvent",
@@ -1410,7 +1996,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -1441,11 +2027,6 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_userId",
-				"type": "string"
-			},
-			{
-				"indexed": false,
 				"name": "_fullName",
 				"type": "string"
 			},
@@ -1467,7 +2048,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_dateOfBirth",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"name": "SetLogUpdateUserManagementEven",
@@ -1488,12 +2069,12 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_modifiedTime",
+				"name": "_createdTime",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
-				"name": "_createdTime",
+				"name": "_modifiedTime",
 				"type": "uint256"
 			},
 			{
@@ -1521,7 +2102,7 @@ var UserManagementStorageABI = [
 			{
 				"indexed": false,
 				"name": "_phoneNumber",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"indexed": false,

@@ -18,6 +18,8 @@ contract CertificateStorage {
     }
 
     struct historyUserCertificate {
+        address nguoitt;
+        address idCer;
         string thaotac;
         string createTimeCertificate;
         string comment;
@@ -59,6 +61,8 @@ contract CertificateStorage {
 
     event setHistoryEvent(
         address indexed rdhid,
+        address nguoitt,
+        address idCer,
         string thaotac,
         string createTimeCertificate,
         string comment,
@@ -161,16 +165,22 @@ contract CertificateStorage {
 
     function setHistoryCer(
         address rdid,
+        address nguoitt,
+        address idCer,
         string memory thaotac,
         string memory createTimeCertificate,
         string memory comment
     ) public returns(uint _index){
+        historyCertificate[rdid].nguoitt = nguoitt;
+        historyCertificate[rdid].idCer = idCer;
         historyCertificate[rdid].thaotac = thaotac;
         historyCertificate[rdid].createTimeCertificate = createTimeCertificate;
         historyCertificate[rdid].comment = comment;
         historyCertificate[rdid].index = historyCerIndex.push(rdid)-1;
         emit setHistoryEvent(
             rdid,
+            nguoitt,
+            idCer,
             thaotac,
             createTimeCertificate,
             comment,
@@ -183,12 +193,16 @@ contract CertificateStorage {
     //show history
     function getHistoryCertificate(address _rdid) public view returns(
         address rdid,
+        address nguoitt,
+        address idCer,
         string memory thaotac,
         string memory createTimeCertificate,
         string memory comment
     ){
         return(
             _rdid,
+            historyCertificate[_rdid].nguoitt,
+            historyCertificate[_rdid].idCer,
             historyCertificate[_rdid].thaotac,
             historyCertificate[_rdid].createTimeCertificate,
             historyCertificate[_rdid].comment

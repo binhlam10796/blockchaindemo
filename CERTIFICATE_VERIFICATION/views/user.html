@@ -131,9 +131,10 @@
                                                 class="form-control"
                                                 style="width:
                                                 150px;">
-                                                <option value="20" selected> 20
+                                                
+                                                <option value="5" selected> 5 </option>
+                                                <option value="10"> 10
                                                 </option>
-                                                <option value="10"> 10 </option>
                                                 <option value="50"> 50 </option>
                                             </select>
                                         </div>
@@ -212,7 +213,8 @@
                                                 class="form-control"
                                                 style="width:
                                                 150px;">
-                                                <option value="20" selected> 20 </option>
+                                                
+                                                <option value="5" selected> 5 </option>
                                                 <option value="10"> 10 </option>
                                                 <option value="50"> 50 </option>
                                                 </option>
@@ -258,7 +260,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <!-- The time line -->
-                                            <ul class="timeline">
+                                            <ul class="timeline" id="timeline">
                                                 <!-- timeline time label -->
                                                 <!-- <li class="time-label" >
                                                     <span class="bg-red">
@@ -435,34 +437,28 @@
                         <form class="form-horizontal" id="addCertificateForm">
                             
                             <div class="form-group">
-                                <label for="name" class="col-sm-2
-                                    control-label">Tên trường đại học</label>
+                                <label for="name" class="col-sm-2 control-label">Tên trường đại học</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control"
-                                        id="universityName"
-                                        placeholder="Tên trường đại học"
-                                        data-parsley-required="true"
-                                        data-parsley-error-message="Không được
-                                        rỗng.">
+                                    <select name="SchoolSelect" id="universityName"
+                                    data-parsley-required="true">
+                                    </select>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
-                                <label for="name" class="col-sm-2
-                                    control-label">Loại văn bằng</label>
+                                <label for="name" class="col-sm-2 control-label">Loại văn bằng</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control"
-                                        id="typeOfDegree"
-                                        placeholder="Loại văn bằng"
-                                        data-parsley-required="true"
-                                        data-parsley-error-message="Không được
-                                        rỗng.">
+                                    <select name="DegreeKindSelect" id="typeOfDegree"
+                                    data-parsley-required="true">
+                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-2
-                                    control-label">Chuyên ngành</label>
+                            <br>
 
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Chuyên ngành</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
                                         id="major"
@@ -472,6 +468,8 @@
                                         rỗng.">
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <label for="name" class="col-sm-2
                                     control-label">Họ tên</label>
@@ -625,7 +623,36 @@
                 </div>
             </div>
         </div>
+        <!--End modal approve-->
 
+
+
+        <!--Modal view user-->
+        <div class="modal fade" id="viewUserModal">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                            data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Thông tin người dùng</h4>
+                    </div>
+                    <div class="modal-body" style="overflow-x:auto;">
+                        <table id="viewUser" class="table" cellspacing="0"
+                            style="width:100%">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!--End modal view user-->
     </body>
 
 </html>

@@ -5,120 +5,175 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0x8A13b0eBd02AE5026252134Fd0fbe54a23E8eC98");
+var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0x1Cbaac790Fae48baC414cefF08246dA6bceB05fA");
+var degreeKindSessionInstance = new web3.eth.Contract(KindStorageABI, "0xEDa26Ff4A9F9fD8ABa7DAC520A530ab9362e54Fe");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x99440E9b6Fc1ff3a7E0E16C90822A55038c62F60");
+var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xE6A67C0e38A0a4609E4869088416801c6E12F742");
+
 
 function addCertificate() {
     if ($('#addCertificateForm').parsley().validate()) {
-        var temp = web3.eth.accounts.create();
-        var id = temp.address;
-        var universityName = $("#universityName").val();
-        var typeOfDegree = $("#typeOfDegree").val();
-        var major = $("#major").val();
-        var name = $("#name").val();
-        var dateOfBirth = $("#dateOfBirth").val();
-        var yearOfGraduation = $("#yearOfGraduation").val();
-        var degreeClassification = $("#degreeClassification").val();
-        var modeOfStudy = $("#modeOfStudy").val();
-        var certificateDeliveryDate = $("#certificateDeliveryDate").val();
-        var number = $("#number").val();
-        var regNo = $("#regNo").val();
-        var status = "WAITTING";
-        var batch = new web3.BatchRequest();
-        batch.add(certificateSessionIntance.methods.setCertificate(id, universityName, typeOfDegree, major, name)
-            .send({
-                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-            }, function (error, result) {
-                try {
-                    if (error.message.includes("User denied transaction signature")) {
-                        alert("Denied transaction!");
-                    }
-                }
-                catch (err) {
-                    //console.log("OK Loi~");
-                }
-            }
-            ));
-        //console.log("b1");
+        web3.eth.getAccounts(function (error, result) {
 
-        batch.add(certificateSessionIntance.methods.setCertificateAddition(id, dateOfBirth, status, yearOfGraduation, degreeClassification)
-            .send({
-                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-            }, function (error, result) {
-                try {
-                    if (error.message.includes("User denied transaction signature")) {
-                        alert("Denied transaction!");
+            var temp = web3.eth.accounts.create();
+            var id = temp.address;
+            var universityName = $("#universityName").val();
+            var typeOfDegree = $("#typeOfDegree").val();
+            var major = $("#major").val();
+            var name = $("#name").val();
+            var dateOfBirth = $("#dateOfBirth").val();
+            var yearOfGraduation = $("#yearOfGraduation").val();
+            var degreeClassification = $("#degreeClassification").val();
+            var modeOfStudy = $("#modeOfStudy").val();
+            var certificateDeliveryDate = $("#certificateDeliveryDate").val();
+            var number = $("#number").val();
+            var regNo = $("#regNo").val();
+            var status = "WAITTING";
+            var batch = new web3.BatchRequest();
+            var ac = result[0];
+            batch.add(certificateSessionIntance.methods.setCertificate(id, universityName, typeOfDegree, major, name)
+                .send({
+                    from: ac
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        //console.log("OK Loi~");
                     }
                 }
-                catch (err) {
-                    //console.log("OK Loi~");
-                }
-            }));
-        //console.log("b2");
-        batch.add(certificateSessionIntance.methods.setCertificateAdditionDetail(id, modeOfStudy, certificateDeliveryDate, number, regNo)
-            .send({
-                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-            }, function (error, result) {
-                try {
-                    if (error.message.includes("User denied transaction signature")) {
-                        alert("Denied transaction!");
+                ));
+            //console.log("b1");
+
+            batch.add(certificateSessionIntance.methods.setCertificateAddition(id, dateOfBirth, status, yearOfGraduation, degreeClassification)
+                .send({
+                    from: ac
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        //console.log("OK Loi~");
+                    }
+                }));
+            //console.log("b2");
+            batch.add(certificateSessionIntance.methods.setCertificateAdditionDetail(id, modeOfStudy, certificateDeliveryDate, number, regNo)
+                .send({
+                    from: ac
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        console.log("This is feature!");
                     }
                 }
-                catch (err) {
-                    console.log("This is feature!");
-                }
-            }
-            )
-        );
-        var thaotac = "thêm";
-        var comment = "Day la comment!"
-        var createTimeCertificate = new Date(Date.now()).toLocaleString();
-        batch.add(certificateSessionIntance.methods.setHistoryCer(id, thaotac, createTimeCertificate, comment)
-            .send({
-                from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-            }, function (error, result) {
-                try {
-                    if (error.message.includes("User denied transaction signature")) {
-                        alert("Denied transaction!");
+                )
+            );
+            
+            //console.log(ac);
+            var thaotac = "thêm";
+            var comment = "Day la comment!"
+            var his = web3.eth.accounts.create();
+            var idhis = his.address;
+            var createTimeCertificate = new Date(Date.now()).toLocaleString();
+            batch.add(certificateSessionIntance.methods.setHistoryCer(idhis, ac, id, thaotac, createTimeCertificate, comment)
+                .send({
+                    from: ac
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        console.log("This is feature!");
                     }
                 }
-                catch (err) {
-                    console.log("This is feature!");
+                )
+                .on('transactionHash', (hash) => {
+                    // getConfirmations(hash);
+                    // confirmEtherTransaction(hash, 3);
+                    $("#addUser").hide();
+                    alert("Processing...Please wait for the notification!");
+                })
+                .on('receipt', (receipt) => {
+                    alert("Success!");
+                    location.reload();
+                })
+                .on('confirmation', (confirmationNumber, receipt) => {
+                    //console.log(confirmationNumber);
+                })
+                .on('error', console.err)
+            );
+            try {
+                batch.execute();
+                if (error.message.includes("JSONRPC method should be specified for params:")) {
+                    console.log("This is more features!");
                 }
             }
-            )
-            .on('transactionHash', (hash) => {
-                // getConfirmations(hash);
-                // confirmEtherTransaction(hash, 3);
-                $("#addUser").hide();
-                alert("Processing...Please wait for the notification!");
-            })
-            .on('receipt', (receipt) => {
-                alert("Success!");
-                location.reload();
-            })
-            .on('confirmation', (confirmationNumber, receipt) => {
-                //console.log(confirmationNumber);
-            })
-            .on('error', console.err)
-        );
-        try {
-            batch.execute();
-            if (error.message.includes("JSONRPC method should be specified for params:")) {
-                console.log("This is more features!");
+            catch (err) {
+                console.log("This is feature");
             }
-        }
-        catch (err) {
-            console.log("This is feature");
-        }
+        });
     }
     //end parsley
+}
+
+
+
+
+function getSchoolOption() {
+    var select = `<option value="" selected disabled>Chọn trường đại học</option>`;
+    SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (count) {
+        for (let row = 0; row < count; row++) {
+            SchoolManagementSessionInstance.methods.getSchoolAtIndex(row).call().then(function (addr) {
+                SchoolManagementSessionInstance.methods.getSchool(addr).call().then(function (result) {
+
+                    select += `<option value="` + result[1] + `">` + result[1] + `</option>`;
+                    $("#universityName").html(select);
+                })
+            })
+        }
+    });
+}
+
+function getDegreeKindOption() {
+    var select = `<option value="" selected disabled>Chọn loại văn bằng</option>`;
+    degreeKindSessionInstance.methods.getDegreeKindCount().call().then(function (count) {
+        for (let row = 0; row < count; row++) {
+            degreeKindSessionInstance.methods.getDegreeKindAtIndex(row).call().then(function (addr) {
+                degreeKindSessionInstance.methods.getDegreeKind(addr).call().then(function (result) {
+
+                    select += `<option value="` + result[1] + `">` + result[1] + `</option>`;
+                    $("#typeOfDegree").html(select);
+                })
+            })
+        }
+    });
+}
+
+function getAccount() {
+    var account = web3.eth.accounts[0];
+    var accountInterval = setInterval(function () {
+        if (web3.eth.accounts[0] !== account) {
+            account = web3.eth.accounts[0];
+            document.getElementById("address").innerHTML = account;
+        }
+    }, 100);
 }
 //Load list certificate and pagination
 function pag() {
     $('.pagination').html('')
     var table = '#listCertificationTable';
     var trnum = 0;
-    var maxRows = 20;
+    var maxRows = 5;
     var totalRows = $('#listCertificationTable tbody tr').length;
     //console.log(totalRows);
     $(table + ' tr:gt(0)').each(function () {
@@ -158,7 +213,7 @@ function pagApprove() {
     $('#approveNumber').html('')
     var table = '#listCertificationApprove';
     var trnum = 0;
-    var maxRows = 20;
+    var maxRows = 5;
     var totalRows = $('#listCertificationApprove tbody tr').length;
     //console.log(totalRows);
     $(table + ' tr:gt(0)').each(function () {
@@ -173,7 +228,7 @@ function pagApprove() {
     if (totalRows > maxRows) {
         var pagenum = Math.ceil(totalRows / maxRows)
         for (var i = 1; i <= pagenum;) {
-            $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+            $('#approveNumber').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
         }
     }
     $('#approveNumber li:first-child').addClass('active')
@@ -194,12 +249,64 @@ function pagApprove() {
 }
 
 
+//Sort table by id
+function sortTable() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("listCertificationTable");
+    switching = true;
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+
+
+  //Sort table by id
+function sortTableApprove() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("listCertificationApprove");
+    switching = true;
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+
+
 $(window).on('load', function () {
     listCertification();
+    getSchoolOption();
+    getDegreeKindOption();
     $(document).ready(function () {
         var table = '#listCertificationTable';
-        setTimeout(pag, 2000);
-
+        setTimeout(pag, 5000);
+        setTimeout(sortTable, 4000);
 
 
         $('#maxRowsListDegree').on('change', function () {
@@ -242,6 +349,7 @@ $(window).on('load', function () {
 
     listCertificationApprove();
     setTimeout(pagApprove, 5000);
+    setTimeout(sortTableApprove, 4000);
     $(document).ready(function () {
         var table = '#listCertificationApprove'
         $('#maxRowsListApprove').on('change', function () {
@@ -416,64 +524,69 @@ function createApproveView(id, universityName, typeOfDegree, major, name, dateOf
 }
 
 function doApproveCertificate() {
-    var id = document.getElementById("tdId").innerText;
-    var status = "DONE";
-    var batch = new web3.BatchRequest();
-
-    batch.add(certificateSessionIntance.methods.approveCertificate(id, status)
-        .send({
-            from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-        }, function (error, result) {
+    web3.eth.getAccounts(function (error, result) {
+            var id = document.getElementById("tdId").innerText;
+            var status = "DONE";
+            var batch = new web3.BatchRequest();
+            var account = result[0];
+            batch.add(certificateSessionIntance.methods.approveCertificate(id, status)
+                .send({
+                    from: account
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        console.log("This is feature!");
+                    }
+                })
+            );
+            var his = web3.eth.accounts.create();
+            var idhis = his.address;
+            
+            var thaotac = "duyệt";
+            var comment = "Da duyet van bang";
+            var createTimeCertificate = new Date(Date.now()).toLocaleString();
+            batch.add(certificateSessionIntance.methods.setHistoryCer(idhis, account, id , thaotac, createTimeCertificate, comment)
+                .send({
+                    from: account
+                }, function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert("Denied transaction!");
+                        }
+                    }
+                    catch (err) {
+                        console.log("This is feature!");
+                    }
+                })
+                .on('transactionHash', (hash) => {
+                    // getConfirmations(hash);
+                    // confirmEtherTransaction(hash, 3);
+                    $("#addUser").hide();
+                    alert("Processing...Please wait for the notification!");
+                })
+                .on('receipt', (receipt) => {
+                    alert("Success!");
+                    location.reload();
+                })
+                .on('confirmation', (confirmationNumber, receipt) => {
+                    //console.log(confirmationNumber);
+                })
+                .on('error', console.err)
+            );
             try {
-                if (error.message.includes("User denied transaction signature")) {
-                    alert("Denied transaction!");
+                batch.execute();
+                if (error.message.includes("JSONRPC method should be specified for params:")) {
+                    console.log("This is more features!");
                 }
             }
             catch (err) {
-                console.log("This is feature!");
-            }
-        })
-    );
-    var thaotac = "duyệt";
-    var comment = "Da duyet van bang";
-    var createTimeCertificate = new Date(Date.now()).toLocaleString();
-    batch.add(certificateSessionIntance.methods.setHistoryCer(id, thaotac, createTimeCertificate, comment)
-        .send({
-            from: "0x508008bBF185f1FcE084aDEfF273728d5D7624d6"
-        }, function (error, result) {
-            try {
-                if (error.message.includes("User denied transaction signature")) {
-                    alert("Denied transaction!");
-                }
-            }
-            catch (err) {
-                console.log("This is feature!");
-            }
-        })
-        .on('transactionHash', (hash) => {
-            // getConfirmations(hash);
-            // confirmEtherTransaction(hash, 3);
-            $("#addUser").hide();
-            alert("Processing...Please wait for the notification!");
-        })
-        .on('receipt', (receipt) => {
-            alert("Success!");
-            location.reload();
-        })
-        .on('confirmation', (confirmationNumber, receipt) => {
-            //console.log(confirmationNumber);
-        })
-        .on('error', console.err)
-    );
-    try {
-        batch.execute();
-        if (error.message.includes("JSONRPC method should be specified for params:")) {
-            console.log("This is more features!");
-        }
-    }
-    catch (err) {
-        console.log("This is feature");
-    };
+                console.log("This is feature");
+            };
+        });
 }
 
 
@@ -489,75 +602,76 @@ function exportExcel() {
 }
 
 
-function getHistory(){
+
+
+
+function getHistory() {
     certificateSessionIntance.methods.getHisCount().call().then(function (count) {
         for (let row = 0; row < count; row++) {
             certificateSessionIntance.methods.getHisIndex(row).call().then(function (addr) {
                 certificateSessionIntance.methods.getHistoryCertificate(addr).call().then(function (result) {
-                    if($(".time-label").length==0){
-                        timeLine(result[0],result[1],result[2]);
+                    if ($(".time-label").length == 0) {
+                        timeLine(result[1], result[3], result[4]);
                     }
-                    else if($(".time-label").length!=0 && $(".time-label").last().text().trim()==tg(result[2])){
-                        $('.time-label').last().after(`<li>
+                    else if ($(".time-label").length !== 0 && $(".time-label:contains('"+tg(result[4])+"')").text().trim() == tg(result[4])) {
+                        $(".time-label:contains('"+tg(result[4])+"')").first().after(`<li>
                              <i class="fa fa-user bg-aqua"></i>
                              <div class="timeline-item">
                                     <span class="time">
-                                     <i class="fa fa-clock-o"></i>`+relativeTime(result[2])+`</span>
+                                     <i class="fa fa-clock-o"></i>`+ relativeTime(result[4]) + `</span>
                                      <h3 class="timeline-header no-border">
-                                         <a href="#">User&nbsp;</a>`+result[0]+`                             
-                                         đã `+result[1]+`</h3>
+                                     <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+result[1]+`')">`+ result[1] + `</a> đã ` + result[3] + `</h3>
                              </div>
                          </li>`);
                     }
-                    else{
-                             $('li').last().after(`
+                    else {
+                        $('.time-label').first().before(`
                             <li class="time-label">
-                                    <span class="bg-green">`+tg(result[2])+`</span>
+                                    <span class="bg-green">`+ tg(result[4]) + `</span>
                             </li>
                             <li>
                             <i class="fa fa-user bg-aqua"></i>
                             <div class="timeline-item">
                                     <span class="time">
-                                    <i class="fa fa-clock-o"></i>`+relativeTime(result[2])+`</span>
+                                    <i class="fa fa-clock-o"></i>`+ relativeTime(result[4]) + `</span>
                                     <h3 class="timeline-header no-border">
-                                        <a href="#">New&nbsp;</a>`+result[0]+`                             
-                                        đã `+result[1]+`</h3>
+                                    <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+result[1]+`')">`+ result[1] + `</a> đã ` + result[3] + `</h3>
                             </div>
                         </li>`);
-                        }; 
+                    };
                 })
             })
         }
-    });  
+    });
 }
 
 
+
 //format date
-function tg(date){
-    var timeLabel = formatDate(new Date(cutStringDate(date))); 
+function tg(date) {
+    var timeLabel = formatDate(new Date(cutStringDate(date)));
     return timeLabel;
 }
 
 //ham time line break
-function timeLine(id,thaotac,thoigian){
+function timeLine(id, thaotac, thoigian) {
     var history = "";
-    
     history += `<li class="time-label">
-                    <span class="bg-red">`+tg(thoigian)+`</span>
+                    <span class="bg-red">`+ tg(thoigian) + `</span>
                 </li>
                 <li>
                 <i class="fa fa-user bg-aqua"></i>
                 <div class="timeline-item">
                 <span class="time">
-                    <i class="fa fa-clock-o"></i>`+relativeTime(thoigian)+`</span>
+                    <i class="fa fa-clock-o"></i>`+ relativeTime(thoigian) + `</span>
                         <h3 class="timeline-header no-border">
-                            <a href="#">Begin&nbsp;</a>`+id+`đã `+thaotac+`</h3>
+                            <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+id+`')">`+ id + `</a> đã ` + thaotac + `</h3>
                 </div>
                 </li>`;
-                           $("#historyCertification").find(".timeline").html(history);
+    $("#historyCertification").find(".timeline").html(history);
 }
 //Ham xu li thoi gian
-function cutStringDate(str){
+function cutStringDate(str) {
     var n = str.search(",");
     var result = str.slice(0, n);
     return result;
@@ -565,20 +679,49 @@ function cutStringDate(str){
 //6 Jan 2019
 function formatDate(date) {
     var monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
     ];
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
-  }
+}
 //a minute ago
-function relativeTime(date){
+function relativeTime(date) {
     var date1 = moment(date).fromNow();
     return date1;
 }
 //End ham xu li thoi gian
 
+//Modal view user
+function viewUser(id) {
+    console.log(id);
+    userManagementSessionInstance.methods.getUser(id).call().then(function (result){
+        userManagementSessionInstance.methods.getUserDetailMoreMore(id).call().then(function (result1){
+            var table = `<tr>
+                            <th>ID</th>
+                            <td>` + result[0] + `</td>
+                        <tr>
+                            <th>Họ và tên</th>
+                            <td>` + result[1] + `</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>` + result[2] + `</td>
+                        </tr>
+                        <tr>
+                            <th>Giới tính</th>
+                            <td>` + result[4] + `</td>
+                        </tr>
+                        <tr>
+                            <th>Số điện thoại</th>
+                            <td>` + result1[0] + `</td>
+                        </tr>`;
+                $("#viewUser").find("tbody").html(table);
+            })
+        })
+            
+}
