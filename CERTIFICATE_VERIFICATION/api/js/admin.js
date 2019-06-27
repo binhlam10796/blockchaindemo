@@ -128,7 +128,7 @@ function paginationDegreeKind() {
     $('#paginationKind').html('')
     var table = '#degreeKindTable';
     var trnum = 0;
-    var maxRows = 10;
+    var maxRows = 5;
     var totalRows = $('#degreeKindTable tbody tr').length;
     $(table + ' tr:gt(0)').each(function () {
         trnum++
@@ -472,7 +472,7 @@ function paginationLog() {
     $('#paginationLog').html('')
     var table = '#myTable';
     var trnum = 0;
-    var maxRows = 20;
+    var maxRows = 5;
     var totalRows = $('#myTable tbody tr').length;
     $(table + ' tr:gt(0)').each(function () {
         trnum++
@@ -512,8 +512,9 @@ $(window).on('load', function () {
     //panigationLog
     $(document).ready(function () {
         var table = '#myTable';
-        setTimeout(paginationLog, 2000);
-        $('#maxRowsLog').on('change', function () {
+        setTimeout(paginationLog, 5000);
+        // setTimeout(filterByType, 4000);
+        $('#maxRowsfilter').on('change', function () {
             $('#paginationLog').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
@@ -556,7 +557,7 @@ function paginationDegreeName() {
     $('#paginationName').html('')
     var table = '#degreeNameTable';
     var trnum = 0;
-    var maxRows = 10;
+    var maxRows = 5;
     var totalRows = $('#degreeNameTable tbody tr').length;
     $(table + ' tr:gt(0)').each(function () {
         trnum++
@@ -832,9 +833,10 @@ function frontUpdateDegreeNameManagement(degreeNameId, degreeKindName, degreeNam
 
 function updateDegreeNameManagement() {
     var degreeNameId = $('#insertValueUpdateDegreeNameModal .modal-body p').text();
+    var id = degreeNameId.slice(0,42);
     var degreeName = $('#valueUpdateDegreeName').val();
     var batch = new web3.BatchRequest();
-    batch.add(degreeNameSessionInstance.methods.updateDegreeName(degreeNameId, degreeName)
+    batch.add(degreeNameSessionInstance.methods.updateDegreeName(id, degreeName)
         .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
             function (error, result) {
                 try {
@@ -878,7 +880,7 @@ function paginationHistory() {
     $('#paginationHistory').html('')
     var table = '#historyTable';
     var trnum = 0;
-    var maxRows = 20;
+    var maxRows = 5;
     var totalRows = $('#historyTable tbody tr').length;
     $(table + ' tr:gt(0)').each(function () {
         trnum++
@@ -914,12 +916,11 @@ function paginationHistory() {
 }
 
 $(window).on('load', function () {
-    setTimeout(filterByType, 3000);
     listApproveDiary();
     //panigationHistory
     $(document).ready(function () {
         var table = '#historyTable';
-        setTimeout(paginationHistory, 2000);
+        setTimeout(paginationHistory, 5000);
         $('#maxRowsHistory').on('change', function () {
             $('#paginationHistory').html('')
             var trnum = 0;
@@ -957,7 +958,6 @@ $(window).on('load', function () {
             })
         })
     });
-    //setTimeout(sortTableHistory(),5000);
     getListHistory();
 });
 
@@ -1002,6 +1002,7 @@ function listApproveDiary() {
             certificateSessionIntance.methods.getHisIndex(row).call().then(function (addr) {
                 certificateSessionIntance.methods.getHistoryCertificate(addr).call().then(function (result) {
                     userManagementSessionInstance.methods.getUser(result[1]).call().then(function (result1) {
+                        if(result[3] == "duyệt"){
                         table += `<tr>
                                         <td>` + result[1] + `</td>
                                         <td>` + result1[1] + `</td>
@@ -1011,6 +1012,7 @@ function listApproveDiary() {
                                         <td>` + result[5] + `</td>
                                     </tr>`;
                         $("#myTable").find("tbody").html(table);
+                        }
                     })
                 }).catch(err => {
                     console.log(err);
@@ -1045,7 +1047,7 @@ function filterByName() {
 function filterByType() {
     var input, filter, table, tr, td, i, txtValue;
     input = "Đã Duyệt";
-    filter = input.toUpperCase(); console.log(filter);
+    filter = input.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {

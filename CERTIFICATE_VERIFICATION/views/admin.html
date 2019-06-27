@@ -182,7 +182,7 @@
                                         Thêm</button>
                                     <select name="state"
                                             id="maxRowsDegreeKind" style="width: 150px; height: 31px;">
-                                            <option value="10"> 10 </option>
+                                            <option value="5"> 5 </option>
                                             <option value="20"> 20 </option>
                                             <option value="30"> 30 </option>
                                     </select>
@@ -289,7 +289,7 @@
                                         Thêm</button>
                                     <select name="state"
                                             id="maxRowsDegreeName" style="width: 150px; height: 31px;">
-                                            <option value="10"> 10 </option>
+                                            <option value="5"> 5 </option>
                                             <option value="20"> 20 </option>
                                             <option value="30"> 30 </option>
                                     </select>
@@ -346,7 +346,10 @@
                                 <form id="idDegreeNameForm">
                                     <div>
                                         <select name="idKindDegreeSelect"
-                                            id="idKindDegreeSelect">
+                                            id="idKindDegreeSelect"
+                                            data-parsley-required="true"
+                                            data-parsley-error-message="Không
+                                            được rỗng.">
 
                                         </select>
                                     </div>
@@ -515,7 +518,7 @@
                                             <select name="state"
                                                 id="maxRowsHistory"
                                                 class="btn btn-success btn-sm" style="width: 150px; height: 31px; font-size: 13px;">
-                                                <option value="20"> 20 </option>
+                                                <option value="5" selected> 5 </option>
                                                 <option value="30"> 30 </option>
                                                 <option value="50"> 50 </option>
                                             </select>
