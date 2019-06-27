@@ -4,12 +4,12 @@ contract UserManagementStorage {
    //eventInsert
    event SetUserManagementEvent(
       address _userAddress,
-      string _userId,
+      //address _userId,
       string _fullName,
       string _email,
       string _password,
       string _gender,
-      uint256 _dateOfBirth);
+      string _dateOfBirth);
 
    event SetUserManagementAdditionEvent(
       address _userAddress,
@@ -21,7 +21,7 @@ contract UserManagementStorage {
 
    event SetUserManagementAdditionFlusEvent(
       address _userAddress,
-      uint256 _phoneNumber,
+      string _phoneNumber,
       string _job,
       string _userAddr,
       uint256 _index);
@@ -29,22 +29,22 @@ contract UserManagementStorage {
    //eventUpdate
    event SetLogUpdateUserManagementEven(
       address _userAddress,
-      string _userId,
+      //address _userId,
       string _fullName,
       string _email,
       string _password,
       string _gender,
-      uint256 _dateOfBirth);
+      string _dateOfBirth);
    event SetLogUpdateUserManagementAdditionEven(
       address _userAddress,
       string _isLocked,
-      uint256 _modifiedTime,
       uint256 _createdTime,
+      uint256 _modifiedTime,
       string _idCardNo,
       string _idCardIssuePlace);
    event SetLogUpdateUserManagementAdditionFlusEven(
       address _userAddress,
-      uint256 _phoneNumber,
+      string _phoneNumber,
       string _job,
       string _userAddr,
       uint256 _index);
@@ -56,12 +56,12 @@ contract UserManagementStorage {
 
    struct UserManagement {
       address userAddress;
-      string userId;
+      //address userId;
       string fullName;
       string email;
       string password;
       string gender;
-      uint256 dateOfBirth;
+      string dateOfBirth;
       string isLocked;
 
       uint256 createdTime;
@@ -69,7 +69,7 @@ contract UserManagementStorage {
       string idCardNo;
       string idCardIssuePlace;
 
-      uint256 phoneNumber;
+      string phoneNumber;
       string job;
       string userAddr;
       uint256 index;
@@ -86,23 +86,23 @@ contract UserManagementStorage {
 
    function insertUser(
       address _userAddress,
-      string memory _userId,
+      //address _userId,
       string memory _fullName,
       string memory _email,
       string memory _password,
       string memory _gender,
-      uint256 _dateOfBirth
+      string memory _dateOfBirth
       )
       public returns(uint256 index){
       //if(isUser(_userAddress)) revert('throw');
-      userManagementStructs[_userAddress].userId = _userId;
+      //userManagementStructs[_userAddress].userId = _userId;
       userManagementStructs[_userAddress].fullName = _fullName;
       userManagementStructs[_userAddress].email = _email;
       userManagementStructs[_userAddress].password = _password;
       userManagementStructs[_userAddress].gender = _gender;
       userManagementStructs[_userAddress].dateOfBirth = _dateOfBirth;
 
-      emit SetUserManagementEvent(_userAddress, _userId, _fullName, _email, _password, _gender, _dateOfBirth);
+      emit SetUserManagementEvent(_userAddress, _fullName, _email, _password, _gender, _dateOfBirth);
       // emit SetUserManagementAdditionEvent(_userAddress, _createdTime, _modifiedTime, _idCardNo, _idCardIssuePlace);
       // emit SetUserManagementAdditionFlusEvent(
       //    _userAddress,
@@ -134,7 +134,7 @@ contract UserManagementStorage {
 
    function insertUserDetailFlus(
       address _userAddress,
-      uint256 _phoneNumber,
+      string memory _phoneNumber,
       string  memory _job,
       string  memory _userAddr
       )
@@ -167,7 +167,7 @@ contract UserManagementStorage {
 
       emit SetLogUpdateUserManagementEven(
          keyToMove,
-         userManagementStructs[keyToMove].userId,
+         //userManagementStructs[keyToMove].userId,
          userManagementStructs[keyToMove].fullName,
          userManagementStructs[keyToMove].email,
          userManagementStructs[keyToMove].password,
@@ -193,17 +193,17 @@ contract UserManagementStorage {
 
    function getUser(address _userAddress) public view returns(
       address userAddress,
-      string memory _userId,
+      //address _userId,
       string memory _fullName,
       string memory _email,
       string memory _password,
       string memory _gender,
-      uint256 _dateOfBirth
+      string memory _dateOfBirth
       ){
       // if(!isUser(_userAddress)) revert('throw');
       return(
          _userAddress,
-         userManagementStructs[_userAddress].userId,
+         //userManagementStructs[_userAddress].userId,
          userManagementStructs[_userAddress].fullName,
          userManagementStructs[_userAddress].email,
          userManagementStructs[_userAddress].password,
@@ -228,7 +228,7 @@ contract UserManagementStorage {
    }
 
    function getUserDetailMoreMore(address _userAddress) public view returns(
-      uint256 _phoneNumber,
+      string memory _phoneNumber,
       string  memory  _job,
       string  memory  _userAddr,
       uint256 index
@@ -252,7 +252,7 @@ contract UserManagementStorage {
       userManagementStructs[_userAddress].modifiedTime = _modifiedTime;
       emit SetLogUpdateUserManagementEven(
          _userAddress,
-         userManagementStructs[_userAddress].userId,
+         //userManagementStructs[_userAddress].userId,
          _fullName,
          userManagementStructs[_userAddress].email,
          userManagementStructs[_userAddress].password,
@@ -313,7 +313,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateDateOfBirth(address _userAddress, uint256  _dateOfBirth, uint256 _modifiedTime)
+   function updateDateOfBirth(address _userAddress, string memory  _dateOfBirth, uint256 _modifiedTime)
       public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].dateOfBirth = _dateOfBirth;
@@ -377,7 +377,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updatePhoneNumber(address _userAddress, uint256 _phoneNumber, uint256 _modifiedTime)
+   function updatePhoneNumber(address _userAddress, string memory _phoneNumber, uint256 _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].phoneNumber = _phoneNumber;

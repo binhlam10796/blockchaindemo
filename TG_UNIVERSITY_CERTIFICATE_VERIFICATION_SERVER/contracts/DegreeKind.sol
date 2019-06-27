@@ -1,40 +1,94 @@
 pragma solidity >=0.4.21 <0.6.0;
 
 contract DegreeKindStorage {
-
-    // event setDegreeKindEvent(address userAddressKind, string degreeKindName);
-    uint256 index;
-
     struct DegreeKind {
-        address userAddressKind;
         string degreeKindName;
+        uint256 index;
     }
 
     mapping (address => DegreeKind) DegreeKindMapping;
+    address[] degreeKindIndex;
 
+    event LeaderUpdatedEvent(
+        address _degreeKindId,
+        string _degreeKindName
+    );
 
-    // event LeaderUpdated(address userAddressKind , string degreeKindName);
-    // event CountryDelete(address userAddressKind);
+    event CountryDeleteEvent(
+        address _degreeKindId
+    );
 
-    DegreeKind degreeKind;
+    event SetDegreeKindEvent(
+        address _degreeKindId,
+        string _degreeKindName,
+        uint256 _index
+    );
 
-    function setDegreeKind(address _userAddressKind, string memory _degreeKindName) public returns(bool) {
-        degreeKind.userAddressKind = _userAddressKind;
-        degreeKind.degreeKindName = _degreeKindName;
+    event SetDeleteDegreeKind(
+        address _degreeKindId,
+        uint256 index
+    );
 
-        DegreeKindMapping[_userAddressKind] = degreeKind;
-        // emit setDegreeKindEvent(_userAddressKind, _degreeKindName);
-        index++;
+    function isUser(address _degreeKindId) public view returns(bool isIndeed) {
+      if(degreeKindIndex.length == 0) return false;
+      return (degreeKindIndex[DegreeKindMapping[_degreeKindId].index] == _degreeKindId);
+   }
 
+    function InsertDegreeKind(
+        address _degreeKindId,
+        string memory _degreeKindName
+    ) public returns(uint256 index) {
+        DegreeKindMapping[_degreeKindId].degreeKindName = _degreeKindName;
+        DegreeKindMapping[_degreeKindId].index = degreeKindIndex.push(_degreeKindId)-1;
+        emit SetDegreeKindEvent(
+            _degreeKindId,
+            _degreeKindName,
+            DegreeKindMapping[_degreeKindId].index);
+        return degreeKindIndex.length-1;
+    }
+
+    function deleteDegreeKind(address _degreeKindId) public returns(uint256 index){
+        uint256 rowToDelete = DegreeKindMapping[_degreeKindId].index;
+        address keyToMove = degreeKindIndex[degreeKindIndex.length-1];
+        degreeKindIndex[rowToDelete] = keyToMove;
+        DegreeKindMapping[keyToMove].index = rowToDelete;
+
+        degreeKindIndex.length--;
+        emit SetDeleteDegreeKind(
+            _degreeKindId,
+            rowToDelete);
+        emit SetDegreeKindEvent(
+            keyToMove,
+            DegreeKindMapping[keyToMove].degreeKindName,
+            rowToDelete);
+        return rowToDelete;
+    }
+
+    function getDegreeKind(
+        address _degreeKindId
+    ) public view returns(
+        address degreeKindId,
+        string memory degreeKindName
+    ) {
+        return (
+            _degreeKindId,
+            DegreeKindMapping[_degreeKindId].degreeKindName
+        );
+    }
+
+    function updateDegreeKindName(
+        address _degreeKindId,
+        string  memory  _degreeKindName
+    ) public returns(bool success) {
+        DegreeKindMapping[_degreeKindId].degreeKindName = _degreeKindName;
         return true;
     }
 
-    function getDegreeKind(address _userAddressKind) public view returns(address userAddressKind, string memory degreeKindName) {
-        DegreeKind memory tmpData = DegreeKindMapping[_userAddressKind];
-        return (tmpData.userAddressKind, tmpData.degreeKindName);
-    }
+    function getDegreeKindCount() public view returns(uint256 count){
+        return degreeKindIndex.length;
+      }
 
-    function getDegreeKindIndex() public view returns(uint256) {
-        return index;
+    function getDegreeKindAtIndex(uint256 _index) public view returns(address userAddress) {
+        return degreeKindIndex[_index];
     }
 }
