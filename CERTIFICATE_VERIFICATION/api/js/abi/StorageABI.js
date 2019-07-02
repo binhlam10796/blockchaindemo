@@ -2118,19 +2118,19 @@ var UserManagementStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
-				"name": "_idCardIssuePlace",
+				"name": "_islocked",
 				"type": "string"
 			},
 			{
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
-		"name": "updateIdCardIssuePlace",
+		"name": "updateIslocked",
 		"outputs": [
 			{
 				"name": "success",
@@ -2145,19 +2145,23 @@ var UserManagementStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
-				"name": "_email",
+				"name": "_createdTime",
 				"type": "string"
 			},
 			{
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
+			},
+			{
+				"name": "_islocked",
+				"type": "string"
 			}
 		],
-		"name": "updateEmail",
+		"name": "insertSchoolAddition",
 		"outputs": [
 			{
 				"name": "success",
@@ -2172,34 +2176,22 @@ var UserManagementStorageABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			}
 		],
-		"name": "getUser",
+		"name": "getSchoolAddition",
 		"outputs": [
 			{
-				"name": "userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_fullName",
+				"name": "_createdTime",
 				"type": "string"
 			},
 			{
-				"name": "_email",
+				"name": "_modifiedTime",
 				"type": "string"
 			},
 			{
-				"name": "_password",
-				"type": "string"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_dateOfBirth",
+				"name": "_islocked",
 				"type": "string"
 			}
 		],
@@ -2211,57 +2203,157 @@ var UserManagementStorageABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getSchoolAtIndex",
+		"outputs": [
+			{
+				"name": "SchoolAddress",
 				"type": "address"
 			}
 		],
-		"name": "getUserDetailMoreMore",
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateFax",
 		"outputs": [
 			{
-				"name": "_phoneNumber",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			}
+		],
+		"name": "getSchool",
+		"outputs": [
+			{
+				"name": "SchoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "name",
 				"type": "string"
 			},
 			{
-				"name": "_job",
+				"name": "email",
 				"type": "string"
 			},
 			{
-				"name": "_userAddr",
+				"name": "addr",
 				"type": "string"
 			},
+			{
+				"name": "fax",
+				"type": "string"
+			},
+			{
+				"name": "phone",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_phone",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updatePhone",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+			}
+		],
+		"name": "updateAddr",
+		"outputs": [
+			{
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			}
+		],
+		"name": "deleteSchool",
+		"outputs": [
 			{
 				"name": "index",
 				"type": "uint256"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"name": "_modifiedTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateGender",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -2269,111 +2361,16 @@ var UserManagementStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
-				"name": "_job",
+				"name": "_name",
 				"type": "string"
 			},
 			{
 				"name": "_modifiedTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateJob",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getUserCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_password",
 				"type": "string"
-			},
-			{
-				"name": "_modifiedTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updatePassword",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_isLocked",
-				"type": "string"
-			},
-			{
-				"name": "_modifiedTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updateIsLocked",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_fullName",
-				"type": "string"
-			},
-			{
-				"name": "_modifiedTime",
-				"type": "uint256"
 			}
 		],
 		"name": "updateFullName",
@@ -2391,19 +2388,72 @@ var UserManagementStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
-				"name": "_userAddr",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"name": "_fax",
+				"type": "string"
+			},
+			{
+				"name": "_phone",
+				"type": "string"
+			}
+		],
+		"name": "insertSchool",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getSchoolCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_schoolAddress",
+				"type": "address"
+			},
+			{
+				"name": "_email",
 				"type": "string"
 			},
 			{
 				"name": "_modifiedTime",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
-		"name": "updateUserAddr",
+		"name": "updateEmail",
 		"outputs": [
 			{
 				"name": "success",
@@ -2415,101 +2465,21 @@ var UserManagementStorageABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			}
-		],
-		"name": "getUserDetailMore",
-		"outputs": [
-			{
-				"name": "_isLocked",
-				"type": "string"
-			},
-			{
-				"name": "_createdTime",
-				"type": "uint256"
-			},
-			{
-				"name": "_modifiedTime",
-				"type": "uint256"
-			},
-			{
-				"name": "_idCardNo",
-				"type": "string"
-			},
-			{
-				"name": "_idCardIssuePlace",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"name": "_phoneNumber",
-				"type": "string"
-			},
-			{
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"name": "_userAddr",
-				"type": "string"
-			}
-		],
-		"name": "insertUserDetailFlus",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "getUserAtIndex",
-		"outputs": [
-			{
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
 				"indexed": false,
-				"name": "_fullName",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_addr",
 				"type": "string"
 			},
 			{
@@ -2519,21 +2489,16 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_password",
+				"name": "_fax",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_dateOfBirth",
+				"name": "_phone",
 				"type": "string"
 			}
 		],
-		"name": "SetUserManagementEvent",
+		"name": "SetSchoolEvent",
 		"type": "event"
 	},
 	{
@@ -2541,8 +2506,18 @@ var UserManagementStorageABI = [
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_modifiedTime",
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -2551,58 +2526,11 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_createdTime",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_modifiedTime",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_idCardNo",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_idCardIssuePlace",
-				"type": "string"
-			}
-		],
-		"name": "SetUserManagementAdditionEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_phoneNumber",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_userAddr",
-				"type": "string"
-			},
-			{
-				"indexed": false,
 				"name": "_index",
 				"type": "uint256"
 			}
 		],
-		"name": "SetUserManagementAdditionFlusEvent",
+		"name": "SetSchoolAdditionEvent",
 		"type": "event"
 	},
 	{
@@ -2610,12 +2538,17 @@ var UserManagementStorageABI = [
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
 				"indexed": false,
-				"name": "_fullName",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_addr",
 				"type": "string"
 			},
 			{
@@ -2625,21 +2558,16 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_password",
+				"name": "_fax",
 				"type": "string"
 			},
 			{
 				"indexed": false,
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_dateOfBirth",
+				"name": "_phone",
 				"type": "string"
 			}
 		],
-		"name": "SetLogUpdateUserManagementEven",
+		"name": "SetLogUpdateSchoolEvent",
 		"type": "event"
 	},
 	{
@@ -2647,8 +2575,18 @@ var UserManagementStorageABI = [
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "_modifiedTime",
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -2657,58 +2595,11 @@ var UserManagementStorageABI = [
 			},
 			{
 				"indexed": false,
-				"name": "_createdTime",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_modifiedTime",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "_idCardNo",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_idCardIssuePlace",
-				"type": "string"
-			}
-		],
-		"name": "SetLogUpdateUserManagementAdditionEven",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_userAddress",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_phoneNumber",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_job",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_userAddr",
-				"type": "string"
-			},
-			{
-				"indexed": false,
 				"name": "_index",
 				"type": "uint256"
 			}
 		],
-		"name": "SetLogUpdateUserManagementAdditionFlusEven",
+		"name": "SetLogUpdateSchoolAdditionEvent",
 		"type": "event"
 	},
 	{
@@ -2716,7 +2607,7 @@ var UserManagementStorageABI = [
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "_userAddress",
+				"name": "_schoolAddress",
 				"type": "address"
 			},
 			{
@@ -2725,7 +2616,7 @@ var UserManagementStorageABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "SetLogDeleteUserManagement",
+		"name": "SetLogDeleteSchool",
 		"type": "event"
 	}
 ];
