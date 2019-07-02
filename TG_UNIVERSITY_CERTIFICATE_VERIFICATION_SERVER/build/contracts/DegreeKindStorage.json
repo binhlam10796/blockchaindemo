@@ -4540,8 +4540,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x8076F729A00E551DeEa2A12dd448B8bC6CAebbcB",
-      "transactionHash": "0x963c784738a40f51a46aa8bd844ceca479947a8c489420a782e1dc4c89ce3e55"
+      "address": "0x283EF6A680C8DB3148B73F248A14cCef17098f54",
+      "transactionHash": "0xe777ac6d81787d3a2f80787b18b3fed8f1fe142fbe99befd8b2ea171db76cb99"
     },
     "5777": {
       "events": {},
@@ -4550,8 +4550,8 @@
       "transactionHash": "0x7fefb0151d62baad5b92246a9ee171067c9dc11408d047fa6e4a54f5abd62ead"
     }
   },
-  "schemaVersion": "3.0.9",
-  "updatedAt": "2019-06-13T16:07:30.576Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-07-01T09:02:32.683Z",
   "devdoc": {
     "methods": {}
   },

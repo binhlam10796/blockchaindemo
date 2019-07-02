@@ -4,7 +4,7 @@ contract UserManagementStorage {
    //eventInsert
    event SetUserManagementEvent(
       address _userAddress,
-      string _userId,
+      //address _userId,
       string _fullName,
       string _email,
       string _password,
@@ -29,7 +29,7 @@ contract UserManagementStorage {
    //eventUpdate
    event SetLogUpdateUserManagementEven(
       address _userAddress,
-      string _userId,
+      //address _userId,
       string _fullName,
       string _email,
       string _password,
@@ -38,8 +38,8 @@ contract UserManagementStorage {
    event SetLogUpdateUserManagementAdditionEven(
       address _userAddress,
       string _isLocked,
-      string _modifiedTime,
       string _createdTime,
+      string _modifiedTime,
       string _idCardNo,
       string _idCardIssuePlace);
    event SetLogUpdateUserManagementAdditionFlusEven(
@@ -56,7 +56,7 @@ contract UserManagementStorage {
 
    struct UserManagement {
       address userAddress;
-      string userId;
+      //address userId;
       string fullName;
       string email;
       string password;
@@ -86,7 +86,7 @@ contract UserManagementStorage {
 
    function insertUser(
       address _userAddress,
-      string memory _userId,
+      //address _userId,
       string memory _fullName,
       string memory _email,
       string memory _password,
@@ -95,14 +95,14 @@ contract UserManagementStorage {
       )
       public returns(uint256 index){
       //if(isUser(_userAddress)) revert('throw');
-      userManagementStructs[_userAddress].userId = _userId;
+      //userManagementStructs[_userAddress].userId = _userId;
       userManagementStructs[_userAddress].fullName = _fullName;
       userManagementStructs[_userAddress].email = _email;
       userManagementStructs[_userAddress].password = _password;
       userManagementStructs[_userAddress].gender = _gender;
       userManagementStructs[_userAddress].dateOfBirth = _dateOfBirth;
 
-      emit SetUserManagementEvent(_userAddress, _userId, _fullName, _email, _password, _gender, _dateOfBirth);
+      emit SetUserManagementEvent(_userAddress, _fullName, _email, _password, _gender, _dateOfBirth);
       // emit SetUserManagementAdditionEvent(_userAddress, _createdTime, _modifiedTime, _idCardNo, _idCardIssuePlace);
       // emit SetUserManagementAdditionFlusEvent(
       //    _userAddress,
@@ -167,7 +167,7 @@ contract UserManagementStorage {
 
       emit SetLogUpdateUserManagementEven(
          keyToMove,
-         userManagementStructs[keyToMove].userId,
+         //userManagementStructs[keyToMove].userId,
          userManagementStructs[keyToMove].fullName,
          userManagementStructs[keyToMove].email,
          userManagementStructs[keyToMove].password,
@@ -193,7 +193,7 @@ contract UserManagementStorage {
 
    function getUser(address _userAddress) public view returns(
       address userAddress,
-      string memory _userId,
+      //address _userId,
       string memory _fullName,
       string memory _email,
       string memory _password,
@@ -203,7 +203,7 @@ contract UserManagementStorage {
       // if(!isUser(_userAddress)) revert('throw');
       return(
          _userAddress,
-         userManagementStructs[_userAddress].userId,
+         //userManagementStructs[_userAddress].userId,
          userManagementStructs[_userAddress].fullName,
          userManagementStructs[_userAddress].email,
          userManagementStructs[_userAddress].password,
@@ -245,14 +245,14 @@ contract UserManagementStorage {
 // UPDATE
 
 
-   function updateFullName(address _userAddress, string  memory  _fullName, string memory _modifiedTime)
+   function updateFullName(address _userAddress, string  memory  _fullName, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].fullName = _fullName;
       userManagementStructs[_userAddress].modifiedTime = _modifiedTime;
       emit SetLogUpdateUserManagementEven(
          _userAddress,
-         userManagementStructs[_userAddress].userId,
+         //userManagementStructs[_userAddress].userId,
          _fullName,
          userManagementStructs[_userAddress].email,
          userManagementStructs[_userAddress].password,
@@ -262,7 +262,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateEmail(address _userAddress, string  memory  _email, string memory _modifiedTime)
+   function updateEmail(address _userAddress, string  memory  _email, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].email = _email;
@@ -279,7 +279,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updatePassword(address _userAddress, string  memory  _password, string memory _modifiedTime)
+   function updatePassword(address _userAddress, string  memory  _password, string  memory _modifiedTime)
       public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].password = _password;
@@ -296,7 +296,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateGender(address _userAddress, string  memory  _gender, string memory _modifiedTime)
+   function updateGender(address _userAddress, string  memory  _gender, string  memory _modifiedTime)
       public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].gender = _gender;
@@ -313,7 +313,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateDateOfBirth(address _userAddress, string memory  _dateOfBirth, string memory _modifiedTime)
+   function updateDateOfBirth(address _userAddress, string memory  _dateOfBirth, string  memory _modifiedTime)
       public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].dateOfBirth = _dateOfBirth;
@@ -330,7 +330,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateIsLocked(address _userAddress, string  memory  _isLocked, string memory _modifiedTime)
+   function updateIsLocked(address _userAddress, string  memory  _isLocked, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].isLocked = _isLocked;
@@ -346,7 +346,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateIdCardNo(address _userAddress, string memory _idCardNo, string memory _modifiedTime)
+   function updateIdCardNo(address _userAddress, string memory _idCardNo, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].idCardNo = _idCardNo;
@@ -362,7 +362,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateIdCardIssuePlace(address _userAddress, string memory _idCardIssuePlace, string memory _modifiedTime)
+   function updateIdCardIssuePlace(address _userAddress, string memory _idCardIssuePlace, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].idCardIssuePlace = _idCardIssuePlace;
@@ -377,7 +377,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updatePhoneNumber(address _userAddress, string memory _phoneNumber, string memory _modifiedTime)
+   function updatePhoneNumber(address _userAddress, string memory _phoneNumber, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].phoneNumber = _phoneNumber;
@@ -391,7 +391,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateJob(address _userAddress, string memory   _job, string memory _modifiedTime)
+   function updateJob(address _userAddress, string memory   _job, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].job = _job;
@@ -406,7 +406,7 @@ contract UserManagementStorage {
       return true;
    }
 
-   function updateUserAddr(address _userAddress, string memory   _userAddr, string memory _modifiedTime)
+   function updateUserAddr(address _userAddress, string memory   _userAddr, string  memory _modifiedTime)
    public returns(bool success) {
       // if(!isUser(_userAddress))  revert('throw');
       userManagementStructs[_userAddress].userAddr = _userAddr;
