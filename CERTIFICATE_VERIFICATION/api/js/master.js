@@ -33,7 +33,7 @@ function addSchool() {
         var address = randomAddress;
         // var id = $("#id").val();
         var fullName = $("#name").val();
-        var userAddr = $("#addr").val();
+        var SchoolAddr = $("#addr").val();
         var email = $("#email").val();
         var fax = $("#fax").val();
         var phoneNumber = $("#phone").val();
@@ -51,16 +51,16 @@ function addSchool() {
         // var gender = $("#gender").val();
         // var dateOfBirth = $("#dateOfBirth").val();
         var batch = new web3.BatchRequest();
-        batch.add(SchoolManagementSessionInstance.methods.insertSchool(address, fullName, userAddr, email,
+        batch.add(SchoolManagementSessionInstance.methods.insertSchool(address, fullName, SchoolAddr, email,
             fax, phoneNumber)
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     console.log(address);
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             // handle the "error" as a rejection
-                            alert('Đã từ chối dịch vụ.');
-                            location.reload();
+                            alert('Đã hủy giao dịch.');
+                            // location.reload();
                         }
                     }
                     catch (err) {
@@ -72,10 +72,10 @@ function addSchool() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             // handle the "error" as a rejection
                             alert('Đã từ chối dịch vụ.');
-                            location.reload();
+                            // location.reload();
                         }
                     }
                     catch (err) {
@@ -212,6 +212,9 @@ function abc() {
 
 function history() { 
 var timeLine = "";
+web3.eth.getAccounts(function (error, result) {
+    address = result[0];
+    console.log(address);
 // var timeago = timeAgo.format(Date.now() - 60 * 1000, 'time')
 SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (count) {
     for (let row = count-1; row >=0; row--) {
@@ -237,7 +240,7 @@ SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (c
                                         </button>
                                     </span>
                                     <h3 class="timeline-header no-border">
-                                        <a href="#"> `+ result[2] +` </a> `+result[0]+` 
+                                        <a href="#"> `+ result[1] +` </a> `+address+` 
                                             <br>
                                         <a href="#"> `+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+`</a>
                                             <br>
@@ -253,6 +256,7 @@ SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (c
             })
         });
     }
+})
 })
 
 }
@@ -289,9 +293,9 @@ function listSchoolManagement() {
                                                     
                                                     \`` + result[0] + `\`,
                                                     \`` + result[1] + `\`,
+                                                    \`` + result[3] + `\`,
                                                     \`` + result[2] + `\`,
                                                     \`` + result[4] + `\`,
-                                                    \`` + result[3] + `\`,
                                                     \`` + result[5] + `\`,
 
                                                     \`` + result1[1] + `\`,
@@ -315,10 +319,10 @@ function listSchoolManagement() {
 
 function createDeleteView(address) {
     var parag = `<p>` + address + `</p>`;
-    $("#deleteModal").find(".modal-body").html(parag);
+    $("#deleteModal").find(".modal-body2").html(parag);
 }
 
-//delete quan ly truong
+//delete quan ly truong School
 function deleteSchoolManagement() {
     // $('#listUserManager tbody').on('click', '.btn', function(){
     //     var currow = $(this).closest('tr');
@@ -336,7 +340,7 @@ function deleteSchoolManagement() {
         .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
             function (error, result) {
                 try {
-                    if (error.message.includes("User denied transaction signature")) {
+                    if (error.message.includes("School denied transaction signature")) {
                         // handle the "error" as a rejection
                         alert('Đã từ chối dịch vụ.');
                         location.reload();
@@ -401,18 +405,13 @@ function createUpdateisLockView(address) {
 }
 
 
-function frontUpdateSchoolManagement(address, id, fullName, userAddr, email, fax, phoneNumber, createdTime, modifiedTime, isLocked) {
+function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, phoneNumber, createdTime, modifiedTime, isLocked) {
     var table = "";
     
                             table +=    `<tr>
                                             <th>Address</th>
                                             <td id="tdAddress">`+ address +`</td>
                                             <td></td>
-                                        <tr>
-                                            <th>ID</th>
-                                            <td id="tdId">`+ id + `</td>
-                                            <td></td>
-                                        </tr>
                                         <tr>
                                             <th>Tên Trường</th>
                                             <td id="tdFullName">`+ fullName + `</td>
@@ -427,7 +426,7 @@ function frontUpdateSchoolManagement(address, id, fullName, userAddr, email, fax
                                         </tr>
                                         <tr>
                                             <th>Địa chỉ</th>
-                                            <td id="tdUserAddr">`+ userAddr + `</td>
+                                            <td id="tdSchoolAddr">`+ SchoolAddr + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
                                                 data-toggle="modal" data-target="#insertValueUpdateAddrModal"
@@ -512,7 +511,7 @@ function updateNameSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
@@ -528,7 +527,7 @@ function updateNameSchoolManagement() {
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
             .on('receipt', (receipt) => {
-                alert("Success!");
+                alert("Thành Công!");
                 location.reload();
             })
             .on('confirmation', (confirmationNumber, receipt) => {
@@ -557,7 +556,7 @@ function updateEmailSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
@@ -602,7 +601,7 @@ function updateAddrSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
@@ -647,7 +646,7 @@ function updateFaxSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
@@ -692,7 +691,7 @@ function updatePhoneSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
@@ -739,7 +738,7 @@ function updateisLockSchoolManagement() {
             .send({ from: "0x4446B5dF39FAB2F3FAD857b13910C323786a0632" },
                 function (error, result) {
                     try {
-                        if (error.message.includes("User denied transaction signature")) {
+                        if (error.message.includes("School denied transaction signature")) {
                             alert('Đã từ chối dịch vụ.');
                             location.reload();
                         }
