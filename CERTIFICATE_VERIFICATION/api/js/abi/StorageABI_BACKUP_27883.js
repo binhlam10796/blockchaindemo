@@ -786,6 +786,14 @@ var CertificateStorageABI = [
 	},
 	{
 		"constant": true,
+<<<<<<< HEAD
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+=======
 		"inputs": [
 			{
 				"name": "_degreeKindId",
@@ -797,6 +805,7 @@ var CertificateStorageABI = [
 			{
 				"name": "isIndeed",
 				"type": "bool"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 			}
 		],
 		"payable": false,
@@ -807,6 +816,17 @@ var CertificateStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
+<<<<<<< HEAD
+				"name": "id",
+				"type": "address"
+			}
+		],
+		"name": "isUser",
+		"outputs": [
+			{
+				"name": "isIndeed",
+				"type": "bool"
+=======
 				"name": "_degreeKindId",
 				"type": "address"
 			}
@@ -816,6 +836,7 @@ var CertificateStorageABI = [
 			{
 				"name": "index",
 				"type": "uint256"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 			}
 		],
 		"payable": false,
@@ -829,7 +850,11 @@ var SchoolStorageABI = [
 		"constant": false,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"name": "_schoolAddress",
+=======
+				"name": "_degreeKindId",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "address"
 			},
 			{
@@ -841,7 +866,11 @@ var SchoolStorageABI = [
 				"type": "string"
 			}
 		],
+<<<<<<< HEAD
 		"name": "updateIslocked",
+=======
+		"name": "updateDegreeKindName",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 		"outputs": [
 			{
 				"name": "success",
@@ -852,10 +881,33 @@ var SchoolStorageABI = [
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
+<<<<<<< HEAD
+=======
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDegreeKindAtIndex",
+		"outputs": [
+			{
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 	{
 		"constant": false,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"name": "_schoolAddress",
 				"type": "address"
 			},
@@ -876,6 +928,57 @@ var SchoolStorageABI = [
 		"outputs": [
 			{
 				"name": "index",
+=======
+				"name": "_degreeKindId",
+				"type": "address"
+			},
+			{
+				"name": "_degreeKindName",
+				"type": "string"
+			}
+		],
+		"name": "InsertDegreeKind",
+		"outputs": [
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_degreeKindId",
+				"type": "address"
+			}
+		],
+		"name": "getDegreeKind",
+		"outputs": [
+			{
+				"name": "degreeKindId",
+				"type": "address"
+			},
+			{
+				"name": "degreeKindName",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDegreeKindCount",
+		"outputs": [
+			{
+				"name": "count",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "uint256"
 			}
 		],
@@ -958,19 +1061,32 @@ var NameStorageABI = [
 		"constant": true,
 		"inputs": [
 			{
+<<<<<<< HEAD
+				"name": "_schoolAddress",
+=======
 				"name": "_degreeNameId",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "address"
 			}
 		],
 		"name": "getSchoolAddition",
 		"outputs": [
 			{
+<<<<<<< HEAD
+				"name": "_createdTime",
+				"type": "string"
+			},
+			{
+				"name": "_modifiedTime",
+				"type": "string"
+=======
 				"name": "degreeNameId",
 				"type": "address"
 			},
 			{
 				"name": "degreeKindId",
 				"type": "address"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 			},
 			{
 				"name": "_islocked",
@@ -981,6 +1097,8 @@ var NameStorageABI = [
 		"stateMutability": "view",
 		"type": "function"
 	},
+<<<<<<< HEAD
+=======
 	{
 		"constant": true,
 		"inputs": [
@@ -1458,10 +1576,12 @@ var CertificateStorageABI = [
 		"name": "setCertificateEvent",
 		"type": "event"
 	},
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 	{
 		"anonymous": false,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"name": "_index",
 				"type": "uint256"
 			}
@@ -1486,6 +1606,30 @@ var CertificateStorageABI = [
 			},
 			{
 				"name": "_fax",
+=======
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "status",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "degreeClassification",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "string"
 			}
 		],
@@ -1501,6 +1645,7 @@ var CertificateStorageABI = [
 				"type": "address"
 			},
 			{
+<<<<<<< HEAD
 				"name": "_modifiedTime",
 				"type": "string"
 			}
@@ -1515,11 +1660,41 @@ var CertificateStorageABI = [
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+=======
+				"indexed": false,
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "setCertificateAdditionEventDetail",
+		"type": "event"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 	},
 	{
 		"constant": true,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"name": "_schoolAddress",
 				"type": "address"
 			}
@@ -1568,12 +1743,76 @@ var CertificateStorageABI = [
 			},
 			{
 				"name": "_modifiedTime",
+=======
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"name": "idCer",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
+				"type": "string"
+			}
+		],
+		"name": "setHistoryCer",
+		"outputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "rdhid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "idCer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "createTimeCertificate",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "string"
 			}
 		],
 		"name": "updatePhone",
 		"outputs": [
 			{
+<<<<<<< HEAD
 				"name": "success",
 				"type": "bool"
 			}
@@ -1654,11 +1893,75 @@ var CertificateStorageABI = [
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+=======
+				"indexed": false,
+				"name": "comment",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "setHistoryEvent",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "universityName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "typeOfDegree",
+				"type": "string"
+			}
+		],
+		"name": "updateStatus",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "major",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "updateStatusAddition",
+		"type": "event"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+<<<<<<< HEAD
 				"name": "_schoolAddress",
 				"type": "address"
 			},
@@ -1734,13 +2037,63 @@ var CertificateStorageABI = [
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+=======
+				"indexed": false,
+				"name": "yearOfGraduation",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "degreeClassification",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "updateStatusAdditionDetail",
+		"type": "event"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 	},
 	{
 		"anonymous": false,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"indexed": false,
 				"name": "_schoolAddress",
+=======
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "address"
 			},
 			{
@@ -1779,8 +2132,16 @@ var CertificateStorageABI = [
 		"name": "getCertificateAddition",
 		"outputs": [
 			{
+<<<<<<< HEAD
 				"indexed": false,
 				"name": "_phone",
+=======
+				"name": "dateOfBirth",
+				"type": "string"
+			},
+			{
+				"name": "status",
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 				"type": "string"
 			},
 			{
@@ -1799,6 +2160,7 @@ var CertificateStorageABI = [
 		"constant": true,
 		"inputs": [
 			{
+<<<<<<< HEAD
 				"indexed": false,
 				"name": "_schoolAddress",
 				"type": "address"
@@ -1826,11 +2188,96 @@ var CertificateStorageABI = [
 		],
 		"name": "SetSchoolAdditionEvent",
 		"type": "event"
+=======
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getCertificateAdditionDetail",
+		"outputs": [
+			{
+				"name": "modeOfStudy",
+				"type": "string"
+			},
+			{
+				"name": "certificateDeliveryDate",
+				"type": "string"
+			},
+			{
+				"name": "number",
+				"type": "uint256"
+			},
+			{
+				"name": "regNo",
+				"type": "string"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
 		"inputs": [
 			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getCertificateIndex",
+		"outputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getHisCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getHisIndex",
+		"outputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+<<<<<<< HEAD
 				"indexed": false,
 				"name": "_schoolAddress",
 				"type": "address"
@@ -1916,6 +2363,78 @@ var CertificateStorageABI = [
 ];
 
 
+=======
+				"name": "_rdid",
+				"type": "address"
+			}
+		],
+		"name": "getHistoryCertificate",
+		"outputs": [
+			{
+				"name": "rdid",
+				"type": "address"
+			},
+			{
+				"name": "nguoitt",
+				"type": "address"
+			},
+			{
+				"name": "idCer",
+				"type": "address"
+			},
+			{
+				"name": "thaotac",
+				"type": "string"
+			},
+			{
+				"name": "createTimeCertificate",
+				"type": "string"
+			},
+			{
+				"name": "comment",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "address"
+			}
+		],
+		"name": "isUser",
+		"outputs": [
+			{
+				"name": "isIndeed",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+>>>>>>> bb84487156b905fe32c20978949bff3c17fc434b
 var UserManagementStorageABI = [
 	{
 		"constant": false,

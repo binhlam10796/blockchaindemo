@@ -6,16 +6,14 @@ if (typeof web3 !== 'undefined') {
 }
 ethereum.enable();
 var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xadCe998Cfb3BD7C3E6b6Af4d1D7C7d2bB1aAFEC3");
+
 // var date = new Date();
 // var s = date.toString();
 
 //create address random and unique
 var temp = web3.eth.accounts.create();
 var randomAddress = temp.address;
-//0x8a6931B13B1EC63402bCcB5805BD5a5dD29F813e nam
-//0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183 tai
-//0x4446B5dF39FAB2F3FAD857b13910C323786a0632 dlinh
-//0x444bf7B18fFb184b4a262eF96fb1735A8183979F dc
+
 function addUserManagement() {
 
     if ($('#idUserManagementForm').parsley().validate()) {

@@ -786,9 +786,23 @@ var CertificateStorageABI = [
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "getUserCount",
+		"outputs": [
+			{
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
-				"name": "_degreeKindId",
+				"name": "id",
 				"type": "address"
 			}
 		],
@@ -801,25 +815,6 @@ var CertificateStorageABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeKindId",
-				"type": "address"
-			}
-		],
-		"name": "deleteDegreeKind",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ];
@@ -884,93 +879,22 @@ var SchoolStorageABI = [
 		"type": "function"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeKindId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_degreeKindName",
-				"type": "string"
-			}
-		],
-		"name": "LeaderUpdatedEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeKindId",
-				"type": "address"
-			}
-		],
-		"name": "CountryDeleteEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeKindId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_degreeKindName",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "SetDegreeKindEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeKindId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "SetDeleteDegreeKind",
-		"type": "event"
-	}
-];
-
-var NameStorageABI = [
-	{
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_degreeNameId",
+				"name": "_schoolAddress",
 				"type": "address"
 			}
 		],
 		"name": "getSchoolAddition",
 		"outputs": [
 			{
-				"name": "degreeNameId",
-				"type": "address"
+				"name": "_createdTime",
+				"type": "string"
 			},
 			{
-				"name": "degreeKindId",
-				"type": "address"
+				"name": "_modifiedTime",
+				"type": "string"
 			},
 			{
 				"name": "_islocked",
@@ -983,483 +907,6 @@ var NameStorageABI = [
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "_degreeKindId",
-				"type": "address"
-			}
-		],
-		"name": "isUser",
-		"outputs": [
-			{
-				"name": "isIndeed",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "getDegreeNameAtIndex",
-		"outputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "address"
-			}
-		],
-		"name": "deleteDegreeName",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "address"
-			},
-			{
-				"name": "_degreeName",
-				"type": "string"
-			}
-		],
-		"name": "updateDegreeName",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "address"
-			},
-			{
-				"name": "_degreeKindId",
-				"type": "address"
-			},
-			{
-				"name": "_degreeName",
-				"type": "string"
-			}
-		],
-		"name": "InsertDegreeName",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getDegreeNameCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_degreeNameId",
-				"type": "address"
-			},
-			{
-				"name": "_degreeKindId",
-				"type": "address"
-			}
-		],
-		"name": "updateDegreeKindName",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeNameId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_degreeKindId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_degreeName",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "SetDegreeNameEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_degreeNameId",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "SetDeleteDegreeName",
-		"type": "event"
-	}
-];
-
-var HistotyStorageABI = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_idHistory",
-				"type": "address"
-			},
-			{
-				"name": "_taiKhoan",
-				"type": "address"
-			},
-			{
-				"name": "_thaoTac",
-				"type": "string"
-			},
-			{
-				"name": "_ngay",
-				"type": "string"
-			}
-		],
-		"name": "InsertHistory",
-		"outputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_idHistory",
-				"type": "address"
-			}
-		],
-		"name": "getHistory",
-		"outputs": [
-			{
-				"name": "taiKhoan",
-				"type": "address"
-			},
-			{
-				"name": "thaoTac",
-				"type": "string"
-			},
-			{
-				"name": "ngay",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"name": "getHistoryAtIndex",
-		"outputs": [
-			{
-				"name": "idHistory",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getHistoryCount",
-		"outputs": [
-			{
-				"name": "count",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "_idHistory",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_taiKhoan",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "_thaoTac",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "_ngay",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "SetHistoryEvent",
-		"type": "event"
-	}
-];
-
-var CertificateStorageABI = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "status",
-				"type": "string"
-			}
-		],
-		"name": "approveCertificate",
-		"outputs": [
-			{
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "universityName",
-				"type": "string"
-			},
-			{
-				"name": "typeOfDegree",
-				"type": "string"
-			},
-			{
-				"name": "major",
-				"type": "string"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"name": "setCertificate",
-		"outputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "dateOfBirth",
-				"type": "string"
-			},
-			{
-				"name": "status",
-				"type": "string"
-			},
-			{
-				"name": "yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeClassification",
-				"type": "string"
-			}
-		],
-		"name": "setCertificateAddition",
-		"outputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"name": "modeOfStudy",
-				"type": "string"
-			},
-			{
-				"name": "certificateDeliveryDate",
-				"type": "string"
-			},
-			{
-				"name": "number",
-				"type": "uint256"
-			},
-			{
-				"name": "regNo",
-				"type": "string"
-			}
-		],
-		"name": "setCertificateAdditionDetail",
-		"outputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "rdid",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "universityName",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "typeOfDegree",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "major",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"name": "setCertificateEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
 		"inputs": [
 			{
 				"name": "_index",
@@ -1487,18 +934,6 @@ var CertificateStorageABI = [
 			{
 				"name": "_fax",
 				"type": "string"
-			}
-		],
-		"name": "setCertificateAdditionEvent",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "rdid",
-				"type": "address"
 			},
 			{
 				"name": "_modifiedTime",
@@ -1656,7 +1091,7 @@ var CertificateStorageABI = [
 		"type": "function"
 	},
 	{
-		"anonymous": false,
+		"constant": false,
 		"inputs": [
 			{
 				"name": "_schoolAddress",
@@ -1762,33 +1197,10 @@ var CertificateStorageABI = [
 				"indexed": false,
 				"name": "_fax",
 				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_rdid",
-				"type": "address"
-			}
-		],
-		"name": "getCertificateAddition",
-		"outputs": [
+			},
 			{
 				"indexed": false,
 				"name": "_phone",
-				"type": "string"
-			},
-			{
-				"name": "yearOfGraduation",
-				"type": "uint256"
-			},
-			{
-				"name": "degreeClassification",
 				"type": "string"
 			}
 		],
@@ -1796,7 +1208,7 @@ var CertificateStorageABI = [
 		"type": "event"
 	},
 	{
-		"constant": true,
+		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,
@@ -1828,7 +1240,7 @@ var CertificateStorageABI = [
 		"type": "event"
 	},
 	{
-		"constant": true,
+		"anonymous": false,
 		"inputs": [
 			{
 				"indexed": false,

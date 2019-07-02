@@ -474,3 +474,43 @@ select#idKindDegreeSelect {
 .edit {
     background-color: #7fbdf3;
 }
+
+table#tableUpdateDegreeKind {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#tableUpdateDegreeKind th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#tableUpdateDegreeKind tr, table#tableUpdateDegreeKind td, table#tableUpdateDegreeKind th {
+    border: 1px solid #ddd;
+}
+
+table#tableUpdateDegreeKind tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#tableUpdateDegreeName {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#tableUpdateDegreeName th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#tableUpdateDegreeName tr, table#tableUpdateDegreeName td, table#tableUpdateDegreeName th {
+    border: 1px solid #ddd;
+}
+
+table#tableUpdateDegreeName tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
