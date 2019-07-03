@@ -91,5 +91,4 @@ contract DegreeKindStorage {
     function getDegreeKindAtIndex(uint256 _index) public view returns(address userAddress) {
         return degreeKindIndex[_index];
     }
-
 }
