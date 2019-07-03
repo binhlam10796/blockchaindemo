@@ -1121,61 +1121,6 @@ function timeLine(id, thoigian) {
     $("#historyUsermanagement").find(".timeline").html(history);
 }
 
-//khong xai
-function historyUser() {
-    userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
-        for (let row = count - 1; row >= 0; row--) {
-            // for (let row = 0; row < count; row++) {
-            userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
-                userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
-                    userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
-                        if ($(".time-label").length == 0) {
-                            timeLine(result[0], result1[1]);
-                        }
-                        else if ($(".time-label").length !== 0 && $(".time-label:contains('" + tg(result1[1]) + "')").text().trim() == tg(result1[1])) {
-                            $(".time-label:contains('" + tg(result1[1]) + "')").first().after(
-                                `<li>
-                                <i class="fa fa-user bg-aqua"></i>
-                                <div class="timeline-item">
-                                        <span class="time">
-                                        <i class="fa fa-clock-o"></i>`+ relativeTime(result1[1]) + `</span>
-                                        <h3 class="timeline-header no-border" >
-                                            <a href="#" data-toggle="modal"
-                                                data-target="#viewUserModal" 
-                                                onclick="viewUser('`+ result[0] + `')">
-                                                `+ result[0] + `
-                                            </a>
-                                            đã được thêm.
-                                        </h3>
-                                </div>
-                            </li>`);
-                        }
-                        else {
-                            $('.time-label').first().before(`
-                                <li class="time-label">
-                                        <span class="bg-green">`+ tg(result1[1]) + `</span>
-                                </li>
-                                <li>
-                                <i class="fa fa-user bg-aqua"></i>
-                                <div class="timeline-item">
-                                        <span class="time">
-                                        <i class="fa fa-clock-o"></i>`+ relativeTime(result1[1]) + `</span>
-                                        <h3 class="timeline-header no-border">
-                                            <a href="#" data-toggle="modal"
-                                                data-target="#viewUserModal" 
-                                                onclick="viewUser('`+ result[0] + `')">` + result[0] + `
-                                            </a>
-                                            đã được thêm.
-                                        </h3>
-                                </div>
-                            </li>`);
-                        };
-                    })
-                })
-            })
-        }
-    })
-}
 
 //new history user
 function historyUsers() {
