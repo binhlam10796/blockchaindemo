@@ -1215,7 +1215,7 @@ function historySchool() {
                                                                 <h3 class="timeline-header no-border" >
                                                                     <a href="#" data-toggle="modal"
                                                                         data-target="#viewUserModal" 
-                                                                        onclick="viewUser('`+ result[0] + `')">
+                                                                        onclick="viewSchool('`+ result[0] + `')">
                                                                         `+ result[0] + `
                                                                     </a>
                                                                     đã được thêm.
@@ -1241,7 +1241,7 @@ function historySchool() {
         }
     })
 }
-
+//xem chi nguoi dung
 function viewUser(id) {
     console.log(id);
     // userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
@@ -1276,6 +1276,35 @@ function viewUser(id) {
     //         })
     //     }
     // })
+
+}
+//xem chi tiet truong hoc
+function viewSchool(id) {
+    console.log(id);
+    SchoolManagementSessionInstance.methods.getSchool(id).call().then(function (result) {
+        SchoolManagementSessionInstance.methods.getSchoolAddition(id).call().then(function (result1) {
+            var table = `<tr>
+                                        <th>ID</th>
+                                        <td>` + result[0] + `</td>
+                                    <tr>
+                                        <th>Họ và tên</th>
+                                        <td>` + result[1] + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>` + result[2] + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giới tính</th>
+                                        <td>` + result[3] + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Số điện thoại</th>
+                                        <td>` + result[4] + `</td>
+                                    </tr>`;
+            $("#viewSchool").find("tbody").html(table);
+        })
+    })
 
 }
 // export table date to excel

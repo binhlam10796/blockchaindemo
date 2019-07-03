@@ -1,5 +1,4 @@
 <html lang="en-US">
-
     <head>
         <title>Tra cứu văn bằng chứng chỉ - hệ thống tra cứu văn bằng chứng chỉ</title>
         <link href="../assets/images/_vnptLogo.png" rel="Shortcut Icon">
@@ -44,7 +43,6 @@
         <div class="spinner" id="spinner" style="display: none">
             <div class="blob blob-0"></div>
         </div>
-
 
         <div id="hoho">
             <div class="ctn">
@@ -210,11 +208,6 @@
                                                 <option value="15"> 15 </option>
                                             </select>
                                         </div>
-                                        <!-- <div class="form-group">
-                                        <input type="text" class="form-control" id="deleteUser">
-                                        <button type="button" class="btn btn-success btn-sm" 
-                                            onclick="deleteUserManagement();"> Xoá</button>
-                                    </div> -->
                                         <table id="listSchoolManager"
                                             class="table table-bordered
                                             table-striped">
@@ -920,6 +913,30 @@
             </div>
         </div>
         <!--End modal view user-->
+
+        <!--Modal view school-->
+        <div class="modal fade" id="viewSchoolModal">
+                <div class="modal-dialog">
+    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"
+                                data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Thông tin người dùng</h4>
+                        </div>
+                        <div class="modal-body" style="overflow-x:auto;">
+                            <table id="viewSchool" class="table" cellspacing="0"
+                                style="width:100%">
+                                <tbody>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End modal view school-->
 
         <!-- timeago -->
         <div class="modal fade" id="timeAgoModal">
