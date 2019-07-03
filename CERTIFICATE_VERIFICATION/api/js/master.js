@@ -5,7 +5,7 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0xb0f403458Fe1fE076f1461A68c7840C9462Aa8Ba");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x99440E9b6Fc1ff3a7E0E16C90822A55038c62F60");
 // var date = new Date();
 // var s = date.toString();
 function sortTable(table, order) {
@@ -282,13 +282,13 @@ function listSchoolManagement() {
                                                 <td>` + result1[1] + `</td>
                                                 <td>
                                                 <button class="btn btn-danger btn-xs" 
-                                                data-toggle="modal" data-target="#deleteModal" 
-                                                onclick="createDeleteView(\`` + result[0] + `\`)" >
+                                                data-toggle="modal" data-target="#deleteModalSchool" 
+                                                onclick="createDeleteViewschool(\`` + result[0] + `\`)" >
                                                 <i class="far fa-trash-alt"></i>
                                                     Xóa
                                                 </button>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#updateModal"
+                                                data-toggle="modal" data-target="#updateModalSchool"
                                                 onclick="frontUpdateSchoolManagement(
                                                     
                                                     \`` + result[0] + `\`,
@@ -317,9 +317,9 @@ function listSchoolManagement() {
     })
 }
 
-function createDeleteView(address) {
+function createDeleteViewschool(address) {
     var parag = `<p>` + address + `</p>`;
-    $("#deleteModal").find(".modal-body2").html(parag);
+    $("#deleteModalSchool").find(".modal-body2").html(parag);
 }
 
 //delete quan ly truong School
@@ -329,7 +329,7 @@ function deleteSchoolManagement() {
     //     var col1 = currow.find('td:eq(0)').text();
     //     alert(col1);
     // })
-    var address = $('#deleteModal .modal-body p').text();
+    var address = $('#deleteModalSchool .modal-body p').text();
     // var address = "0x4446B5dF39FAB2F3FAD857b13910C323786a0632";
     // console.log(address);
     // var numb = address.match(/\d/g);
@@ -351,7 +351,7 @@ function deleteSchoolManagement() {
                 }
             })
         .on('transactionHash', (hash) => {
-            $("#deleteModal").hide();
+            $("#deleteModalSchool").hide();
         })
         .on('confirmation', (confirmationNumber, receipt) => {
 
@@ -368,40 +368,28 @@ function deleteSchoolManagement() {
 
 function createUpdateView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateFullNameModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdateFullNameModalSchool").find(".modal-body2").html(parag);
 }
 
 function createUpdateEmailView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateEmailModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdateEmailModalSchool").find(".modal-body2").html(parag);
 }
 function createUpdateAddrView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateAddrModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdateAddrModalSchool").find(".modal-body2").html(parag);
 }
 function createUpdateFaxView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateFaxModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdateFaxModalSchool").find(".modal-body2").html(parag);
 }
 function createUpdatePhoneView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdatePhoneModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdatePhoneModalSchool").find(".modal-body2").html(parag);
 }
 function createUpdateisLockView(address) {
     var parag = `<p>` + address + `</p>`;
-    // var parag1 = `<input type="text">`;
-    $("#insertValueUpdateisLockModal").find(".modal-body2").html(parag);
-    // $("#insertValueUpdateModal").find(".modal-body").html(parag1);
+    $("#insertValueUpdateisLockModalSchool").find(".modal-body2").html(parag);
 }
 
 
@@ -417,7 +405,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdFullName">`+ fullName + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateFullNameModal"
+                                                data-toggle="modal" data-target="#insertValueUpdateFullNameModalSchool"
                                                 onclick="createUpdateView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -429,7 +417,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdSchoolAddr">`+ SchoolAddr + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateAddrModal"
+                                                data-toggle="modal" data-target="#insertValueUpdateAddrModalSchool"
                                                 onclick="createUpdateAddrView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -441,7 +429,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdEmail">`+ email +`</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateEmailModal"
+                                                data-toggle="modal" data-target="#insertValueUpdateEmailModalSchool"
                                                 onclick="createUpdateEmailView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -453,7 +441,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdFax">`+ fax + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateFaxModal"
+                                                data-toggle="modal" data-target="#insertValueUpdateFaxModalSchool"
                                                 onclick="createUpdateFaxView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -465,7 +453,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdPhoneNumber">`+ phoneNumber + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdatePhoneModal"
+                                                data-toggle="modal" data-target="#insertValueUpdatePhoneModalSchool"
                                                 onclick="createUpdatePhoneView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -478,7 +466,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
                                             <td id="tdisLocked">`+ isLocked + `</td>
                                             <td>
                                                 <button class="btn btn-primary btn-xs"
-                                                data-toggle="modal" data-target="#insertValueUpdateisLockModal"
+                                                data-toggle="modal" data-target="#insertValueUpdateisLockModalSchool"
                                                 onclick="createUpdateisLockView(\`` + address + `\`)" >
                                                 <i class="far fa-edit"></i>
                                                     Sửa
@@ -503,7 +491,7 @@ function frontUpdateSchoolManagement(address, fullName, SchoolAddr, email, fax, 
 
 
 function updateNameSchoolManagement() {
-    var address = $('#insertValueUpdateFullNameModal .modal-body p').text();
+    var address = $('#insertValueUpdateFullNameModalSchool .modal-body p').text();
     var fullName = $('#valueUpdateName').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -522,7 +510,7 @@ function updateNameSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdateFullNameModal").hide();
+                $("#insertValueUpdateFullNameModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
@@ -548,7 +536,7 @@ function updateNameSchoolManagement() {
 }
 
 function updateEmailSchoolManagement() {
-    var address = $('#insertValueUpdateEmailModal .modal-body p').text();
+    var address = $('#insertValueUpdateEmailModalSchool .modal-body p').text();
     var email = $('#valueUpdateEmail').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -567,7 +555,7 @@ function updateEmailSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdateEmailModal").hide();
+                $("#insertValueUpdateEmailModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
@@ -593,7 +581,7 @@ function updateEmailSchoolManagement() {
 }
 
 function updateAddrSchoolManagement() {
-    var address = $('#insertValueUpdateAddrModal .modal-body p').text();
+    var address = $('#insertValueUpdateAddrModalSchool .modal-body p').text();
     var addr = $('#valueUpdateAddr').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -612,7 +600,7 @@ function updateAddrSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdateAddrModal").hide();
+                $("#insertValueUpdateAddrModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
@@ -638,7 +626,7 @@ function updateAddrSchoolManagement() {
 }
 
 function updateFaxSchoolManagement() {
-    var address = $('#insertValueUpdateFaxModal .modal-body p').text();
+    var address = $('#insertValueUpdateFaxModalSchool .modal-body p').text();
     var fax = $('#valueUpdateFax').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -657,7 +645,7 @@ function updateFaxSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdateFaxModal").hide();
+                $("#insertValueUpdateFaxModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
@@ -683,7 +671,7 @@ function updateFaxSchoolManagement() {
 }
 
 function updatePhoneSchoolManagement() {
-    var address = $('#insertValueUpdatePhoneModal .modal-body p').text();
+    var address = $('#insertValueUpdatePhoneModalSchool .modal-body p').text();
     var phone = $('#valueUpdatePhone').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -702,7 +690,7 @@ function updatePhoneSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdatePhoneModal").hide();
+                $("#insertValueUpdatePhoneModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
@@ -730,7 +718,7 @@ function updatePhoneSchoolManagement() {
 
 
 function updateisLockSchoolManagement() {
-    var address = $('#insertValueUpdateisLockModal .modal-body p').text();
+    var address = $('#insertValueUpdateisLockModalSchool .modal-body p').text();
     var isLocked = $('#valueUpdateisLock').val();
     var modifiedTime = new Date(Date.now()).toString();
     var batch = new web3.BatchRequest();
@@ -749,7 +737,7 @@ function updateisLockSchoolManagement() {
                 }
             )
             .on('transactionHash', (hash) => {
-                $("#insertValueUpdateisLockModal").hide();
+                $("#insertValueUpdateisLockModalSchool").hide();
                 $("#updateFrontSchoolManagement").hide();
                 alert("Vui lòng chờ xử lý giao dịch!");
             })
