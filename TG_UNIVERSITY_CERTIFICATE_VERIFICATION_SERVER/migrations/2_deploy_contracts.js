@@ -2,6 +2,7 @@
 // var DegreeName = artifacts.require("./DegreeNameStorage");
 // var Certificate = artifacts.require("./CertificateStorage");
 var User = artifacts.require("./UserManagementStorage");
+var School = artifacts.require("./SchoolStorage");
 
 module.exports = function(deployer){
 	
@@ -9,6 +10,7 @@ module.exports = function(deployer){
 	// deployer.deploy(DegreeName);
 	// deployer.deploy(Certificate);
 	deployer.deploy(User);
+	deployer.deploy(School);
 	
 	
 };
