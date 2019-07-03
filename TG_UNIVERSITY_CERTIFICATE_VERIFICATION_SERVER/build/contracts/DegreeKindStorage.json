@@ -2,55 +2,33 @@
   "contractName": "DegreeKindStorage",
   "abi": [
     {
-      "constant": false,
+      "anonymous": false,
       "inputs": [
         {
-          "name": "degreeKindId",
-          "type": "uint8",
-          "indexed": false
-        },
-        {
-          "name": "degreeKindName",
-          "type": "string",
-          "indexed": false
-        }
-      ],
-      "name": "LeaderUpdated",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "event",
-      "anonymous": false
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "degreeKindId",
-          "type": "uint8",
-          "indexed": false
-        }
-      ],
-      "name": "CountryDelete",
-      "outputs": [
-        {
+          "indexed": false,
           "name": "degreeKindId",
           "type": "uint8"
         },
         {
+          "indexed": false,
           "name": "degreeKindName",
           "type": "string"
         }
       ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "event",
-      "anonymous": false
+      "name": "LeaderUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "degreeKindId",
+          "type": "uint8"
+        }
+      ],
+      "name": "CountryDelete",
+      "type": "event"
     },
     {
       "constant": false,
@@ -113,15 +91,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getDegreeKindIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_degreeKindId\",\"type\":\"uint8\"}],\"name\":\"getDegreeKind\",\"outputs\":[{\"name\":\"degreeKindId\",\"type\":\"uint8\"},{\"name\":\"degreeKindName\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_degreeKindId\",\"type\":\"uint8\"},{\"name\":\"_degreeKindName\",\"type\":\"string\"}],\"name\":\"setDegreeKind\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"degreeKindId\",\"type\":\"uint8\"},{\"indexed\":false,\"name\":\"degreeKindName\",\"type\":\"string\"}],\"name\":\"LeaderUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"degreeKindId\",\"type\":\"uint8\"}],\"name\":\"CountryDelete\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/xampp/htdocs/projectBlockchain/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol\":\"DegreeKindStorage\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/xampp/htdocs/projectBlockchain/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol\":{\"keccak256\":\"0xbe35d6a7158612af3092b57fb00160d5da8344a08240523b0c3e6a8f8b56fdd3\",\"urls\":[\"bzzr://9de84fd1e2c763b59be1790d5d5d386cc6521a1b25317260b41d919670945eeb\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610587806100206000396000f3fe608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063402c41661461005c57806365ee7adc1461008757806372d4f7731461014b575b600080fd5b34801561006857600080fd5b50610071610238565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b506100c3600480360360208110156100aa57600080fd5b81019080803560ff169060200190929190505050610241565b604051808360ff1660ff16815260200180602001828103825283818151815260200191508051906020019080838360005b8381101561010f5780820151818401526020810190506100f4565b50505050905090810190601f16801561013c5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b34801561015757600080fd5b5061021e6004803603604081101561016e57600080fd5b81019080803560ff1690602001909291908035906020019064010000000081111561019857600080fd5b8201836020820111156101aa57600080fd5b803590602001918460018302840111640100000000831117156101cc57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610349565b604051808215151515815260200191505060405180910390f35b60008054905090565b6000606061024d610412565b600160008560ff1660ff1681526020019081526020016000206040805190810160405290816000820160009054906101000a900460ff1660ff1660ff168152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103275780601f106102fc57610100808354040283529160200191610327565b820191906000526020600020905b81548152906001019060200180831161030a57829003601f168201915b5050505050815250509050806000015181602001518090509250925050915091565b600082600260000160006101000a81548160ff021916908360ff160217905550816002600101908051906020019061038292919061042f565b506002600160008560ff1660ff1681526020019081526020016000206000820160009054906101000a900460ff168160000160006101000a81548160ff021916908360ff160217905550600182018160010190805460018160011615610100020316600290046103f39291906104af565b5090505060008081548092919060010191905055506001905092915050565b6040805190810160405280600060ff168152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061047057805160ff191683800117855561049e565b8280016001018555821561049e579182015b8281111561049d578251825591602001919060010190610482565b5b5090506104ab9190610536565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104e85780548555610525565b8280016001018555821561052557600052602060002091601f016020900482015b82811115610524578254825591600101919060010190610509565b5b5090506105329190610536565b5090565b61055891905b8082111561055457600081600090555060010161053c565b5090565b9056fea165627a7a72305820932154d2ad52f2782d0e77fc87937f0b450c785d5c1dec762a80548c335a210f0029",
-  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063402c41661461005c57806365ee7adc1461008757806372d4f7731461014b575b600080fd5b34801561006857600080fd5b50610071610238565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b506100c3600480360360208110156100aa57600080fd5b81019080803560ff169060200190929190505050610241565b604051808360ff1660ff16815260200180602001828103825283818151815260200191508051906020019080838360005b8381101561010f5780820151818401526020810190506100f4565b50505050905090810190601f16801561013c5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b34801561015757600080fd5b5061021e6004803603604081101561016e57600080fd5b81019080803560ff1690602001909291908035906020019064010000000081111561019857600080fd5b8201836020820111156101aa57600080fd5b803590602001918460018302840111640100000000831117156101cc57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610349565b604051808215151515815260200191505060405180910390f35b60008054905090565b6000606061024d610412565b600160008560ff1660ff1681526020019081526020016000206040805190810160405290816000820160009054906101000a900460ff1660ff1660ff168152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103275780601f106102fc57610100808354040283529160200191610327565b820191906000526020600020905b81548152906001019060200180831161030a57829003601f168201915b5050505050815250509050806000015181602001518090509250925050915091565b600082600260000160006101000a81548160ff021916908360ff160217905550816002600101908051906020019061038292919061042f565b506002600160008560ff1660ff1681526020019081526020016000206000820160009054906101000a900460ff168160000160006101000a81548160ff021916908360ff160217905550600182018160010190805460018160011615610100020316600290046103f39291906104af565b5090505060008081548092919060010191905055506001905092915050565b6040805190810160405280600060ff168152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061047057805160ff191683800117855561049e565b8280016001018555821561049e579182015b8281111561049d578251825591602001919060010190610482565b5b5090506104ab9190610536565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104e85780548555610525565b8280016001018555821561052557600052602060002091601f016020900482015b82811115610524578254825591600101919060010190610509565b5b5090506105329190610536565b5090565b61055891905b8082111561055457600081600090555060010161053c565b5090565b9056fea165627a7a72305820932154d2ad52f2782d0e77fc87937f0b450c785d5c1dec762a80548c335a210f0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getDegreeKindIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_degreeKindId\",\"type\":\"uint8\"}],\"name\":\"getDegreeKind\",\"outputs\":[{\"name\":\"degreeKindId\",\"type\":\"uint8\"},{\"name\":\"degreeKindName\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_degreeKindId\",\"type\":\"uint8\"},{\"name\":\"_degreeKindName\",\"type\":\"string\"}],\"name\":\"setDegreeKind\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"degreeKindId\",\"type\":\"uint8\"},{\"indexed\":false,\"name\":\"degreeKindName\",\"type\":\"string\"}],\"name\":\"LeaderUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"degreeKindId\",\"type\":\"uint8\"}],\"name\":\"CountryDelete\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/xampp/htdocs/B/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol\":\"DegreeKindStorage\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/xampp/htdocs/B/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol\":{\"keccak256\":\"0xbe35d6a7158612af3092b57fb00160d5da8344a08240523b0c3e6a8f8b56fdd3\",\"urls\":[\"bzzr://9de84fd1e2c763b59be1790d5d5d386cc6521a1b25317260b41d919670945eeb\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061054a806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063402c41661461004657806365ee7adc1461006457806372d4f7731461011b575b600080fd5b61004e6101fb565b6040518082815260200191505060405180910390f35b6100936004803603602081101561007a57600080fd5b81019080803560ff169060200190929190505050610204565b604051808360ff1660ff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156100df5780820151818401526020810190506100c4565b50505050905090810190601f16801561010c5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b6101e16004803603604081101561013157600080fd5b81019080803560ff1690602001909291908035906020019064010000000081111561015b57600080fd5b82018360208201111561016d57600080fd5b8035906020019184600183028401116401000000008311171561018f57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061030c565b604051808215151515815260200191505060405180910390f35b60008054905090565b600060606102106103d5565b600160008560ff1660ff1681526020019081526020016000206040518060400160405290816000820160009054906101000a900460ff1660ff1660ff168152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102ea5780601f106102bf576101008083540402835291602001916102ea565b820191906000526020600020905b8154815290600101906020018083116102cd57829003601f168201915b5050505050815250509050806000015181602001518090509250925050915091565b600082600260000160006101000a81548160ff021916908360ff16021790555081600260010190805190602001906103459291906103f2565b506002600160008560ff1660ff1681526020019081526020016000206000820160009054906101000a900460ff168160000160006101000a81548160ff021916908360ff160217905550600182018160010190805460018160011615610100020316600290046103b6929190610472565b5090505060008081548092919060010191905055506001905092915050565b6040518060400160405280600060ff168152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061043357805160ff1916838001178555610461565b82800160010185558215610461579182015b82811115610460578251825591602001919060010190610445565b5b50905061046e91906104f9565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104ab57805485556104e8565b828001600101855582156104e857600052602060002091601f016020900482015b828111156104e75782548255916001019190600101906104cc565b5b5090506104f591906104f9565b5090565b61051b91905b808211156105175760008160009055506001016104ff565b5090565b9056fea165627a7a7230582020d3a34a5f1d8d2a0f1385d03848613cad48934e622022c1d329d0a7985828df0029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063402c41661461004657806365ee7adc1461006457806372d4f7731461011b575b600080fd5b61004e6101fb565b6040518082815260200191505060405180910390f35b6100936004803603602081101561007a57600080fd5b81019080803560ff169060200190929190505050610204565b604051808360ff1660ff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156100df5780820151818401526020810190506100c4565b50505050905090810190601f16801561010c5780820380516001836020036101000a031916815260200191505b50935050505060405180910390f35b6101e16004803603604081101561013157600080fd5b81019080803560ff1690602001909291908035906020019064010000000081111561015b57600080fd5b82018360208201111561016d57600080fd5b8035906020019184600183028401116401000000008311171561018f57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061030c565b604051808215151515815260200191505060405180910390f35b60008054905090565b600060606102106103d5565b600160008560ff1660ff1681526020019081526020016000206040518060400160405290816000820160009054906101000a900460ff1660ff1660ff168152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102ea5780601f106102bf576101008083540402835291602001916102ea565b820191906000526020600020905b8154815290600101906020018083116102cd57829003601f168201915b5050505050815250509050806000015181602001518090509250925050915091565b600082600260000160006101000a81548160ff021916908360ff16021790555081600260010190805190602001906103459291906103f2565b506002600160008560ff1660ff1681526020019081526020016000206000820160009054906101000a900460ff168160000160006101000a81548160ff021916908360ff160217905550600182018160010190805460018160011615610100020316600290046103b6929190610472565b5090505060008081548092919060010191905055506001905092915050565b6040518060400160405280600060ff168152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061043357805160ff1916838001178555610461565b82800160010185558215610461579182015b82811115610460578251825591602001919060010190610445565b5b50905061046e91906104f9565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104ab57805485556104e8565b828001600101855582156104e857600052602060002091601f016020900482015b828111156104e75782548255916001019190600101906104cc565b5b5090506104f591906104f9565b5090565b61051b91905b808211156105175760008160009055506001016104ff565b5090565b9056fea165627a7a7230582020d3a34a5f1d8d2a0f1385d03848613cad48934e622022c1d329d0a7985828df0029",
   "sourceMap": "36:1178:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:1178:1;;;;;;;",
-  "deployedSourceMap": "36:1178:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1121:90;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1121:90:1;;;;;;;;;;;;;;;;;;;;;;;856:257;;8:9:-1;5:2;;;30:1;27;20:12;5:2;856:257:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;856:257:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;856:257:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;471:377;;8:9:-1;5:2;;;30:1;27;20:12;5:2;471:377:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;471:377:1;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;471:377:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;471:377:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;471:377:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;471:377:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1121:90;1171:7;1198:5;;1191:12;;1121:90;:::o;856:257::-;920:18;940:28;981:25;;:::i;:::-;1009:17;:32;1027:13;1009:32;;;;;;;;;;;;;;;981:60;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1060:7;:20;;;1082:7;:22;;;1052:53;;;;;;;;856:257;;;:::o;471:377::-;561:4;604:13;578:10;:23;;;:39;;;;;;;;;;;;;;;;;;656:15;628:10;:25;;:43;;;;;;;;;;;;:::i;:::-;;719:10;684:17;:32;702:13;684:32;;;;;;;;;;;;;;;:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;809:5;;:7;;;;;;;;;;;;;836:4;829:11;;471:377;;;;:::o;36:1178::-;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "deployedSourceMap": "36:1178:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:1178:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1121:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;;856:257;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;856:257:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;856:257:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;471:377;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;471:377:1;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;471:377:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;471:377:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;471:377:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;471:377:1;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1121:90;1171:7;1198:5;;1191:12;;1121:90;:::o;856:257::-;920:18;940:28;981:25;;:::i;:::-;1009:17;:32;1027:13;1009:32;;;;;;;;;;;;;;;981:60;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1060:7;:20;;;1082:7;:22;;;1052:53;;;;;;;;856:257;;;:::o;471:377::-;561:4;604:13;578:10;:23;;;:39;;;;;;;;;;;;;;;;;;656:15;628:10;:25;;:43;;;;;;;;;;;;:::i;:::-;;719:10;684:17;:32;702:13;684:32;;;;;;;;;;;;;;;:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;809:5;;:7;;;;;;;;;;;;;836:4;829:11;;471:377;;;;:::o;36:1178::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "pragma solidity >=0.4.21 <0.6.0;\r\n\r\ncontract DegreeKindStorage {\r\n\r\n    // event setDegreeKindEvent(uint degreeKindId, string degreeKindName);\r\n    uint256 index;\r\n\r\n    struct DegreeKind {\r\n        uint8 degreeKindId;\r\n        string degreeKindName;\r\n    }\r\n\r\n    mapping (uint8 => DegreeKind) DegreeKindMapping;\r\n\r\n\r\n    event LeaderUpdated(uint8 degreeKindId , string degreeKindName);\r\n    event CountryDelete(uint8 degreeKindId);\r\n\r\n    DegreeKind degreeKind;\r\n\r\n    function setDegreeKind(uint8 _degreeKindId, string memory _degreeKindName) public returns(bool) {\r\n        degreeKind.degreeKindId = _degreeKindId;\r\n        degreeKind.degreeKindName = _degreeKindName;\r\n\r\n        DegreeKindMapping[_degreeKindId] = degreeKind;\r\n        // emit setDegreeKindEvent(_degreeKindId, _degreeKindName);\r\n        index++;\r\n\r\n        return true;\r\n    }\r\n\r\n    function getDegreeKind(uint8 _degreeKindId) public view returns(uint8 degreeKindId, string memory degreeKindName) {\r\n        DegreeKind memory tmpData = DegreeKindMapping[_degreeKindId];\r\n        return (tmpData.degreeKindId, tmpData.degreeKindName);\r\n    }\r\n\r\n    function getDegreeKindIndex() public view returns(uint256) {\r\n        return index;\r\n    }\r\n}",
-  "sourcePath": "C:/xampp/htdocs/projectBlockchain/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
+  "sourcePath": "C:/xampp/htdocs/B/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
   "ast": {
-    "absolutePath": "/C/xampp/htdocs/projectBlockchain/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
+    "absolutePath": "/C/xampp/htdocs/B/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
     "exportedSymbols": {
       "DegreeKindStorage": [
         517
@@ -181,88 +159,7 @@
               }
             },
             "value": null,
-            "visibility": "internal",
-            "canonicalName": "DegreeKindStorage.DegreeKind",
-            "members": [
-              {
-                "constant": false,
-                "id": 432,
-                "name": "degreeKindId",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "183:18:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
-                },
-                "typeName": {
-                  "id": 431,
-                  "name": "uint8",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "183:5:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 434,
-                "name": "degreeKindName",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "212:22:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bytes32",
-                  "typeString": "bytes32"
-                },
-                "typeName": {
-                  "id": 433,
-                  "name": "bytes32",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "212:7:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 436,
-                "name": "deleteFlag",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "245:15:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bool",
-                  "typeString": "bool"
-                },
-                "typeName": {
-                  "id": 435,
-                  "name": "bool",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "245:4:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              }
-            ]
+            "visibility": "internal"
           },
           {
             "canonicalName": "DegreeKindStorage.DegreeKind",
@@ -325,46 +222,7 @@
             "nodeType": "StructDefinition",
             "scope": 517,
             "src": "170:87:1",
-            "visibility": "public",
-            "constant": false,
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-              "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind)"
-            },
-            "typeName": {
-              "id": 440,
-              "keyType": {
-                "id": 438,
-                "name": "uint8",
-                "nodeType": "ElementaryTypeName",
-                "src": "289:5:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
-                }
-              },
-              "nodeType": "Mapping",
-              "src": "280:29:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind)"
-              },
-              "valueType": {
-                "contractScope": null,
-                "id": 439,
-                "name": "DegreeKind",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 437,
-                "src": "298:10:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                  "typeString": "struct DegreeKindStorage.DegreeKind"
-                }
-              }
-            },
-            "value": null
+            "visibility": "public"
           },
           {
             "constant": false,
@@ -408,273 +266,17 @@
                   "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
                   "typeString": "struct DegreeKindStorage.DegreeKind"
                 }
-              },
-              "contractScope": null,
-              "name": "DegreeKind",
-              "referencedDeclaration": 437
+              }
             },
             "value": null,
             "visibility": "internal"
           },
           {
-            "constant": false,
+            "anonymous": false,
+            "documentation": null,
             "id": 447,
             "name": "LeaderUpdated",
             "nodeType": "EventDefinition",
-            "scope": 507,
-            "src": "323:64:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-              "typeString": "struct DegreeKindStorage.DegreeKind"
-            },
-            "typeName": {
-              "contractScope": null,
-              "id": 442,
-              "name": "DegreeKind",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 437,
-              "src": "327:10:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                "typeString": "struct DegreeKindStorage.DegreeKind"
-              }
-            },
-            "value": null,
-            "visibility": "internal",
-            "body": {
-              "id": 472,
-              "nodeType": "Block",
-              "src": "456:263:1",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 456,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 452,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "467:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 454,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 432,
-                      "src": "467:23:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 455,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 445,
-                      "src": "493:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "src": "467:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "id": 457,
-                  "nodeType": "ExpressionStatement",
-                  "src": "467:39:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 462,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 458,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "517:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 460,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindName",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 434,
-                      "src": "517:25:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bytes32",
-                        "typeString": "bytes32"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 461,
-                      "name": "_degreeKindName",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 447,
-                      "src": "545:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bytes32",
-                        "typeString": "bytes32"
-                      }
-                    },
-                    "src": "517:43:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "id": 463,
-                  "nodeType": "ExpressionStatement",
-                  "src": "517:43:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 468,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "baseExpression": {
-                        "argumentTypes": null,
-                        "id": 464,
-                        "name": "DegreeKindMapping",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 441,
-                        "src": "573:17:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                          "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                        }
-                      },
-                      "id": 466,
-                      "indexExpression": {
-                        "argumentTypes": null,
-                        "id": 465,
-                        "name": "_degreeKindId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "591:13:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "nodeType": "IndexAccess",
-                      "src": "573:32:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 467,
-                      "name": "degreeKind",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 443,
-                      "src": "608:10:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "src": "573:45:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "id": 469,
-                  "nodeType": "ExpressionStatement",
-                  "src": "573:45:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "hexValue": "74727565",
-                    "id": 470,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "bool",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "707:4:1",
-                    "subdenomination": null,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    },
-                    "value": "true"
-                  },
-                  "functionReturnParameters": 451,
-                  "id": 471,
-                  "nodeType": "Return",
-                  "src": "700:11:1"
-                }
-              ]
-            },
-            "documentation": null,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "parameters": {
               "id": 446,
               "nodeType": "ParameterList",
@@ -682,6 +284,7 @@
                 {
                   "constant": false,
                   "id": 443,
+                  "indexed": false,
                   "name": "degreeKindId",
                   "nodeType": "VariableDeclaration",
                   "scope": 447,
@@ -703,12 +306,12 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
+                  "visibility": "internal"
                 },
                 {
                   "constant": false,
                   "id": 445,
+                  "indexed": false,
                   "name": "degreeKindName",
                   "nodeType": "VariableDeclaration",
                   "scope": 447,
@@ -730,452 +333,17 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
+                  "visibility": "internal"
                 }
               ],
               "src": "342:44:1"
             },
-            "returnParameters": {
-              "id": 451,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 450,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 473,
-                  "src": "450:4:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 449,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "450:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "449:6:1"
-            },
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "anonymous": false
+            "src": "323:64:1"
           },
           {
-            "body": {
-              "id": 475,
-              "nodeType": "Block",
-              "src": "453:281:1",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 456,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 452,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "464:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 454,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 434,
-                      "src": "464:23:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 455,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 445,
-                      "src": "490:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "src": "464:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "id": 457,
-                  "nodeType": "ExpressionStatement",
-                  "src": "464:39:1",
-                  "assignments": [
-                    483
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 483,
-                      "name": "tmpData",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 494,
-                      "src": "846:25:1",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                        "typeString": "struct DegreeKindStorage.DegreeKind"
-                      },
-                      "typeName": {
-                        "contractScope": null,
-                        "id": 482,
-                        "name": "DegreeKind",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 437,
-                        "src": "846:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                          "typeString": "struct DegreeKindStorage.DegreeKind"
-                        }
-                      },
-                      "value": null,
-                      "visibility": "internal"
-                    }
-                  ],
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "baseExpression": {
-                      "argumentTypes": null,
-                      "id": 484,
-                      "name": "DegreeKindMapping",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 441,
-                      "src": "874:17:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                        "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                      }
-                    },
-                    "id": 486,
-                    "indexExpression": {
-                      "argumentTypes": null,
-                      "id": 485,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 475,
-                      "src": "892:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "874:32:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  }
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 462,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 458,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "514:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 460,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindName",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 436,
-                      "src": "514:25:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_string_storage",
-                        "typeString": "string storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 461,
-                      "name": "_degreeKindName",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 447,
-                      "src": "542:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_string_memory_ptr",
-                        "typeString": "string memory"
-                      }
-                    },
-                    "src": "514:43:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
-                    },
-                    "components": [
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 488,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 483,
-                          "src": "925:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 489,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindId",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 432,
-                        "src": "925:20:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 490,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 483,
-                          "src": "947:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 491,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindName",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 434,
-                        "src": "947:22:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bytes32",
-                          "typeString": "bytes32"
-                        }
-                      }
-                    ],
-                    "isInlineArray": false
-                  },
-                  "id": 463,
-                  "nodeType": "ExpressionStatement",
-                  "src": "514:43:1",
-                  "functionReturnParameters": 481
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 468,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "baseExpression": {
-                        "argumentTypes": null,
-                        "id": 464,
-                        "name": "DegreeKindMapping",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 441,
-                        "src": "570:17:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                          "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                        }
-                      },
-                      "id": 466,
-                      "indexExpression": {
-                        "argumentTypes": null,
-                        "id": 465,
-                        "name": "_degreeKindId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "588:13:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "nodeType": "IndexAccess",
-                      "src": "570:32:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 467,
-                      "name": "degreeKind",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 443,
-                      "src": "605:10:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "src": "570:45:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "id": 469,
-                  "nodeType": "ExpressionStatement",
-                  "src": "570:45:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 471,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "UnaryOperation",
-                    "operator": "++",
-                    "prefix": false,
-                    "src": "695:7:1",
-                    "subExpression": {
-                      "argumentTypes": null,
-                      "id": 470,
-                      "name": "index",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 432,
-                      "src": "695:5:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 472,
-                  "nodeType": "ExpressionStatement",
-                  "src": "695:7:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "hexValue": "74727565",
-                    "id": 473,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "bool",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "722:4:1",
-                    "subdenomination": null,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    },
-                    "value": "true"
-                  },
-                  "functionReturnParameters": 451,
-                  "id": 474,
-                  "nodeType": "Return",
-                  "src": "715:11:1"
-                }
-              ]
-            },
+            "anonymous": false,
             "documentation": null,
             "id": 451,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "name": "CountryDelete",
             "nodeType": "EventDefinition",
             "parameters": {
@@ -1185,6 +353,7 @@
                 {
                   "constant": false,
                   "id": 449,
+                  "indexed": false,
                   "name": "degreeKindId",
                   "nodeType": "VariableDeclaration",
                   "scope": 451,
@@ -1206,376 +375,20 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
-                },
-                {
-                  "constant": false,
-                  "id": 447,
-                  "name": "_degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 476,
-                  "src": "401:29:1",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 446,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "401:6:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "value": null,
                   "visibility": "internal"
                 }
               ],
               "src": "412:20:1"
             },
-            "returnParameters": {
-              "id": 451,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 450,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 476,
-                  "src": "447:4:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 449,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "447:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 480,
-                  "name": "degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 495,
-                  "src": "811:22:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  },
-                  "typeName": {
-                    "id": 479,
-                    "name": "bytes32",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "811:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "446:6:1"
-            },
-            "scope": 507,
-            "src": "393:40:1",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public",
-            "anonymous": false
+            "src": "393:40:1"
           },
           {
-            "body": {
-              "id": 497,
-              "nodeType": "Block",
-              "src": "856:143:1",
-              "statements": [
-                {
-                  "assignments": [
-                    486
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 486,
-                      "name": "tmpData",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 497,
-                      "src": "867:25:1",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                        "typeString": "struct DegreeKindStorage.DegreeKind"
-                      },
-                      "typeName": {
-                        "contractScope": null,
-                        "id": 485,
-                        "name": "DegreeKind",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 437,
-                        "src": "867:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                          "typeString": "struct DegreeKindStorage.DegreeKind"
-                        }
-                      },
-                      "value": null,
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 490,
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "baseExpression": {
-                      "argumentTypes": null,
-                      "id": 487,
-                      "name": "DegreeKindMapping",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 441,
-                      "src": "895:17:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                        "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                      }
-                    },
-                    "id": 489,
-                    "indexExpression": {
-                      "argumentTypes": null,
-                      "id": 488,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 478,
-                      "src": "913:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "895:32:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "867:60:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "components": [
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 491,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 486,
-                          "src": "946:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 492,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindId",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 434,
-                        "src": "946:20:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 493,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 486,
-                          "src": "968:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 494,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindName",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 436,
-                        "src": "968:22:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_string_memory",
-                          "typeString": "string memory"
-                        }
-                      }
-                    ],
-                    "id": 495,
-                    "isConstant": false,
-                    "isInlineArray": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "TupleExpression",
-                    "src": "945:46:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_uint8_$_t_string_memory_$",
-                      "typeString": "tuple(uint8,string memory)"
-                    }
-                  },
-                  "functionReturnParameters": 484,
-                  "id": 496,
-                  "nodeType": "Return",
-                  "src": "938:53:1"
-                }
-              ]
-            },
-            "documentation": null,
+            "constant": false,
             "id": 453,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "name": "degreeKind",
             "nodeType": "VariableDeclaration",
-            "parameters": {
-              "id": 479,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 478,
-                  "name": "_degreeKindId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "765:19:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 477,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "765:5:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "764:21:1"
-            },
-            "returnParameters": {
-              "id": 484,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 481,
-                  "name": "degreeKindId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "806:18:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 480,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "806:5:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 483,
-                  "name": "degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "826:28:1",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 482,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "826:6:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "805:50:1"
-            },
             "scope": 517,
             "src": "441:21:1",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "internal",
-            "constant": false,
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1594,7 +407,8 @@
                 "typeString": "struct DegreeKindStorage.DegreeKind"
               }
             },
-            "value": null
+            "value": null,
+            "visibility": "internal"
           },
           {
             "body": {
@@ -1606,15 +420,6 @@
                   "expression": {
                     "argumentTypes": null,
                     "id": 466,
-                    "name": "index",
-                    "nodeType": "Assignment",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 432,
-                    "src": "578:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    },
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1648,6 +453,7 @@
                         "typeString": "uint8"
                       }
                     },
+                    "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
@@ -1661,9 +467,13 @@
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
+                    },
+                    "src": "578:39:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
-                  "functionReturnParameters": 502,
                   "id": 467,
                   "nodeType": "ExpressionStatement",
                   "src": "578:39:1"
@@ -2327,7 +1137,7 @@
     "src": "0:1214:1"
   },
   "legacyAST": {
-    "absolutePath": "/C/xampp/htdocs/projectBlockchain/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
+    "absolutePath": "/C/xampp/htdocs/B/blockchaindemo/TG_UNIVERSITY_CERTIFICATE_VERIFICATION_SERVER/contracts/DegreeKind.sol",
     "exportedSymbols": {
       "DegreeKindStorage": [
         517
@@ -2387,88 +1197,7 @@
               }
             },
             "value": null,
-            "visibility": "internal",
-            "canonicalName": "DegreeKindStorage.DegreeKind",
-            "members": [
-              {
-                "constant": false,
-                "id": 432,
-                "name": "degreeKindId",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "183:18:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
-                },
-                "typeName": {
-                  "id": 431,
-                  "name": "uint8",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "183:5:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 434,
-                "name": "degreeKindName",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "212:22:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bytes32",
-                  "typeString": "bytes32"
-                },
-                "typeName": {
-                  "id": 433,
-                  "name": "bytes32",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "212:7:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 436,
-                "name": "deleteFlag",
-                "nodeType": "VariableDeclaration",
-                "scope": 437,
-                "src": "245:15:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bool",
-                  "typeString": "bool"
-                },
-                "typeName": {
-                  "id": 435,
-                  "name": "bool",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "245:4:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              }
-            ]
+            "visibility": "internal"
           },
           {
             "canonicalName": "DegreeKindStorage.DegreeKind",
@@ -2531,46 +1260,7 @@
             "nodeType": "StructDefinition",
             "scope": 517,
             "src": "170:87:1",
-            "visibility": "public",
-            "constant": false,
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-              "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind)"
-            },
-            "typeName": {
-              "id": 440,
-              "keyType": {
-                "id": 438,
-                "name": "uint8",
-                "nodeType": "ElementaryTypeName",
-                "src": "289:5:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
-                }
-              },
-              "nodeType": "Mapping",
-              "src": "280:29:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind)"
-              },
-              "valueType": {
-                "contractScope": null,
-                "id": 439,
-                "name": "DegreeKind",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 437,
-                "src": "298:10:1",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                  "typeString": "struct DegreeKindStorage.DegreeKind"
-                }
-              }
-            },
-            "value": null
+            "visibility": "public"
           },
           {
             "constant": false,
@@ -2614,273 +1304,17 @@
                   "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
                   "typeString": "struct DegreeKindStorage.DegreeKind"
                 }
-              },
-              "contractScope": null,
-              "name": "DegreeKind",
-              "referencedDeclaration": 437
+              }
             },
             "value": null,
             "visibility": "internal"
           },
           {
-            "constant": false,
+            "anonymous": false,
+            "documentation": null,
             "id": 447,
             "name": "LeaderUpdated",
             "nodeType": "EventDefinition",
-            "scope": 507,
-            "src": "323:64:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-              "typeString": "struct DegreeKindStorage.DegreeKind"
-            },
-            "typeName": {
-              "contractScope": null,
-              "id": 442,
-              "name": "DegreeKind",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 437,
-              "src": "327:10:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                "typeString": "struct DegreeKindStorage.DegreeKind"
-              }
-            },
-            "value": null,
-            "visibility": "internal",
-            "body": {
-              "id": 472,
-              "nodeType": "Block",
-              "src": "456:263:1",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 456,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 452,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "467:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 454,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 432,
-                      "src": "467:23:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 455,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 445,
-                      "src": "493:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "src": "467:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "id": 457,
-                  "nodeType": "ExpressionStatement",
-                  "src": "467:39:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 462,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 458,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "517:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 460,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindName",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 434,
-                      "src": "517:25:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bytes32",
-                        "typeString": "bytes32"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 461,
-                      "name": "_degreeKindName",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 447,
-                      "src": "545:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bytes32",
-                        "typeString": "bytes32"
-                      }
-                    },
-                    "src": "517:43:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "id": 463,
-                  "nodeType": "ExpressionStatement",
-                  "src": "517:43:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 468,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "baseExpression": {
-                        "argumentTypes": null,
-                        "id": 464,
-                        "name": "DegreeKindMapping",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 441,
-                        "src": "573:17:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                          "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                        }
-                      },
-                      "id": 466,
-                      "indexExpression": {
-                        "argumentTypes": null,
-                        "id": 465,
-                        "name": "_degreeKindId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "591:13:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "nodeType": "IndexAccess",
-                      "src": "573:32:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 467,
-                      "name": "degreeKind",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 443,
-                      "src": "608:10:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "src": "573:45:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "id": 469,
-                  "nodeType": "ExpressionStatement",
-                  "src": "573:45:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "hexValue": "74727565",
-                    "id": 470,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "bool",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "707:4:1",
-                    "subdenomination": null,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    },
-                    "value": "true"
-                  },
-                  "functionReturnParameters": 451,
-                  "id": 471,
-                  "nodeType": "Return",
-                  "src": "700:11:1"
-                }
-              ]
-            },
-            "documentation": null,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "parameters": {
               "id": 446,
               "nodeType": "ParameterList",
@@ -2888,6 +1322,7 @@
                 {
                   "constant": false,
                   "id": 443,
+                  "indexed": false,
                   "name": "degreeKindId",
                   "nodeType": "VariableDeclaration",
                   "scope": 447,
@@ -2909,12 +1344,12 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
+                  "visibility": "internal"
                 },
                 {
                   "constant": false,
                   "id": 445,
+                  "indexed": false,
                   "name": "degreeKindName",
                   "nodeType": "VariableDeclaration",
                   "scope": 447,
@@ -2936,452 +1371,17 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
+                  "visibility": "internal"
                 }
               ],
               "src": "342:44:1"
             },
-            "returnParameters": {
-              "id": 451,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 450,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 473,
-                  "src": "450:4:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 449,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "450:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "449:6:1"
-            },
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "anonymous": false
+            "src": "323:64:1"
           },
           {
-            "body": {
-              "id": 475,
-              "nodeType": "Block",
-              "src": "453:281:1",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 456,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 452,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "464:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 454,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 434,
-                      "src": "464:23:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 455,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 445,
-                      "src": "490:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "src": "464:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "id": 457,
-                  "nodeType": "ExpressionStatement",
-                  "src": "464:39:1",
-                  "assignments": [
-                    483
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 483,
-                      "name": "tmpData",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 494,
-                      "src": "846:25:1",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                        "typeString": "struct DegreeKindStorage.DegreeKind"
-                      },
-                      "typeName": {
-                        "contractScope": null,
-                        "id": 482,
-                        "name": "DegreeKind",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 437,
-                        "src": "846:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                          "typeString": "struct DegreeKindStorage.DegreeKind"
-                        }
-                      },
-                      "value": null,
-                      "visibility": "internal"
-                    }
-                  ],
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "baseExpression": {
-                      "argumentTypes": null,
-                      "id": 484,
-                      "name": "DegreeKindMapping",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 441,
-                      "src": "874:17:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                        "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                      }
-                    },
-                    "id": 486,
-                    "indexExpression": {
-                      "argumentTypes": null,
-                      "id": 485,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 475,
-                      "src": "892:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "874:32:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  }
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 462,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "id": 458,
-                        "name": "degreeKind",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 443,
-                        "src": "514:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                          "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                        }
-                      },
-                      "id": 460,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberName": "degreeKindName",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 436,
-                      "src": "514:25:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_string_storage",
-                        "typeString": "string storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 461,
-                      "name": "_degreeKindName",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 447,
-                      "src": "542:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_string_memory_ptr",
-                        "typeString": "string memory"
-                      }
-                    },
-                    "src": "514:43:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
-                    },
-                    "components": [
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 488,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 483,
-                          "src": "925:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 489,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindId",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 432,
-                        "src": "925:20:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 490,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 483,
-                          "src": "947:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 491,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindName",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 434,
-                        "src": "947:22:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bytes32",
-                          "typeString": "bytes32"
-                        }
-                      }
-                    ],
-                    "isInlineArray": false
-                  },
-                  "id": 463,
-                  "nodeType": "ExpressionStatement",
-                  "src": "514:43:1",
-                  "functionReturnParameters": 481
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 468,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "baseExpression": {
-                        "argumentTypes": null,
-                        "id": 464,
-                        "name": "DegreeKindMapping",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 441,
-                        "src": "570:17:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                          "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                        }
-                      },
-                      "id": 466,
-                      "indexExpression": {
-                        "argumentTypes": null,
-                        "id": 465,
-                        "name": "_degreeKindId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "588:13:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "nodeType": "IndexAccess",
-                      "src": "570:32:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 467,
-                      "name": "degreeKind",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 443,
-                      "src": "605:10:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                        "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                      }
-                    },
-                    "src": "570:45:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "id": 469,
-                  "nodeType": "ExpressionStatement",
-                  "src": "570:45:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 471,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "UnaryOperation",
-                    "operator": "++",
-                    "prefix": false,
-                    "src": "695:7:1",
-                    "subExpression": {
-                      "argumentTypes": null,
-                      "id": 470,
-                      "name": "index",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 432,
-                      "src": "695:5:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 472,
-                  "nodeType": "ExpressionStatement",
-                  "src": "695:7:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "hexValue": "74727565",
-                    "id": 473,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "bool",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "722:4:1",
-                    "subdenomination": null,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    },
-                    "value": "true"
-                  },
-                  "functionReturnParameters": 451,
-                  "id": 474,
-                  "nodeType": "Return",
-                  "src": "715:11:1"
-                }
-              ]
-            },
+            "anonymous": false,
             "documentation": null,
             "id": 451,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "name": "CountryDelete",
             "nodeType": "EventDefinition",
             "parameters": {
@@ -3391,6 +1391,7 @@
                 {
                   "constant": false,
                   "id": 449,
+                  "indexed": false,
                   "name": "degreeKindId",
                   "nodeType": "VariableDeclaration",
                   "scope": 451,
@@ -3412,376 +1413,20 @@
                     }
                   },
                   "value": null,
-                  "visibility": "internal",
-                  "indexed": false
-                },
-                {
-                  "constant": false,
-                  "id": 447,
-                  "name": "_degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 476,
-                  "src": "401:29:1",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 446,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "401:6:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "value": null,
                   "visibility": "internal"
                 }
               ],
               "src": "412:20:1"
             },
-            "returnParameters": {
-              "id": 451,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 450,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 476,
-                  "src": "447:4:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 449,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "447:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 480,
-                  "name": "degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 495,
-                  "src": "811:22:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  },
-                  "typeName": {
-                    "id": 479,
-                    "name": "bytes32",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "811:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "446:6:1"
-            },
-            "scope": 507,
-            "src": "393:40:1",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public",
-            "anonymous": false
+            "src": "393:40:1"
           },
           {
-            "body": {
-              "id": 497,
-              "nodeType": "Block",
-              "src": "856:143:1",
-              "statements": [
-                {
-                  "assignments": [
-                    486
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 486,
-                      "name": "tmpData",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 497,
-                      "src": "867:25:1",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                        "typeString": "struct DegreeKindStorage.DegreeKind"
-                      },
-                      "typeName": {
-                        "contractScope": null,
-                        "id": 485,
-                        "name": "DegreeKind",
-                        "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 437,
-                        "src": "867:10:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_DegreeKind_$437_storage_ptr",
-                          "typeString": "struct DegreeKindStorage.DegreeKind"
-                        }
-                      },
-                      "value": null,
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 490,
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "baseExpression": {
-                      "argumentTypes": null,
-                      "id": 487,
-                      "name": "DegreeKindMapping",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 441,
-                      "src": "895:17:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint8_$_t_struct$_DegreeKind_$437_storage_$",
-                        "typeString": "mapping(uint8 => struct DegreeKindStorage.DegreeKind storage ref)"
-                      }
-                    },
-                    "id": 489,
-                    "indexExpression": {
-                      "argumentTypes": null,
-                      "id": 488,
-                      "name": "_degreeKindId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 478,
-                      "src": "913:13:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "895:32:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DegreeKind_$437_storage",
-                      "typeString": "struct DegreeKindStorage.DegreeKind storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "867:60:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "components": [
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 491,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 486,
-                          "src": "946:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 492,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindId",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 434,
-                        "src": "946:20:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint8",
-                          "typeString": "uint8"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 493,
-                          "name": "tmpData",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 486,
-                          "src": "968:7:1",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DegreeKind_$437_memory_ptr",
-                            "typeString": "struct DegreeKindStorage.DegreeKind memory"
-                          }
-                        },
-                        "id": 494,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "degreeKindName",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 436,
-                        "src": "968:22:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_string_memory",
-                          "typeString": "string memory"
-                        }
-                      }
-                    ],
-                    "id": 495,
-                    "isConstant": false,
-                    "isInlineArray": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "TupleExpression",
-                    "src": "945:46:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_uint8_$_t_string_memory_$",
-                      "typeString": "tuple(uint8,string memory)"
-                    }
-                  },
-                  "functionReturnParameters": 484,
-                  "id": 496,
-                  "nodeType": "Return",
-                  "src": "938:53:1"
-                }
-              ]
-            },
-            "documentation": null,
+            "constant": false,
             "id": 453,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
             "name": "degreeKind",
             "nodeType": "VariableDeclaration",
-            "parameters": {
-              "id": 479,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 478,
-                  "name": "_degreeKindId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "765:19:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 477,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "765:5:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "764:21:1"
-            },
-            "returnParameters": {
-              "id": 484,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 481,
-                  "name": "degreeKindId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "806:18:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 480,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "806:5:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 483,
-                  "name": "degreeKindName",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 498,
-                  "src": "826:28:1",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 482,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "826:6:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "805:50:1"
-            },
             "scope": 517,
             "src": "441:21:1",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "internal",
-            "constant": false,
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -3800,7 +1445,8 @@
                 "typeString": "struct DegreeKindStorage.DegreeKind"
               }
             },
-            "value": null
+            "value": null,
+            "visibility": "internal"
           },
           {
             "body": {
@@ -3812,15 +1458,6 @@
                   "expression": {
                     "argumentTypes": null,
                     "id": 466,
-                    "name": "index",
-                    "nodeType": "Assignment",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 432,
-                    "src": "578:39:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    },
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3854,6 +1491,7 @@
                         "typeString": "uint8"
                       }
                     },
+                    "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
@@ -3867,9 +1505,13 @@
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
+                    },
+                    "src": "578:39:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
                     }
                   },
-                  "functionReturnParameters": 502,
                   "id": 467,
                   "nodeType": "ExpressionStatement",
                   "src": "578:39:1"
@@ -4534,7 +2176,7 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
     "4": {
@@ -4551,7 +2193,7 @@
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-07-01T09:02:32.683Z",
+  "updatedAt": "2019-07-03T09:50:50.934Z",
   "devdoc": {
     "methods": {}
   },

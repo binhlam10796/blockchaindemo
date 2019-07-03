@@ -62,16 +62,20 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#userManagement" data-toggle="tab">Quản
-                                    lý người dùng</a>
+                                <a href="#userManagement" data-toggle="tab">
+                                    Quản lý người dùng</a>
                             </li>
                             <li>
-                                <a href="#schoolManagement" data-toggle="tab">Quản
-                                    lý trường</a>
+                                <a href="#schoolManagement" data-toggle="tab">
+                                    Quảnlý trường</a>
                             </li>
                             <li>
-                                <a href="#historyUsermanagement"
-                                    data-toggle="tab">Lịch sử</a>
+                                <a href="#historyUsermanagement" data-toggle="tab">
+                                    Lịch sử người dùng</a>
+                            </li>
+                            <li>
+                                <a href="#historySchoolmanagement" data-toggle="tab">
+                                    Lịch sử trường học</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -83,7 +87,7 @@
                                         <button type="button" name=""
                                             class="form-control btn btn-primary"
                                             data-toggle="modal"
-                                            data-target="#addDegree">
+                                            data-target="#addUsers">
                                             <i class="glyphicon glyphicon-plus"></i>
                                             Thêm mới</button>
                                     </div>
@@ -235,7 +239,7 @@
                                         </table>
                                         <div class="pagination-container">
                                             <nav>
-                                                <ul class="pagination"></ul>
+                                                <ul class="paginationSchool"></ul>
                                             </nav>
                                         </div>
 
@@ -244,17 +248,24 @@
                             </div>
                             <!-- End tab approve certification -->
 
-                            <!-- Tab history -->
+                            <!-- Tab history users -->
                             <div class="tab-pane" id="historyUsermanagement">
                                 <section class="content">
+                                        <table id="listHistory"
+                                        class="table table-borderless table-condensed table-hover">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
                                     <!-- row -->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <!-- The time line -->
                                             <ul id="btnTimeLine"
                                                 class="timeline">
-
-
                                             </ul>
                                         </div>
                                         <!-- /.col -->
@@ -262,7 +273,34 @@
                                     <!-- /.row -->
                                 </section>
                             </div>
-                            <!-- End tab history -->
+                            <!-- End tab history users -->
+
+                            <!-- Tab history school -->
+                            <div class="tab-pane" id="historySchoolmanagement">
+                                <section class="content">
+                                    <table id="listHistorySchool"
+                                        class="table table-borderless table-condensed table-hover">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <ul id="btnTimeLine"
+                                                class="timeline">
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </section>
+                            </div>
+                            <!-- End tab history school -->
                         </div>
                         <!-- /.tab-content -->
                     </div>
@@ -274,7 +312,7 @@
         </div>
 
         <!-- Add usermanagement-->
-        <div class="modal fade" id="addDegree">
+        <div class="modal fade" id="addUsers">
             <div class="modal-dialog">
 
                 <!-- Modal content-->

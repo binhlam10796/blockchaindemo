@@ -5,15 +5,11 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 ethereum.enable();
-var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xE1b8a3490724565418f373C28c9e78Fe76F5c49B");
-var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x99440E9b6Fc1ff3a7E0E16C90822A55038c62F60");
+var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0x5aB05BC7EAc1355B3ff1B5a748A75a2BfAC39e80");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0xA5D96Dc92586be9DC36F377C4bF933ce6cb65dEc");
 //create address random and unique
 var temp = web3.eth.accounts.create();
 var randomAddress = temp.address;
-//0x8a6931B13B1EC63402bCcB5805BD5a5dD29F813e nam
-//0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183 tai
-//0x4446B5dF39FAB2F3FAD857b13910C323786a0632 dlinh
-//0xadCe998Cfb3BD7C3E6b6Af4d1D7C7d2bB1aAFEC3 okok
 
 //create users
 function addUserManagement() {
@@ -29,8 +25,8 @@ function addUserManagement() {
             var dateOfBirth = $("#dateOfBirth").val();
             var isLocked = $("#isLocked").val();
 
-            var createdTime = new Date(Date.now()).toLocaleString();
-            var modifiedTime = new Date(Date.now()).toLocaleString();
+            var createdTime = new Date(Date.now()).toString();
+            var modifiedTime = new Date(Date.now()).toString();
             var idCardNo = $("#idCardNo").val();
             var idCardIssuePlace = $("#idCardIssuePlace").val();
             var phoneNumber = $("#phoneNumber").val();
@@ -87,7 +83,7 @@ function addUserManagement() {
                     }
                 )
                 .on('transactionHash', (hash) => {
-                    $("#addDegree").hide();
+                    $("#addUsers").hide();
                     alert("Vui lòng chờ xử lý giao dịch!");
                 })
                 .on('receipt', (receipt) => {
@@ -155,7 +151,7 @@ function onloadSelected() {
 
 // pagination school management
 function pag() {
-    $('.pagination').html('')
+    $('.paginationSchool').html('')
     var table = '#listSchoolManager';
     var trnum = 0;
     var maxRows = 10;
@@ -173,14 +169,14 @@ function pag() {
     if (totalRows > maxRows) {
         var pagenum = Math.ceil(totalRows / maxRows)
         for (var i = 1; i <= pagenum;) {
-            $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + ' <span class="sr-only">(current)</span> </span>\ </li>').show()
+            $('.paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + ' <span class="sr-only">(current)</span> </span>\ </li>').show()
         }
     }
-    $('.pagination li:first-child').addClass('active')
-    $('.pagination li').on('click', function () {
+    $('.paginationSchool li:first-child').addClass('active')
+    $('.paginationSchool li').on('click', function () {
         var pageNum = $(this).attr('data-page')
         var trIndex = 0
-        $('.pagination li').removeClass('active')
+        $('.paginationSchool li').removeClass('active')
         $(this).addClass('active')
         $(table + ' tr:gt(0)').each(function () {
             trIndex++
@@ -193,12 +189,13 @@ function pag() {
     })
 }
 
+//load page
 $(window).on('load', function () {
     listUserManagement();
     // history();
     $(document).ready(function () {
         var table = '#listUserManager';
-        setTimeout(onloadSelected, 4000);
+        setTimeout(onloadSelected, 5000);
 
         $('#maxRowsListUserManagement').on('change', function () {
             $('.pagination').html('')
@@ -245,7 +242,7 @@ $(window).on('load', function () {
         setTimeout(pag, 4000);
 
         $('#listschoolpt').on('change', function () {
-            $('.pagination').html('')
+            $('.paginationSchool').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
             var totalRows = $(table + ' tbody tr').length
@@ -261,14 +258,14 @@ $(window).on('load', function () {
             if (totalRows > maxRows) {
                 var pagenum = Math.ceil(totalRows / maxRows)
                 for (var i = 1; i <= pagenum;) {
-                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+                    $('.paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
                 }
             }
-            $('.pagination li:first-child').addClass('active')
-            $('.pagination li').on('click', function () {
+            $('.paginationSchool li:first-child').addClass('active')
+            $('.paginationSchool li').on('click', function () {
                 var pageNum = $(this).attr('data-page')
                 var trIndex = 0
-                $('.pagination li').removeClass('active')
+                $('.paginationSchool li').removeClass('active')
                 $(this).addClass('active')
                 $(table + ' tr:gt(0)').each(function () {
                     trIndex++
@@ -281,7 +278,8 @@ $(window).on('load', function () {
             })
         })
     });
-    getHistory();
+    historyUsers();
+    historySchool()
 });
 
 //sort table
@@ -297,7 +295,7 @@ function sortTable(table, order) {
         }
     }).appendTo(tbody);
 }
-
+//danh sach nguoi dung
 function listUserManagement() {
     var table = "";
     userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
@@ -411,6 +409,7 @@ function deleteUserManagement() {
         //}
     })
 }
+//delete all users
 function deleteAllUserManagement() {
     web3.eth.getAccounts(function (error, result) {
         var account = result[0];
@@ -457,7 +456,8 @@ function deleteAllUserManagement() {
 }
 
 
-//update fullname
+//view update
+
 function createUpdateView(address) {
     var parag = `<p>` + address + `</p>`;
     $("#insertValueUpdateFullNameModal").find(".modal-body").html(parag);
@@ -502,7 +502,7 @@ function createUpdatePhoneNumberView(address) {
     var parag = `<p>` + address + `</p>`;
     $("#insertValueUpdatePhoneNumberModal").find(".modal-body").html(parag);
 }
-
+//modal update
 function frontUpdateUserManagement(address, fullName, email, password, gender, dateOfBirth, userAddr,
     createdTime, modifiedTime, idCardNo, idCardIssuePlace, phoneNumber, isLocked) {
     var table = "";
@@ -639,15 +639,14 @@ function frontUpdateUserManagement(address, fullName, email, password, gender, d
 
 }
 
+//update 
 
-
-//update fullname
 function updateUserManagement() {
     web3.eth.getAccounts(function (error, result) {
         var account = result[0];
         var address = $('#insertValueUpdateFullNameModal .modal-body p').text();
         var fullName = $('#valueUpdate').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         // var modifiedTime = Date.now();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateFullName(address, fullName, modifiedTime)
@@ -690,13 +689,12 @@ function updateUserManagement() {
     })
 }
 
-//update email
 function updateEmailUserManagement() {
     web3.eth.getAccounts(function (error, result) {
         var account = result[0];
         var address = $('#insertValueUpdateEmailModal .modal-body p').text();
         var email = $('#valueUpdateEmail').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         // var modifiedTime = new Date(Date.now()).toLocaleString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateEmail(address, email, modifiedTime)
@@ -744,7 +742,7 @@ function updatePasswordUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdatePasswordModal .modal-body p').text();
         var password = $('#valueUpdatePassword').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updatePassword(address, password, modifiedTime)
             .send({ from: account },
@@ -791,7 +789,7 @@ function updateGenderUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdateGenderModal .modal-body p').text();
         var gender = $('#valueUpdateGender').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateGender(address, gender, modifiedTime)
             .send({ from: account },
@@ -838,7 +836,7 @@ function updateDateOfBirthUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdateDateOfBirthModal .modal-body p').text();
         var dateOfBirth = $('#valueUpdateDateOfBirth').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateDateOfBirth(address, dateOfBirth, modifiedTime)
             .send({ from: account },
@@ -885,7 +883,7 @@ function updateUserAddrUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdateUserAddrModal .modal-body p').text();
         var userAddr = $('#valueUpdateUserAddr').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateUserAddr(address, userAddr, modifiedTime)
             .send({ from: account },
@@ -932,7 +930,7 @@ function updateIdCardNoUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdateIdCardNoModal .modal-body p').text();
         var idCardNo = $('#valueUpdateIdCardNo').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateIdCardNo(address, idCardNo, modifiedTime)
             .send({ from: account },
@@ -979,7 +977,7 @@ function updateIdCardIssuePlaceUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdateIdCardIssuePlaceModal .modal-body p').text();
         var idCardIssuePlace = $('#valueUpdateIdCardIssuePlace').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updateIdCardIssuePlace(address, idCardIssuePlace, modifiedTime)
             .send({ from: account },
@@ -1026,7 +1024,7 @@ function updatePhoneNumberUserManagement() {
         var account = result[0];
         var address = $('#insertValueUpdatePhoneNumberModal .modal-body p').text();
         var phoneNumber = $('#valueUpdatePhoneNumber').val();
-        var modifiedTime = new Date(Date.now()).toLocaleString();
+        var modifiedTime = new Date(Date.now()).toString();
         var batch = new web3.BatchRequest();
         batch.add(userManagementSessionInstance.methods.updatePhoneNumber(address, phoneNumber, modifiedTime)
             .send({ from: account },
@@ -1083,15 +1081,17 @@ function addZero(i) {
 // Jan 2019
 function formatDate(date) {
     var monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
+        "Jan", "Feb", "Mar",
+        "Apr", "May", "Jun", "Jul",
+        "Aug", "Sep", "Oct",
+        "Nov", "Dec"
     ];
+    var minutes = date.getMinutes();
+    var hours = date.getHours()
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + hours + ':' + minutes;
 }
 //format date
 function tg(date) {
@@ -1121,7 +1121,8 @@ function timeLine(id, thoigian) {
     $("#historyUsermanagement").find(".timeline").html(history);
 }
 
-function getHistory() {
+//khong xai
+function historyUser() {
     userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
         for (let row = count - 1; row >= 0; row--) {
             // for (let row = 0; row < count; row++) {
@@ -1176,6 +1177,125 @@ function getHistory() {
     })
 }
 
+//new history user
+function historyUsers() {
+    var listHistory = "";
+    userManagementSessionInstance.methods.getUserCount().call().then(function (count) {
+        for (let row = 0; row < count ; row++) {
+            userManagementSessionInstance.methods.getUserAtIndex(row).call().then(function (addr) {
+                userManagementSessionInstance.methods.getUser(addr).call().then(function (result) {
+                    userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
+                        userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
+                        listHistory +=  
+                            `
+                            <tr>
+                                <td id=sortHistory onclick="sortTable($('#listHistory'),'desc')"
+                                    style="display: none !important">
+                                    ` + (parseInt(row) + 1) + `</td>
+                                <td>
+                                    <div class="tab-pane" >
+                                        <section class="content">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <ul id="btnTimeLine" class="timeline">
+                                                        <li class="time-label">
+                                                            <span> `+ tg(result1[1]) +` </span>
+                                                        </li>
+
+                                                        <li>
+                                                            <i class="fa fa-user bg-aqua"></i>
+                                                            <div class="timeline-item">
+                                                                    <span class="time">
+                                                                    <i class="fa fa-clock-o"></i>`+ relativeTime(result1[1]) + `</span>
+                                                                    <h3 class="timeline-header no-border" >
+                                                                        <a href="#" data-toggle="modal"
+                                                                            data-target="#viewUserModal" 
+                                                                            onclick="viewUser('`+ result[0] + `')">
+                                                                            `+ result[0] + `
+                                                                        </a>
+                                                                        đã được thêm.
+                                                                    </h3>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            `
+                            $("#listHistory").find("tbody").html(listHistory);
+                            document.getElementById("sortHistory").click();
+                        })
+
+                    })
+                })
+            });
+        }
+    })
+}
+
+//new history school
+function historySchool() {
+    var listHistorySchool = "";
+    SchoolManagementSessionInstance.methods.getSchoolCount().call().then(function (count) {
+        for (let row = 0; row < count; row++) {
+            SchoolManagementSessionInstance.methods.getSchoolAtIndex(row).call().then(function (addr) {
+                SchoolManagementSessionInstance.methods.getSchool(addr).call().then(function (result) {
+                    SchoolManagementSessionInstance.methods.getSchoolAddition(addr).call().then(function (result1) {
+                        listHistorySchool +=  `
+                        <tr>
+                            <td id=sortHistorySchool onclick="sortTable($('#listHistorySchool'),'desc')"
+                                style="display: none !important">
+                                ` + (parseInt(row) + 1) + `
+                            </td>
+                            <td>
+                                <div class="tab-pane" >
+                                    <section class="content">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul id="btnTimeLine" class="timeline">
+                                                    <li class="time-label">
+                                                        <span> `+ tg(result1[0]) +` </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <i class="fa fa-user bg-aqua"></i>
+                                                        <div class="timeline-item">
+                                                                <span class="time">
+                                                                <i class="fa fa-clock-o"></i>`+ relativeTime(result1[0]) + `</span>
+                                                                <h3 class="timeline-header no-border" >
+                                                                    <a href="#" data-toggle="modal"
+                                                                        data-target="#viewUserModal" 
+                                                                        onclick="viewUser('`+ result[0] + `')">
+                                                                        `+ result[0] + `
+                                                                    </a>
+                                                                    đã được thêm.
+                                                                </h3>
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </td>
+                        </tr>
+
+                        `
+                        $("#listHistorySchool").find("tbody").html(listHistorySchool);
+                        document.getElementById("sortHistorySchool").click();
+
+                    })
+                })
+            });
+        }
+    })
+}
 
 function viewUser(id) {
     console.log(id);
@@ -1310,7 +1430,6 @@ function addSchool() {
 
 $(window).on('load', function () {
     listSchoolManagement();
-    history();
     $(document).ready(function () {
         var table = '#listSchoolManager';
         setTimeout(pag, 4000);

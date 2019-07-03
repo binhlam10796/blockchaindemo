@@ -305,7 +305,7 @@
     }
 }
 
-/* List Certificate Table */
+/* List listUserManager Table */
 table#listUserManager {
     border-collapse: collapse;
     width: 100%;
@@ -327,6 +327,30 @@ table#listUserManager tr:hover {
 }
 
 table#listUserManager th, td {
+    white-space: nowrap;
+}
+/* List listSchool Table */
+table#listSchoolManager {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+table#listSchoolManager th {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#listSchoolManager tr, table#listSchoolManager td, table#listSchoolManager th {
+    border: 1px solid #ddd;
+}
+
+table#listSchoolManager tr:hover {
+    background-color: #337ab7;
+    color: white;
+}
+
+table#listSchoolManager th, td {
     white-space: nowrap;
 }
 
@@ -448,4 +472,9 @@ table#listUserManager th, td {
 
 .bg-green {
     background-color: #1459b3 !important;
+}
+
+.table-borderless td,
+.table-borderless th {
+    border: 0;
 }
