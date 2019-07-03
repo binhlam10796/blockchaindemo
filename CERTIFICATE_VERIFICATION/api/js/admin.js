@@ -67,7 +67,7 @@ function addDegreeKind() {
             var batch = new web3.BatchRequest();
 
             batch.add(degreeKindSessionInstance.methods.InsertDegreeKind(degreeKindId, degreeKindName)
-                .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+                .send({ from: account },
                     function (error, result) {
                         try {
                             if (error.message.includes("User denied transaction signature")) {
@@ -82,7 +82,7 @@ function addDegreeKind() {
                     }
                 ));
             batch.add(historySessionInstance.methods.InsertHistory(idHistory, account, thaoTac, date)
-                .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+                .send({ from: account },
                     function (error, result) {
                         try {
                             if (error.message.includes("User denied transaction signature")) {
@@ -301,7 +301,7 @@ function deleteDegreeKindManagement() {
         var id1 = degreeKindId.slice(42, degreeKindId.length)
         var thaoTac = "Xóa loại văn bằng " + id1;
         batch.add(degreeKindSessionInstance.methods.deleteDegreeKind(id)
-            .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+            .send({ from: account },
                 function (error, result) {
                     try {
                         if (error.message.includes("User denied transaction signature")) {
@@ -315,7 +315,7 @@ function deleteDegreeKindManagement() {
                     }
                 }));
         batch.add(historySessionInstance.methods.InsertHistory(idHistory, account, thaoTac, date)
-            .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+            .send({ from: account },
                 function (error, result) {
                     try {
                         if (error.message.includes("User denied transaction signature")) {
@@ -389,7 +389,7 @@ function updateDegreeKindManagement() {
     var degreeKindName = $('#valueUpdate').val();
     var batch = new web3.BatchRequest();
     batch.add(degreeKindSessionInstance.methods.updateDegreeKindName(id, degreeKindName)
-        .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+        .send({ from: account },
             function (error, result) {
                 try {
                     if (error.message.includes("User denied transaction signature")) {
@@ -449,7 +449,7 @@ function addDegreeName() {
             console.log(degreeKindId + degreeNameId + degreeName);
 
             batch.add(degreeNameSessionInstance.methods.InsertDegreeName(degreeNameId, degreeKindId, degreeName)
-                .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+                .send({ from: account },
                     function (error, result) {
                         try {
                             if (error.message.includes("User denied transaction signature")) {
@@ -464,7 +464,7 @@ function addDegreeName() {
                     }
                 ));
             batch.add(historySessionInstance.methods.InsertHistory(idHistory, account, thaoTac, date)
-                .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+                .send({ from: account },
                     function (error, result) {
                         try {
                             if (error.message.includes("User denied transaction signature")) {
@@ -724,7 +724,7 @@ function getListDegreeName() {
                             }
                             else {
                                 degreeNameSessionInstance.methods.deleteDegreeName(result[0])
-                                    .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+                                    .send({ from: account },
                                         function (error, result) {
                                             try {
                                                 if (error.message.includes("User denied transaction signature")) {
@@ -782,7 +782,7 @@ function deleteDegreeNameManagement() {
         var id1 = degreeNameId.slice(42, degreeNameId.length);
         var thaoTac = "Xóa tên văn bằng " + id1;
         batch.add(degreeNameSessionInstance.methods.deleteDegreeName(id)
-            .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+            .send({ from: account },
                 function (error, result) {
                     try {
                         if (error.message.includes("User denied transaction signature")) {
@@ -798,7 +798,7 @@ function deleteDegreeNameManagement() {
             )
         );
         batch.add(historySessionInstance.methods.InsertHistory(idHistory, account, thaoTac, date)
-            .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+            .send({ from: account },
                 function (error, result) {
                     try {
                         if (error.message.includes("User denied transaction signature")) {
@@ -875,7 +875,7 @@ function updateDegreeNameManagement() {
     var degreeName = $('#valueUpdateDegreeName').val();
     var batch = new web3.BatchRequest();
     batch.add(degreeNameSessionInstance.methods.updateDegreeName(id, degreeName)
-        .send({ from: "0x3779b844Eb35D6589132D6Bf83CA2B1E1515b183" },
+        .send({ from: account },
             function (error, result) {
                 try {
                     if (error.message.includes("User denied transaction signature")) {
