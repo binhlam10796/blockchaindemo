@@ -614,7 +614,7 @@ function getHistory() {
                         timeLine(result[1], result[3], result[4]);
                     }
                     else if ($(".time-label").length !== 0 && $(".time-label:contains('"+tg(result[4])+"')").text().trim() == tg(result[4])) {
-                        $(".time-label:contains('"+tg(result[4])+"')").first().after(`<li>
+                        $(".time-label:contains('"+tg(result[4])+"')").after(`<li>
                              <i class="fa fa-user bg-aqua"></i>
                              <div class="timeline-item">
                                     <span class="time">
@@ -625,6 +625,8 @@ function getHistory() {
                          </li>`);
                     }
                     else {
+                        if(getT1me($('.time-label').first().text().trim()) < getT1me(tg(result[4])))
+                        {
                         $('.time-label').first().before(`
                             <li class="time-label">
                                     <span class="bg-green">`+ tg(result[4]) + `</span>
@@ -638,14 +640,54 @@ function getHistory() {
                                     <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+result[1]+`')">`+ result[1] + `</a> đã ` + result[3] + `</h3>
                             </div>
                         </li>`);
+                        }
+                        else{
+                            for(var i=0;i<($('.time-label').length);i++){
+                                if(getT1me(tg(result[4]))<getT1me($('.time-label')[i].innerText)&&getT1me(tg(result[4]))>getT1me($('.time-label')[i+1].innerText)){
+                                    $("#historyCertification").find(".time-label").eq(i+1).before(`
+                                    <li class="time-label">
+                                            <span class="bg-green">`+ tg(result[4]) + `</span>
+                                    </li>
+                                    <li>
+                                    <i class="fa fa-user bg-aqua"></i>
+                                    <div class="timeline-item">
+                                            <span class="time">
+                                            <i class="fa fa-clock-o"></i>`+ relativeTime(result[4]) + `</span>
+                                            <h3 class="timeline-header no-border">
+                                            <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+result[1]+`')">`+ result[1] + `</a> đã ` + result[3] + `</h3>
+                                    </div>
+                                    </li>`);
+                                }
+                            }
+                            //console.log("OK");
+                        }
+                        
+                        
+                        // $('.time-label').first().before(`
+                        //     <li class="time-label">
+                        //             <span class="bg-green">`+ tg(result[4]) + `</span>
+                        //     </li>
+                        //     <li>
+                        //     <i class="fa fa-user bg-aqua"></i>
+                        //     <div class="timeline-item">
+                        //             <span class="time">
+                        //             <i class="fa fa-clock-o"></i>`+ relativeTime(result[4]) + `</span>
+                        //             <h3 class="timeline-header no-border">
+                        //             <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+result[1]+`')">`+ result[1] + `</a> đã ` + result[3] + `</h3>
+                        //     </div>
+                        // </li>`);
                     };
                 })
             })
         }
     });
 }
-
-
+//get time to compare time
+function getT1me(String){
+    var n = new Date(String);
+    var result = n.getTime();
+    return result;
+}
 
 //format date
 function tg(date) {
@@ -698,7 +740,7 @@ function relativeTime(date) {
 
 //Modal view user
 function viewUser(id) {
-    console.log(id);
+    //console.log(id);
     userManagementSessionInstance.methods.getUser(id).call().then(function (result){
         userManagementSessionInstance.methods.getUserDetailMoreMore(id).call().then(function (result1){
             var table = `<tr>
