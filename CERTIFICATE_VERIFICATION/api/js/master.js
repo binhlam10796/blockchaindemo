@@ -1084,32 +1084,35 @@ function formatDate(date) {
         "August", "September", "October",
         "November", "December"
     ];
+    var minutes = date.getMinutes();
+    var hours = date.getHours();
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + hours + ':' + minutes;
 }
 //format date
-function tg(date) {
+function convertTime(date) {
     var timeLabel = formatDate(new Date(cutStringDate(date)));
     return timeLabel;
 }
 
-function relativeTime(date) {
+function timeAgo(date) {
     var date1 = moment(date).fromNow();
     return date1;
 }
 
+//chua xai
 function timeLine(id, thoigian) {
     var history = "";
     history += `<li class="time-label">
-                    <span class="bg-red">`+ tg(thoigian) + `</span>
+                    <span class="bg-red">`+ convertTime(thoigian) + `</span>
                 </li>
                 <li>
                 <i class="fa fa-user bg-aqua"></i>
                 <div class="timeline-item">
                 <span class="time">
-                    <i class="fa fa-clock-o"></i>`+ relativeTime(thoigian) + `</span>
+                    <i class="fa fa-clock-o"></i>`+ timeAgo(thoigian) + `</span>
                         <h3 class="timeline-header no-border">
                             <a href="#" data-toggle="modal" data-target="#viewUserModal" onclick="viewUser('`+ id + `')">` + id + `</a> </h3>
                 </div>
@@ -1127,53 +1130,44 @@ function historyUsers() {
                     userManagementSessionInstance.methods.getUserDetailMore(addr).call().then(function (result1) {
                         userManagementSessionInstance.methods.getUserDetailMoreMore(addr).call().then(function (result2) {
                             listHistory += `
-                                            <tr>
-                                                <td id=sortHistory onclick="sortTable($('#listHistory'),'desc')"
-                                                    style="display: none !important">
-                                                    ` + (parseInt(row) + 1) + `</td>
-                                                <td>
-                                                    <div class="tab-pane" >
-                                                        <section class="content">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <ul id="btnTimeLine" class="timeline">
-                                                                        <li class="time-label">
-                                                                            <span> `+ tg(result1[1]) + ` </span>
-                                                                        </li>
+                                <tr>
+                                    <td id=sortHistory onclick="sortTable($('#listHistory'),'desc')"
+                                        style="display: none !important">
+                                        ` + (parseInt(row) + 1) + `</td>
+                                    <td>
+                                        <div class="tab-pane" >
+                                            <section class="content">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <ul id="btnTimeLine" class="timeline">
+                                                            <li class="time-label">
+                                                                <span class="bg-green"> `+ convertTime(result1[1]) + ` </span>
+                                                            </li>
 
-                                                                        <li>
-                                                                            <i class="fa fa-user bg-aqua"></i>
-                                                                            <div class="timeline-item">
-                                                                                    <span class="time">
-                                                                                    <i class="fa fa-clock-o"></i>`+ relativeTime(result1[1]) + `</span>
-                                                                                    <h3 class="timeline-header no-border" >
-                                                                                        <a href="#" data-toggle="modal"
-                                                                                            data-target="#viewUserModal" 
-                                                                                            onclick="viewUser('`+ result[0] + `')">
-                                                                                            `+ result[0] + `
-                                                                                        </a>
-                                                                                        đã được thêm.
-                                                                                    </h3>
-                                                                            </div>
-                                                                        </li>
-
-                                                                    </ul>
+                                                            <li>
+                                                                <i class="fa fa-user bg-aqua"></i>
+                                                                <div class="timeline-item">
+                                                                        <span class="time">
+                                                                        <i class="fa fa-clock-o"></i>`+ timeAgo(result1[1]) + `</span>
+                                                                        <h3 class="timeline-header no-border" >
+                                                                            <a href="#" data-toggle="modal"
+                                                                                data-target="#viewUserModal" 
+                                                                                onclick="viewUser('`+ result[0] + `')">
+                                                                                `+ result[0] + `
+                                                                            </a>
+                                                                            đã được thêm.
+                                                                        </h3>
                                                                 </div>
-                                                            </div>
-                                                        </section>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        
-                                        
-                                            <tr>
-                                                
-                                            </tr>
-                                            
-                                            
+                                                            </li>
 
-                                            
-                                            `
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </td>
+                                </tr>
+                                `
                             $("#listHistory").find("tbody").html(listHistory);
                             document.getElementById("sortHistory").click();
                         })
@@ -1205,14 +1199,14 @@ function historySchool() {
                                             <div class="col-md-12">
                                                 <ul id="btnTimeLine" class="timeline">
                                                     <li class="time-label">
-                                                        <span> `+ tg(result1[0]) + ` </span>
+                                                        <span class="bg-green"> `+ convertTime(result1[0]) + ` </span>
                                                     </li>
 
                                                     <li>
                                                         <i class="fa fa-user bg-aqua"></i>
                                                         <div class="timeline-item">
                                                                 <span class="time">
-                                                                <i class="fa fa-clock-o"></i>`+ relativeTime(result1[0]) + `</span>
+                                                                <i class="fa fa-clock-o"></i>`+ timeAgo(result1[0]) + `</span>
                                                                 <h3 class="timeline-header no-border" >
                                                                     <a href="#" data-toggle="modal"
                                                                         data-target="#viewSchoolModal" 
@@ -1328,6 +1322,24 @@ function addSchool() {
             var modifiedTime = new Date(Date.now()).toString();
             var isLocked = $("#isLockedSchool").val();
             var batch = new web3.BatchRequest();
+            
+            batch.add(SchoolManagementSessionInstance.methods.insertSchoolAddition(address, createdTime, modifiedTime, isLocked)
+                .send({ from: account },
+                    function (error, result) {
+                        try {
+                            if (error.message.includes("School denied transaction signature")) {
+                                // handle the "error" as a rejection
+                                alert('Đã từ chối dịch vụ.');
+                                location.reload();
+                            }
+                        }
+                        catch (err) {
+                            console.log("Đã fix lỗi giao dịch 2.");
+                        }
+                    }
+                )
+                
+            );
             batch.add(SchoolManagementSessionInstance.methods.insertSchool(address, fullName, SchoolAddr, email,
                 fax, phoneNumber)
                 .send({ from: account },
@@ -1337,26 +1349,11 @@ function addSchool() {
                             if (error.message.includes("School denied transaction signature")) {
                                 // handle the "error" as a rejection
                                 alert('Đã hủy giao dịch.');
-                                // location.reload();
+                                location.reload();
                             }
                         }
                         catch (err) {
                             console.log("Đã fix lỗi giao dịch 1.");
-                        }
-                    }
-                ));
-            batch.add(SchoolManagementSessionInstance.methods.insertSchoolAddition(address, createdTime, modifiedTime, isLocked)
-                .send({ from: account },
-                    function (error, result) {
-                        try {
-                            if (error.message.includes("School denied transaction signature")) {
-                                // handle the "error" as a rejection
-                                alert('Đã từ chối dịch vụ.');
-                                // location.reload();
-                            }
-                        }
-                        catch (err) {
-                            console.log("Đã fix lỗi giao dịch 2.");
                         }
                     }
                 )
@@ -1372,7 +1369,7 @@ function addSchool() {
 
                 })
                 .on('error', console.err)
-            );
+                );
             try {
                 batch.execute();
                 if (error.message.includes("JSONRPC method should be specified for params:")) {
