@@ -344,50 +344,52 @@ function frontUpdateDegreeKindManagement(degreeKindId, degreeKindName) {
 }
 
 function updateDegreeKindManagement() {
-    var degreeKindId = $('#insertValueUpdateDegreeKindNameModal .modal-body p').text();
-    var id = degreeKindId.slice(0,42);
-    var name = degreeKindId.slice(42,degreeKindId.length);
+    web3.eth.getAccounts(function (error, result) {
+        var account = result[0];
+        var degreeKindId = $('#insertValueUpdateDegreeKindNameModal .modal-body p').text();
+        var id = degreeKindId.slice(0,42);
+        var name = degreeKindId.slice(42,degreeKindId.length);
 
-    var degreeKindName = $('#valueUpdate').val();
-    var batch = new web3.BatchRequest();
-    batch.add(degreeKindSessionInstance.methods.updateDegreeKindName(id, degreeKindName)
-        .send({ from: account },
-            function (error, result) {
-                try {
-                    if (error.message.includes("User denied transaction signature")) {
-                        alert('Đã từ chối dịch vụ.');
-                        location.reload();
+        var degreeKindName = $('#valueUpdate').val();
+        var batch = new web3.BatchRequest();
+        batch.add(degreeKindSessionInstance.methods.updateDegreeKindName(id, degreeKindName)
+            .send({ from: account },
+                function (error, result) {
+                    try {
+                        if (error.message.includes("User denied transaction signature")) {
+                            alert('Đã từ chối dịch vụ.');
+                            location.reload();
+                        }
+                    }
+                    catch (err) {
+                        console.log("Đã fix lỗi.");
                     }
                 }
-                catch (err) {
-                    console.log("Đã fix lỗi.");
-                }
-            }
-        )
-        .on('transactionHash', (hash) => {
-            $("#insertValueUpdateDegreeKindNameModal").hide();
-            $("#updateFrontDegreeKindManagement").hide();
-            alert("Vui lòng chờ xử lý giao dịch!");
-        })
-        .on('receipt', (receipt) => {
-            alert("Success!");
-            location.reload();
-        })
-        .on('confirmation', (confirmationNumber, receipt) => {
+            )
+            .on('transactionHash', (hash) => {
+                $("#insertValueUpdateDegreeKindNameModal").hide();
+                $("#updateFrontDegreeKindManagement").hide();
+                alert("Vui lòng chờ xử lý giao dịch!");
+            })
+            .on('receipt', (receipt) => {
+                alert("Success!");
+                location.reload();
+            })
+            .on('confirmation', (confirmationNumber, receipt) => {
 
-        })
-        .on('error', console.err)
-    );
-    try {
-        batch.execute();
-        if (error.message.includes("JSONRPC method should be specified for params:")) {
+            })
+            .on('error', console.err)
+        );
+        try {
+            batch.execute();
+            if (error.message.includes("JSONRPC method should be specified for params:")) {
+                console.log("Đã fix lỗi.");
+            }
+        }
+        catch (err) {
             console.log("Đã fix lỗi.");
         }
-    }
-    catch (err) {
-        console.log("Đã fix lỗi.");
-    }
-
+    })
 }
 
 function addDegreeName() {

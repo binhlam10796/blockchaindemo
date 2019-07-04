@@ -151,10 +151,10 @@ function onloadSelected() {
 
 // pagination school management
 function pag() {
-    $('.paginationSchool').html('')
+    $('#paginationSchool').html('')
     var table = '#listSchoolManager';
     var trnum = 0;
-    var maxRows = 10;
+    var maxRows = 5;
     var totalRows = $('#listSchoolManager tbody tr').length;
     // console.log(totalRows);
     $(table + ' tr:gt(0)').each(function () {
@@ -169,14 +169,14 @@ function pag() {
     if (totalRows > maxRows) {
         var pagenum = Math.ceil(totalRows / maxRows)
         for (var i = 1; i <= pagenum;) {
-            $('.paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + ' <span class="sr-only">(current)</span> </span>\ </li>').show()
+            $('#paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + ' <span class="sr-only">(current)</span> </span>\ </li>').show()
         }
     }
-    $('.paginationSchool li:first-child').addClass('active')
-    $('.paginationSchool li').on('click', function () {
+    $('#paginationSchool li:first-child').addClass('active')
+    $('#paginationSchool li').on('click', function () {
         var pageNum = $(this).attr('data-page')
         var trIndex = 0
-        $('.paginationSchool li').removeClass('active')
+        $('#paginationSchool li').removeClass('active')
         $(this).addClass('active')
         $(table + ' tr:gt(0)').each(function () {
             trIndex++
@@ -195,8 +195,7 @@ $(window).on('load', function () {
     // history();
     $(document).ready(function () {
         var table = '#listUserManager';
-        setTimeout(onloadSelected, 5000);
-        setTimeout(pag, 5000);
+        setTimeout(onloadSelected, 4000);
 
         $('#maxRowsListUserManagement').on('change', function () {
             $('.pagination').html('')
@@ -243,7 +242,7 @@ $(window).on('load', function () {
         setTimeout(pag, 4000);
 
         $('#listschoolpt').on('change', function () {
-            $('.paginationSchool').html('')
+            $('#paginationSchool').html('')
             var trnum = 0;
             var maxRows = parseInt($(this).val())
             var totalRows = $(table + ' tbody tr').length
@@ -259,14 +258,14 @@ $(window).on('load', function () {
             if (totalRows > maxRows) {
                 var pagenum = Math.ceil(totalRows / maxRows)
                 for (var i = 1; i <= pagenum;) {
-                    $('.paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
+                    $('#paginationSchool').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span> </span>\ </li>').show()
                 }
             }
-            $('.paginationSchool li:first-child').addClass('active')
-            $('.paginationSchool li').on('click', function () {
+            $('#paginationSchool li:first-child').addClass('active')
+            $('#paginationSchool li').on('click', function () {
                 var pageNum = $(this).attr('data-page')
                 var trIndex = 0
-                $('.paginationSchool li').removeClass('active')
+                $('#paginationSchool li').removeClass('active')
                 $(this).addClass('active')
                 $(table + ' tr:gt(0)').each(function () {
                     trIndex++
