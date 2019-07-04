@@ -834,9 +834,12 @@ function frontUpdateDegreeNameManagement(degreeNameId, degreeKindName, degreeNam
 }
 
 function updateDegreeNameManagement() {
+    web3.eth.getAccounts(function (error, result) {
     var degreeNameId = $('#insertValueUpdateDegreeNameModal .modal-body p').text();
     var id = degreeNameId.slice(0,42);
     var degreeName = $('#valueUpdateDegreeName').val();
+    var account = result[0];
+
     var batch = new web3.BatchRequest();
     batch.add(degreeNameSessionInstance.methods.updateDegreeName(id, degreeName)
         .send({ from: account },
@@ -875,7 +878,7 @@ function updateDegreeNameManagement() {
     catch (err) {
         console.log("Đã fix lỗi.");
     }
-
+    })
 }
 
 function paginationHistory() {
