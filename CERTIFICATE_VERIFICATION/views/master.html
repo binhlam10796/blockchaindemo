@@ -62,16 +62,22 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#userManagement" data-toggle="tab">Quản
-                                    lý người dùng</a>
+                                <a href="#userManagement" data-toggle="tab">
+                                    Quản lý người dùng</a>
                             </li>
                             <li>
-                                <a href="#schoolManagement" data-toggle="tab">Quản
-                                    lý trường</a>
+                                <a href="#schoolManagement" data-toggle="tab">
+                                    Quảnlý trường</a>
                             </li>
                             <li>
                                 <a href="#historyUsermanagement"
-                                    data-toggle="tab">Lịch sử</a>
+                                    data-toggle="tab">
+                                    Lịch sử người dùng</a>
+                            </li>
+                            <li>
+                                <a href="#historySchoolmanagement"
+                                    data-toggle="tab">
+                                    Lịch sử trường học</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -83,7 +89,7 @@
                                         <button type="button" name=""
                                             class="form-control btn btn-primary"
                                             data-toggle="modal"
-                                            data-target="#addDegree">
+                                            data-target="#addUsers">
                                             <i class="glyphicon glyphicon-plus"></i>
                                             Thêm mới</button>
                                     </div>
@@ -189,7 +195,8 @@
                                 <div class="box box-primary">
                                     <div class="box-header ui-sortable-handle">
                                         <i class="ion ion-clipboard"></i>
-                                        <h3 class="box-title">Danh sách quản lý trường</h3>
+                                        <h3 class="box-title">Danh sách quản lý
+                                            trường</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body"
@@ -216,7 +223,8 @@
                                             table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th onclick="sortTable($('#listSchoolManager'),'asc')">
+                                                    <th id="btnSortSchool"
+                                                        onclick="sortTable($('#listSchoolManager'),'asc')">
                                                         STT
                                                     </th>
                                                     <th>Tên Trường</th>
@@ -235,7 +243,7 @@
                                         </table>
                                         <div class="pagination-container">
                                             <nav>
-                                                <ul class="pagination"></ul>
+                                                <ul class="paginationSchool"></ul>
                                             </nav>
                                         </div>
 
@@ -244,9 +252,19 @@
                             </div>
                             <!-- End tab approve certification -->
 
-                            <!-- Tab history -->
+                            <!-- Tab history users -->
                             <div class="tab-pane" id="historyUsermanagement">
                                 <section class="content">
+                                    <table id="listHistory"
+                                        class="table table-borderless
+                                        table-condensed table-hover">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
                                     <!-- row -->
                                     <div class="row">
                                         <div class="col-md-12">
@@ -260,7 +278,35 @@
                                     <!-- /.row -->
                                 </section>
                             </div>
-                            <!-- End tab history -->
+                            <!-- End tab history users -->
+
+                            <!-- Tab history school -->
+                            <div class="tab-pane" id="historySchoolmanagement">
+                                <section class="content">
+                                    <table id="listHistorySchool"
+                                        class="table table-borderless
+                                        table-condensed table-hover">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <ul id="btnTimeLine"
+                                                class="timeline">
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </section>
+                            </div>
+                            <!-- End tab history school -->
                         </div>
                         <!-- /.tab-content -->
                     </div>
@@ -272,7 +318,7 @@
         </div>
 
         <!-- Add usermanagement-->
-        <div class="modal fade" id="addDegree">
+        <div class="modal fade" id="addUsers">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -881,6 +927,30 @@
         </div>
         <!--End modal view user-->
 
+        <!--Modal view school-->
+        <div class="modal fade" id="viewSchoolModal">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                            data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Thông tin người dùng</h4>
+                    </div>
+                    <div class="modal-body" style="overflow-x:auto;">
+                        <table id="viewSchool" class="table" cellspacing="0"
+                            style="width:100%">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End modal view school-->
+
         <!-- timeago -->
         <div class="modal fade" id="timeAgoModal">
             <div class="modal-dialog">
@@ -984,7 +1054,8 @@
                                     control-label">Khóa</label>
 
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="isLockedSchool"
+                                    <select class="form-control"
+                                        id="isLockedSchool"
                                         placeholder=""
                                         data-parsley-required="true">
                                         <option value="ON"
@@ -1075,7 +1146,7 @@
                     <div>
                         <table align="center">
                             <tr><td><input type="text" class="form-control"
-                                        id="valueUpdateName"
+                                        id="valueUpdateNameSchool"
                                         placeholder="Nhập tên muốn thay đổi"
                                         data-parsley-required="true"
                                         data-parsley-error-message="Không được
@@ -1120,7 +1191,7 @@
                     <div>
                         <table align="center">
                             <tr><td><input type="text" class="form-control"
-                                        id="valueUpdateEmail"
+                                        id="valueUpdateEmailSchool"
                                         placeholder="Nhập Email bạn muốn thay
                                         đổi"
                                         data-parsley-required="true"
@@ -1165,7 +1236,7 @@
                     <div>
                         <table align="center">
                             <tr><td><input type="text" class="form-control"
-                                        id="valueUpdateAddr"
+                                        id="valueUpdateAddrSchool"
                                         placeholder="Nhập địa chỉ bạn muốn thay
                                         đổi"
                                         data-parsley-required="true"
@@ -1210,7 +1281,7 @@
                     <div>
                         <table align="center">
                             <tr><td><input type="text" class="form-control"
-                                        id="valueUpdateFax"
+                                        id="valueUpdateFaxSchool"
                                         placeholder="Nhập số Fax bạn muốn thay
                                         đổi"
                                         data-parsley-required="true"
@@ -1255,7 +1326,7 @@
                     <div>
                         <table align="center">
                             <tr><td><input type="text" class="form-control"
-                                        id="valueUpdatePhone"
+                                        id="valueUpdatePhoneSchool"
                                         placeholder="Nhập số điện thoại bạn muốn
                                         thay đổi"
                                         data-parsley-required="true"
@@ -1298,7 +1369,7 @@
                     </div>
                     <div>
                         <table align="center">
-                            <tr><td><select id="valueUpdateisLock">
+                            <tr><td><select id="valueUpdateisLockSchool">
                                         <option value="ON">On</option>
                                         <option value="OFF">Off</option>
                                     </select>
