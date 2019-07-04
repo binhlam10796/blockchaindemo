@@ -7,8 +7,8 @@ if (typeof web3 !== 'undefined') {
 ethereum.enable();
 var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0x1Cbaac790Fae48baC414cefF08246dA6bceB05fA");
 var degreeKindSessionInstance = new web3.eth.Contract(KindStorageABI, "0xEDa26Ff4A9F9fD8ABa7DAC520A530ab9362e54Fe");
-var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0x99440E9b6Fc1ff3a7E0E16C90822A55038c62F60");
-var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xE6A67C0e38A0a4609E4869088416801c6E12F742");
+var SchoolManagementSessionInstance = new web3.eth.Contract(SchoolStorageABI, "0xA5D96Dc92586be9DC36F377C4bF933ce6cb65dEc");
+var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0x5aB05BC7EAc1355B3ff1B5a748A75a2BfAC39e80");
 
 
 function addCertificate() {

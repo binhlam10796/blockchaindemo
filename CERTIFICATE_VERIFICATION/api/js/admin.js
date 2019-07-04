@@ -9,7 +9,7 @@ var degreeKindSessionInstance = new web3.eth.Contract(KindStorageABI, "0x99b476b
 var degreeNameSessionInstance = new web3.eth.Contract(NameStorageABI, "0x2c5190fbE008e6698Fc2CEaDFf9d45eF4bd2e857");
 var historySessionInstance = new web3.eth.Contract(HistotyStorageABI, "0x37aBEdDf4A6f7dA8b51e250539e46606a595ED07");
 var certificateSessionIntance = new web3.eth.Contract(CertificateStorageABI, "0x1Cbaac790Fae48baC414cefF08246dA6bceB05fA");
-var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0xE6A67C0e38A0a4609E4869088416801c6E12F742");
+var userManagementSessionInstance = new web3.eth.Contract(UserManagementStorageABI, "0x5aB05BC7EAc1355B3ff1B5a748A75a2BfAC39e80");
 
 var temp = web3.eth.accounts.create();
 var randomAddress = temp.address;
